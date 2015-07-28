@@ -1,0 +1,160 @@
+<!doctype html>
+
+<head>
+	<meta charset="utf8">
+	<title>String.prototype.matchAll</title>
+	<link rel="stylesheet" href="./elements.css">
+	<link rel="stylesheet" href="https://bterlson.github.io/ecmarkup/elements.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
+</head>
+
+<body>
+	<h1>String.prototype.matchAll</h1>
+	<div>
+		<h2>Table of Contents</h2>
+		<ol class="toc">
+			<li><a href="#String.prototype.matchAll"><span class="secnum">1</span> String.prototype.matchAll ( regexp )</a></li>
+			<li><a href="#"><span class="secnum">2</span> CreateRegExpStringIterator Abstract Operation</a></li>
+			<li><a href="#%RegExpStringIteratorPrototype%"><span class="secnum">3</span> The %RegExpStringIteratorPrototype% Object</a>
+				<ol class="toc">
+					<li><a href="#%RegExpStringIteratorPrototype%.next"><span class="secnum">3.1</span> %RegExpStringIteratorPrototype%.next()</a></li>
+					<li><a href="#%RegExpStringIteratorPrototype%[@@toStringTag]"><span class="secnum">3.2</span> %RegExpStringIteratorPrototype%[ @@toStringTag ]</a></li>
+					<li><a href="#PropertiesOfRegExpStringIteratorInstances"><span class="secnum">3.3</span> Properties of RegExp String Iterator Instances</a></li>
+				</ol>
+			</li>
+		</ol>
+	</div>
+	<emu-clause id="String.prototype.matchAll">
+		<h1><span class="secnum">1</span>String.prototype.matchAll ( regexp )<span class="utils"><span class="anchor"><a href="#String.prototype.matchAll">#</a></span></span></h1>
+		<emu-note><span class="note">Note 1</span><var>matchAll</var> does not visibly mutate the provided <var>regexp</var> in any way.</emu-note>
+		<p>When the <var>matchAll</var> method is called, the following steps are taken:</p>
+		<emu-alg>
+			<ol>
+				<li>Let <var>O</var> be <a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-requireobjectcoercible">RequireObjectCoercible</a>(
+					<emu-val>this</emu-val> value).</li>
+				<li>If <var>regexp</var> does not have a [[RegExpMatcher]] <a href="http://www.ecma-international.org/ecma-262/6.0/#sec-object-internal-methods-and-internal-slots">internal slot</a>, throw a
+					<emu-val>TypeError</emu-val> exception.</li>
+				<li>Let <var>S</var> be <a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-tostring">ToString</a>(
+					<emu-val>O</emu-val>).</li>
+				<li><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-returnifabrupt">ReturnIfAbrupt</a>(<var>S</var>).</li>
+				<li>Let <var>flags</var> be <a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-tostring">ToString</a>(<a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-get-o-p">Get</a>(regexp,
+					<emu-val>"flags"</emu-val>)).</li>
+				<li><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-returnifabrupt">ReturnIfAbrupt</a>(<var>flags</var>).</li>
+				<li>If <var>flags</var> does not contain the character
+					<emu-val>"g"</emu-val>, let <var>flags</var> be the String concatenation of the String
+					<emu-val>"g"</emu-val> and <var>flags</var>.</li>
+				<li>Let <var>rx</var> be <a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-regexpcreate">RegExpCreate</a>(<var>regexp</var>, <var>flags</var>).</li>
+				<li>Let <var>lastIndex</var> be <a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-tolength">ToLength</a>(<a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-get-o-p">Get</a>(regexp,
+					<emu-val>"lastIndex"</emu-val>)).</li>
+				<li><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-returnifabrupt">ReturnIfAbrupt</a>(<var>lastIndex</var>).</li>
+				<li>Let <var>setStatus</var> be <a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-set-o-p-v-throw">Set</a>(<var>rx</var>,
+					<emu-val>"lastIndex"</emu-val>, <var>lastIndex</var>,
+					<emu-val>true</emu-val>).</li>
+				<li><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-returnifabrupt">ReturnIfAbrupt</a>(<var>setStatus</var>).</li>
+				<li>Return <a href="#">CreateRegExpStringIterator</a>(<var>rx</var>, <var>S</var>)</li>
+			</ol>
+		</emu-alg>
+		<p>The <var>length</var> property of the <var>matchAll</var> method is
+			<emu-val>1</emu-val>.</p>
+		<emu-note><span class="note">Note 2</span>The <var>rx</var> regular expression value is created solely to ensure that no visible mutation happens on <var>regexp</var> - it should never be exposed to the environment.</emu-note>
+	</emu-clause>
+
+	<emu-clause aoid="CreateRegExpStringIterator">
+		<h1><span class="secnum">2</span>CreateRegExpStringIterator Abstract Operation<span class="utils"><span class="anchor"><a href="#">#</a></span></span></h1>
+
+		<p>The abstract operation CreateRegExpStringIterator with arguments <var>regexp</var> and <var>string</var> is used to create such iterator objects. It performs the following steps:</p>
+		<emu-alg>
+			<ol>
+				<li>Assert: Type(<var>R</var>) is Object.</li>
+				<li>Assert: <var>R</var> has a [[RegExpMatcher]] <a href="http://www.ecma-international.org/ecma-262/6.0/#sec-object-internal-methods-and-internal-slots">internal slot</a>.</li>
+				<li>Assert: <a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-toboolean">ToBoolean</a>(<a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-get-o-p">Get</a>(<var>R</var>,
+					<emu-val>"global"</emu-val>)) is
+					<emu-val>true</emu-val>.</li>
+				<li>Assert: Type(<var>S</var>) is String.</li>
+				<li>Let <var>iterator</var> be <a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-objectcreate">ObjectCreate</a>(
+					<emu-xref href="#%RegExpStringIteratorPrototype%"><a href="#%RegExpStringIteratorPrototype%">%RegExpStringIteratorPrototype%</a></emu-xref>, «[[IteratedString]], [[IteratingRegExp]]»).</li>
+				<li>Set <var>iterator's</var> [[IteratingRegExp]] <a href="http://www.ecma-international.org/ecma-262/6.0/#sec-object-internal-methods-and-internal-slots">internal slot</a> to <var>R</var>.</li>
+				<li>Set <var>iterator's</var> [[IteratedString]] <a href="http://www.ecma-international.org/ecma-262/6.0/#sec-object-internal-methods-and-internal-slots">internal slot</a> to <var>S</var>.</li>
+				<li>Return <var>iterator</var>.</li>
+			</ol>
+		</emu-alg>
+	</emu-clause>
+
+	<emu-clause id="%RegExpStringIteratorPrototype%">
+		<h1><span class="secnum">3</span>The %RegExpStringIteratorPrototype% Object<span class="utils"><span class="anchor"><a href="#%RegExpStringIteratorPrototype%">#</a></span></span></h1>
+
+		<p>All RegExp String Iterator Objects inherit properties from the
+			<emu-xref href="#%RegExpStringIteratorPrototype%"><a href="#%RegExpStringIteratorPrototype%">%RegExpStringIteratorPrototype%</a></emu-xref> intrinsic object. The %RegExpStringIteratorPrototype% object is an ordinary object and its [[Prototype]] <a href="http://www.ecma-international.org/ecma-262/6.0/#sec-object-internal-methods-and-internal-slots">internal slot</a> is the <a href="http://www.ecma-international.org/ecma-262/6.0/#sec-%iteratorprototype%-object">%IteratorPrototype% intrinsic object</a>. In addition, %RegExpStringIteratorPrototype% has the following properties:</p>
+
+		<emu-clause id="%RegExpStringIteratorPrototype%.next">
+			<h1><span class="secnum">3.1</span>%RegExpStringIteratorPrototype%.next()<span class="utils"><span class="anchor"><a href="#%RegExpStringIteratorPrototype%.next">#</a></span></span></h1>
+			<emu-alg>
+				<ol>
+					<li>Let O be the
+						<emu-val>this</emu-val> value.</li>
+					<li>If Type(O) is not Object, throw a
+						<emu-val>TypeError</emu-val> exception.</li>
+					<li>If O does not have all of the internal slots of a RegExp String Iterator Object Instance (see
+						<emu-xref href="#PropertiesOfRegExpStringIteratorInstances"><a href="#PropertiesOfRegExpStringIteratorInstances">3.3</a></emu-xref>), throw a
+						<emu-val>TypeError</emu-val> exception.</li>
+					<li>Let <var>regexp</var> be the value of the [[IteratingRegExp]] <a href="http://www.ecma-international.org/ecma-262/6.0/#sec-object-internal-methods-and-internal-slots">internal slot</a> of <var>O</var>.</li>
+					<li>Let <var>string</var> be the value of the [[IteratedString]] <a href="http://www.ecma-international.org/ecma-262/6.0/#sec-object-internal-methods-and-internal-slots">internal slot</a> of <var>O</var>.</li>
+					<li>Let <var>match</var> be <a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-regexpexec">RegExpExec</a>(<var>regexp</var>, <var>string</var>)</li>
+					<li>If <var>match</var> is
+						<emu-val>null</emu-val>, then
+						<ol>
+							<li>return <a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-createiterresultobject">CreateIterResultObject</a>(
+								<emu-val>null</emu-val>,
+								<emu-val>true</emu-val>).</li>
+						</ol>
+					</li>
+					<li>Else,
+						<ol>
+							<li>return <a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-createiterresultobject">CreateIterResultObject</a>(<var>match</var>,
+								<emu-val>false</emu-val>).</li>
+						</ol>
+					</li>
+				</ol>
+			</emu-alg>
+			<p>The <var>length</var> property of the <var>next</var> method is
+				<emu-val>0</emu-val>.</p>
+		</emu-clause>
+
+		<emu-clause id="%RegExpStringIteratorPrototype%[@@toStringTag]">
+			<h1><span class="secnum">3.2</span>%RegExpStringIteratorPrototype%[ @@toStringTag ]<span class="utils"><span class="anchor"><a href="#%RegExpStringIteratorPrototype%[@@toStringTag]">#</a></span></span></h1>
+			<p>The initial value of the <var>@@toStringTag</var> property is the String value
+				<emu-val>"RegExp String Iterator"</emu-val>.</p>
+			<p>This property has the attributes { [[Writable]]:
+				<emu-val>false</emu-val>, [[Enumerable]]:
+				<emu-val>false</emu-val>, [[Configurable]]:
+				<emu-val>true</emu-val> }.</p>
+		</emu-clause>
+
+		<emu-clause id="PropertiesOfRegExpStringIteratorInstances">
+			<h1><span class="secnum">3.3</span>Properties of RegExp String Iterator Instances<span class="utils"><span class="anchor"><a href="#PropertiesOfRegExpStringIteratorInstances">#</a></span></span></h1>
+			<p>RegExp String Iterator instances are ordinary objects that inherit properties from the
+				<emu-xref href="#%RegExpStringIteratorPrototype%"><a href="#%RegExpStringIteratorPrototype%">%RegExpStringIteratorPrototype%</a></emu-xref> intrinsic object. RegExp String Iterator instances are initially created with the internal slots listed in <a href="#table-1">Table 1</a>.</p>
+			<figure>
+				<figcaption><span id="table-1">Table 1</span> — Internal Slots of RegExp String Iterator Instances</figcaption>
+				<table class="real-table">
+					<tbody>
+						<tr>
+							<th>Internal Slot</th>
+							<th>Description</th>
+						</tr>
+						<tr>
+							<td>[[IteratedObject]]</td>
+							<td>The object whose array elements are being iterated.</td>
+						</tr>
+						<tr>
+							<td>[[ArrayIteratorNextIndex]]</td>
+							<td>The integer index of the next integer index to be examined by this iteration.</td>
+						</tr>
+					</tbody>
+				</table>
+			</figure>
+		</emu-clause>
+	</emu-clause>
+
+
+</body>

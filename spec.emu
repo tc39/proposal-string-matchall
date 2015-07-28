@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+  <head><meta charset="utf8">
+    <title>String.prototype.matchAll</title>
+    <link rel="stylesheet" href="./elements.css">
+    <link rel="stylesheet" href="https://bterlson.github.io/ecmarkup/elements.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
+  </head>
+  <body>
+    <h1>String.prototype.matchAll</h1>
+    <emu-clause id="String.prototype.matchAll">
+      <h1>String.prototype.matchAll ( regexp )</h1>
+      <emu-note>_matchAll_ does not visibly mutate the provided _regexp_ in any way.</emu-note>
+      <p>When the _matchAll_ method is called, the following steps are taken:</p>
+      <emu-alg>
+        1. Let _O_ be RequireObjectCoercible(*this* value).
+        1. If _regexp_ does not have a [[RegExpMatcher]] <a href="http://www.ecma-international.org/ecma-262/6.0/#sec-object-internal-methods-and-internal-slots">internal slot</a>, throw a *TypeError* exception.
+        1. Let _S_ be ToString(*O*).
+        1. ReturnIfAbrupt(_S_).
+        1. Let _flags_ be ToString(Get(regexp, *"flags"*)).
+        1. ReturnIfAbrupt(_flags_).
+        1. If _flags_ does not contain the character *"g"*, let _flags_ be the String concatenation of the String *"g"* and _flags_.
+        1. Let _rx_ be RegExpCreate(_regexp_, _flags_).
+        1. Let _lastIndex_ be ToLength(Get(regexp, *"lastIndex"*)).
+        1. ReturnIfAbrupt(_lastIndex_).
+        1. Let _setStatus_ be Set(_rx_, *"lastIndex"*, _lastIndex_, *true*).
+        1. ReturnIfAbrupt(_setStatus_).
+        1. Return CreateRegExpStringIterator(_rx_, _S_)
+      </emu-alg>
+      <p>The _length_ property of the _matchAll_ method is *1*.</p>
+      <emu-note>The _rx_ regular expression value is created solely to ensure that no visible mutation happens on _regexp_ - it should never be exposed to the environment.</emu-note>
+    </emu-clause>
+
+    <emu-clause aoid="CreateRegExpStringIterator">
+      <h1>CreateRegExpStringIterator Abstract Operation</h1>
+
+      <p>The abstract operation CreateRegExpStringIterator with arguments _regexp_ and _string_ is used to create such iterator objects. It performs the following steps:</p>
+      <emu-alg>
+        1. Assert: Type(_R_) is Object.
+        1. Assert: _R_ has a [[RegExpMatcher]] <a href="http://www.ecma-international.org/ecma-262/6.0/#sec-object-internal-methods-and-internal-slots">internal slot</a>.
+        1. Assert: ToBoolean(Get(_R_, *"global"*)) is *true*.
+        1. Assert: Type(_S_) is String.
+        1. Let _iterator_ be ObjectCreate(<emu-xref href="#%RegExpStringIteratorPrototype%">%RegExpStringIteratorPrototype%</emu-xref>, «[[IteratedString]], [[IteratingRegExp]]»).
+        1. Set _iterator's_ [[IteratingRegExp]] <a href="http://www.ecma-international.org/ecma-262/6.0/#sec-object-internal-methods-and-internal-slots">internal slot</a> to _R_.
+        1. Set _iterator's_ [[IteratedString]] <a href="http://www.ecma-international.org/ecma-262/6.0/#sec-object-internal-methods-and-internal-slots">internal slot</a> to _S_.
+        1. Return _iterator_.
+      </emu-alg>
+    </emu-clause>
+
+    <emu-clause id="%RegExpStringIteratorPrototype%">
+      <h1>The %RegExpStringIteratorPrototype% Object</h1>
+
+      <p>All RegExp String Iterator Objects inherit properties from the <emu-xref href="#%RegExpStringIteratorPrototype%">%RegExpStringIteratorPrototype%</emu-xref> intrinsic object. The %RegExpStringIteratorPrototype% object is an ordinary object and its [[Prototype]] <a href="http://www.ecma-international.org/ecma-262/6.0/#sec-object-internal-methods-and-internal-slots">internal slot</a> is the <a href="http://www.ecma-international.org/ecma-262/6.0/#sec-%iteratorprototype%-object">%IteratorPrototype% intrinsic object</a>. In addition, %RegExpStringIteratorPrototype% has the following properties:</p>
+
+      <emu-clause id="%RegExpStringIteratorPrototype%.next">
+        <h1>%RegExpStringIteratorPrototype%.next()</h1>
+        <emu-alg>
+          1. Let O be the *this* value.
+          1. If Type(O) is not Object, throw a *TypeError* exception.
+          1. If O does not have all of the internal slots of a RegExp String Iterator Object Instance (see <emu-xref href="#PropertiesOfRegExpStringIteratorInstances"></emu-xref>), throw a *TypeError* exception.
+          1. Let _regexp_ be the value of the [[IteratingRegExp]] <a href="http://www.ecma-international.org/ecma-262/6.0/#sec-object-internal-methods-and-internal-slots">internal slot</a> of _O_.
+          1. Let _string_ be the value of the [[IteratedString]] <a href="http://www.ecma-international.org/ecma-262/6.0/#sec-object-internal-methods-and-internal-slots">internal slot</a> of _O_.
+          1. Let _match_ be RegExpExec(_regexp_, _string_)
+          1. If _match_ is *null*, then
+            1. return CreateIterResultObject(*null*, *true*).
+          1. Else,
+            1. return CreateIterResultObject(_match_, *false*).
+        </emu-alg>
+        <p>The _length_ property of the _next_ method is *0*.</p>
+      </emu-clause>
+
+      <emu-clause id="%RegExpStringIteratorPrototype%[@@toStringTag]">
+        <h1>%RegExpStringIteratorPrototype%[ @@toStringTag ]</h1>
+        <p>The initial value of the _@@toStringTag_ property is the String value *"RegExp String Iterator"*.</p>
+        <p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *true* }.</p>
+      </emu-clause>
+
+      <emu-clause id="PropertiesOfRegExpStringIteratorInstances">
+        <h1>Properties of RegExp String Iterator Instances</h1>
+        <p>RegExp String Iterator instances are ordinary objects that inherit properties from the <emu-xref href="#%RegExpStringIteratorPrototype%">%RegExpStringIteratorPrototype%</emu-xref> intrinsic object. RegExp String Iterator instances are initially created with the internal slots listed in <a href="#table-1">Table 1</a>.</p>
+        <figure>
+          <figcaption><span id="table-1">Table 1</span> — Internal Slots of RegExp String Iterator Instances</figcaption>
+          <table class="real-table">
+            <tbody>
+              <tr>
+                <th>Internal Slot</th>
+                <th>Description</th>
+              </tr>
+              <tr>
+                <td>[[IteratedObject]]</td>
+                <td>The object whose array elements are being iterated.</td>
+              </tr>
+              <tr>
+                <td>[[ArrayIteratorNextIndex]]</td>
+                <td>The integer index of the next integer index to be examined by this iteration.</td>
+              </tr>
+            </tbody>
+          </table>
+        </figure>
+      </emu-clause>
+    </emu-clause>
+  </body>
+</html>

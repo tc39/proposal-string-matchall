@@ -3,7 +3,7 @@
 	"version": "0.0.0",
 	"description": "Spec-compliant polyfill for String.prototype.matchAll ESnext proposal.",
 	"scripts": {
-		"build": "ecmarkup spec.emu spec.html",
+		"build": "ecmarkup spec.emu | js-beautify --type=html -t -o spec.html",
 		"prepublish": "npm run build"
 	},
 	"repository": {
@@ -27,6 +27,7 @@
 	},
 	"homepage": "https://github.com/ljharb/String.prototype.matchAll#readme",
 	"devDependencies": {
-		"ecmarkup": "^2.0.0-beta1"
+		"ecmarkup": "^2.0.0-beta1",
+		"js-beautify": "^1.5.10"
 	}
 }
