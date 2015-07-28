@@ -1,0 +1,32 @@
+{
+	"name": "string-matchall",
+	"version": "0.0.0",
+	"description": "Spec-compliant polyfill for String.prototype.matchAll ESnext proposal.",
+	"scripts": {
+		"build": "ecmarkup spec.emu spec.html",
+		"prepublish": "npm run build"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/ljharb/String.prototype.matchAll.git"
+	},
+	"keywords": [
+		"String.prototype.matchAll",
+		"matchAll",
+		"match",
+		"regex",
+		"regexp",
+		"regular",
+		"expression",
+		"matches"
+	],
+	"author": "Jordan Harband <ljharb@gmail.com>",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/ljharb/String.prototype.matchAll/issues"
+	},
+	"homepage": "https://github.com/ljharb/String.prototype.matchAll#readme",
+	"devDependencies": {
+		"ecmarkup": "^2.0.0-beta1"
+	}
+}
