@@ -3,40 +3,11 @@ var bind = require('function-bind');
 var define = require('define-properties');
 var flagsGetter = require('regexp.prototype.flags');
 
-var cache = {};
-var makeHiddenKey = function (prop) {
-	if (cache['$' + prop]) {
-		return cache['$' + prop];
-	}
-	if (typeof Symbol === 'function') {
-		cache['$' + prop] = Symbol(prop);
-		return cache['$' + prop];
-	}
-	return '___ ' + prop + ' ___';
-};
-var setHidden = function (obj, prop, value) {
-	var key = makeHiddenKey(prop);
-	if (define.supportsDescriptors) {
-		Object.defineProperty(obj, key, {
-			value: value,
-			configurable: false,
-			enumerable: false,
-			writable: false
-		});
-	} else {
-		obj[key] = value;
-	}
-};
-var getHidden = function (obj, prop) {
-	return obj[makeHiddenKey(prop)];
-};
-var hasHidden = function (obj, prop) {
-	return makeHiddenKey(prop) in obj;
-};
+var hidden = require('./hidden')();
 
 var RegExpStringIterator = function RegExpStringIterator(regexp, string) {
-	setHidden(this, 'regexp', regexp);
-	setHidden(this, 'string', string);
+	hidden.set(this, 'regexp', regexp);
+	hidden.set(this, 'string', string);
 };
 
 var has = bind.call(Function.call, Object.prototype.hasOwnProperty);
@@ -44,11 +15,11 @@ var has = bind.call(Function.call, Object.prototype.hasOwnProperty);
 define(RegExpStringIterator.prototype, {
 	next: function next() {
 		var O = ES.RequireObjectCoercible(this);
-		if (!(this instanceof RegExpStringIterator) || !hasHidden(O, 'regexp') || !hasHidden(O, 'string')) {
+		if (!(this instanceof RegExpStringIterator) || !hidden.has(O, 'regexp') || !hidden.has(O, 'string')) {
 			throw new TypeError('"this" value must be a RegExpStringIterator instance');
 		}
-		var regexp = getHidden(this, 'regexp');
-		var string = getHidden(this, 'string');
+		var regexp = hidden.get(this, 'regexp');
+		var string = hidden.get(this, 'string');
 		var match = regexp.exec(string);
 		return { value: match, done: match === null };
 	}
