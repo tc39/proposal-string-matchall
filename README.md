@@ -1,6 +1,9 @@
 # String.prototype.matchAll
 Proposal, specs, tests, reference implementation, and polyfill/shim for String.prototype.matchAll
 
+## Spec
+You can view the spec in [markdown format](spec.md) or rendered as [HTML](https://ljharb.github.io/String.prototype.matchAll/).
+
 ## Rationale
 If I have a string, and either a sticky or a global regular expression which has multiple capturing groups, I often want to iterate through all of the matches.
 Currently, my options are the following:
