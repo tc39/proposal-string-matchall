@@ -31,7 +31,7 @@
       <emu-note>The _rx_ regular expression value is created solely to ensure that no visible mutation happens on _regexp_ - it should never be exposed to the environment.</emu-note>
     </emu-clause>
 
-    <emu-clause aoid="CreateRegExpStringIterator">
+    <emu-clause id="CreateRegExpStringIterator">
       <h1>CreateRegExpStringIterator Abstract Operation</h1>
 
       <p>The abstract operation CreateRegExpStringIterator with arguments _regexp_ and _string_ is used to create such iterator objects. It performs the following steps:</p>

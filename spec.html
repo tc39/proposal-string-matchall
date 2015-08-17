@@ -14,7 +14,7 @@
 		<h2>Table of Contents</h2>
 		<ol class="toc">
 			<li><a href="#String.prototype.matchAll"><span class="secnum">1</span> String.prototype.matchAll ( regexp )</a></li>
-			<li><a href="#"><span class="secnum">2</span> CreateRegExpStringIterator Abstract Operation</a></li>
+			<li><a href="#CreateRegExpStringIterator"><span class="secnum">2</span> CreateRegExpStringIterator Abstract Operation</a></li>
 			<li><a href="#%RegExpStringIteratorPrototype%"><span class="secnum">3</span> The %RegExpStringIteratorPrototype% Object</a>
 				<ol class="toc">
 					<li><a href="#%RegExpStringIteratorPrototype%.next"><span class="secnum">3.1</span> %RegExpStringIteratorPrototype%.next()</a></li>
@@ -51,7 +51,7 @@
 					<emu-val>"lastIndex"</emu-val>, <var>lastIndex</var>,
 					<emu-val>true</emu-val>).</li>
 				<li><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-returnifabrupt">ReturnIfAbrupt</a>(<var>setStatus</var>).</li>
-				<li>Return <a href="#">CreateRegExpStringIterator</a>(<var>rx</var>, <var>S</var>)</li>
+				<li>Return CreateRegExpStringIterator(<var>rx</var>, <var>S</var>)</li>
 			</ol>
 		</emu-alg>
 		<p>The <var>length</var> property of the <var>matchAll</var> method is
@@ -59,8 +59,8 @@
 		<emu-note><span class="note">Note 2</span>The <var>rx</var> regular expression value is created solely to ensure that no visible mutation happens on <var>regexp</var> - it should never be exposed to the environment.</emu-note>
 	</emu-clause>
 
-	<emu-clause aoid="CreateRegExpStringIterator">
-		<h1><span class="secnum">2</span>CreateRegExpStringIterator Abstract Operation<span class="utils"><span class="anchor"><a href="#">#</a></span></span></h1>
+	<emu-clause id="CreateRegExpStringIterator">
+		<h1><span class="secnum">2</span>CreateRegExpStringIterator Abstract Operation<span class="utils"><span class="anchor"><a href="#CreateRegExpStringIterator">#</a></span></span></h1>
 
 		<p>The abstract operation CreateRegExpStringIterator with arguments <var>regexp</var> and <var>string</var> is used to create such iterator objects. It performs the following steps:</p>
 		<emu-alg>
