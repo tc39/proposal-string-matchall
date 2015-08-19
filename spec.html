@@ -65,12 +65,12 @@
 		<p>The abstract operation CreateRegExpStringIterator with arguments <var>regexp</var> and <var>string</var> is used to create such iterator objects. It performs the following steps:</p>
 		<emu-alg>
 			<ol>
-				<li>Assert: Type(<var>R</var>) is Object.</li>
+				<li>Assert: <a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-ecmascript-data-types-and-values">Type</a>(<var>R</var>) is Object.</li>
 				<li>Assert: <var>R</var> has a [[RegExpMatcher]] <a href="http://www.ecma-international.org/ecma-262/6.0/#sec-object-internal-methods-and-internal-slots">internal slot</a>.</li>
 				<li>Assert: <a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-toboolean">ToBoolean</a>(<a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-get-o-p">Get</a>(<var>R</var>,
 					<emu-val>"global"</emu-val>)) is
 					<emu-val>true</emu-val>.</li>
-				<li>Assert: Type(<var>S</var>) is String.</li>
+				<li>Assert: <a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-ecmascript-data-types-and-values">Type</a>(<var>S</var>) is String.</li>
 				<li>Let <var>iterator</var> be <a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-objectcreate">ObjectCreate</a>(
 					<emu-xref href="#%RegExpStringIteratorPrototype%"><a href="#%RegExpStringIteratorPrototype%">%RegExpStringIteratorPrototype%</a></emu-xref>, «[[IteratedString]], [[IteratingRegExp]]»).</li>
 				<li>Set <var>iterator's</var> [[IteratingRegExp]] <a href="http://www.ecma-international.org/ecma-262/6.0/#sec-object-internal-methods-and-internal-slots">internal slot</a> to <var>R</var>.</li>
@@ -92,7 +92,7 @@
 				<ol>
 					<li>Let O be the
 						<emu-val>this</emu-val> value.</li>
-					<li>If Type(O) is not Object, throw a
+					<li>If <a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-ecmascript-data-types-and-values">Type</a>(O) is not Object, throw a
 						<emu-val>TypeError</emu-val> exception.</li>
 					<li>If O does not have all of the internal slots of a RegExp String Iterator Object Instance (see
 						<emu-xref href="#PropertiesOfRegExpStringIteratorInstances"><a href="#PropertiesOfRegExpStringIteratorInstances">3.3</a></emu-xref>), throw a
