@@ -6,7 +6,8 @@
 	"scripts": {
 		"build": "ecmarkup --js=spec.js --css=spec.css spec.emu | js-beautify -f - --type=html -t > spec.html",
 		"prepublish": "npm run build",
-		"test": "npm run test:module && npm run test:shim",
+		"test": "es-shim-api --bound && npm run tests-only",
+		"tests-only": "npm run test:module && npm run test:shim",
 		"test:module": "node test/index.js",
 		"test:shim": "node test/shimmed.js"
 	},
@@ -43,6 +44,7 @@
 		"es6-shim": "^0.33.1",
 		"js-beautify": "^1.5.10",
 		"object.assign": "^4.0.1",
-		"tape": "^4.2.0"
+		"tape": "^4.2.0",
+		"@es-shims/api": "^1.0.0"
 	}
 }
