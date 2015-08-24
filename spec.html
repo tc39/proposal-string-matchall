@@ -3,27 +3,29 @@
 <head>
 	<meta charset="utf8">
 	<title>String.prototype.matchAll</title>
-	<link rel="stylesheet" href="./elements.css">
-	<link rel="stylesheet" href="https://bterlson.github.io/ecmarkup/elements.css">
+	<link rel="stylesheet" href="./spec.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
+	<script src="./spec.js"></script>
 </head>
 
 <body>
-	<h1>String.prototype.matchAll</h1>
-	<div>
-		<h2>Table of Contents</h2>
-		<ol class="toc">
-			<li><a href="#String.prototype.matchAll"><span class="secnum">1</span> String.prototype.matchAll ( regexp )</a></li>
-			<li><a href="#CreateRegExpStringIterator"><span class="secnum">2</span> CreateRegExpStringIterator Abstract Operation</a></li>
-			<li><a href="#%RegExpStringIteratorPrototype%"><span class="secnum">3</span> The %RegExpStringIteratorPrototype% Object</a>
-				<ol class="toc">
-					<li><a href="#%RegExpStringIteratorPrototype%.next"><span class="secnum">3.1</span> %RegExpStringIteratorPrototype%.next()</a></li>
-					<li><a href="#%RegExpStringIteratorPrototype%[@@toStringTag]"><span class="secnum">3.2</span> %RegExpStringIteratorPrototype%[ @@toStringTag ]</a></li>
-					<li><a href="#PropertiesOfRegExpStringIteratorInstances"><span class="secnum">3.3</span> Properties of RegExp String Iterator Instances</a></li>
-				</ol>
-			</li>
-		</ol>
+	<div id="menu-toggle">☰</div>
+	<div id="menu">
+		<div id="menu-toc">
+			<ol class="toc">
+				<li><span class="item-toggle-none"></span><a href="#String.prototype.matchAll" title="String.prototype.matchAll ( regexp )"><span class="secnum">1</span> String.prototype.matchAll ( regexp )</a></li>
+				<li><span class="item-toggle-none"></span><a href="#CreateRegExpStringIterator" title="CreateRegExpStringIterator Abstract Operation"><span class="secnum">2</span> CreateRegExpStringIterator Abstract Operation</a></li>
+				<li><span class="item-toggle">◢</span><a href="#%RegExpStringIteratorPrototype%" title="The %RegExpStringIteratorPrototype% Object"><span class="secnum">3</span> The %RegExpStringIteratorPrototype% Object</a>
+					<ol class="toc">
+						<li><span class="item-toggle-none"></span><a href="#%RegExpStringIteratorPrototype%.next" title="%RegExpStringIteratorPrototype%.next()"><span class="secnum">3.1</span> %RegExpStringIteratorPrototype%.next()</a></li>
+						<li><span class="item-toggle-none"></span><a href="#%RegExpStringIteratorPrototype%[@@toStringTag]" title="%RegExpStringIteratorPrototype%[ @@toStringTag ]"><span class="secnum">3.2</span> %RegExpStringIteratorPrototype%[ @@toStringTag ]</a></li>
+						<li><span class="item-toggle-none"></span><a href="#PropertiesOfRegExpStringIteratorInstances" title="Properties of RegExp String Iterator Instances"><span class="secnum">3.3</span> Properties of RegExp String Iterator Instances</a></li>
+					</ol>
+				</li>
+			</ol>
+		</div>
 	</div>
+	<h1>String.prototype.matchAll</h1>
 	<emu-clause id="String.prototype.matchAll">
 		<h1><span class="secnum">1</span>String.prototype.matchAll ( regexp )<span class="utils"><span class="anchor"><a href="#String.prototype.matchAll">#</a></span></span></h1>
 		<emu-note><span class="note">Note 1</span><var>matchAll</var> does not visibly mutate the provided <var>regexp</var> in any way.</emu-note>
