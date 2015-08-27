@@ -11,7 +11,7 @@ Currently, my options are the following:
 	var regex = /t(e)(st(\d?))/g;
 	var string = 'test1test2';
 
-	regex.match(string); // gives ['test1', 'test2'] - how do i get the capturing groups?
+	string.match(regex); // gives ['test1', 'test2'] - how do i get the capturing groups?
 
 	var matches = [];
 	var lastIndexes = {};
