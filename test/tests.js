@@ -4,6 +4,19 @@ var forEach = require('foreach');
 var has = Object.prototype.hasOwnProperty;
 var assign = require('object.assign');
 
+var testResults = function (t, iterator, expectedResults) {
+	forEach(expectedResults, function (expected) {
+		var result = iterator.next();
+		t.equal(result.done, expected.done, 'result is ' + (expected.done ? '' : 'not ') + ' done');
+		if (result.done) {
+			t.equal(result.value, null, 'result value is null');
+		} else {
+			t.equal(Array.isArray(result.value), true, 'result value is an array');
+			t.deepEqual(result.value, expected.value, 'result value is expected value');
+		}
+	});
+};
+
 module.exports = function (matchAll, t) {
 	t.test('exceptions', function (st) {
 		var notRegexes = [null, undefined, '', NaN, 42, new Date(), {}, []];
@@ -27,16 +40,7 @@ module.exports = function (matchAll, t) {
 			{ value: assign(['c'], { input: str, index: 3 }), done: false },
 			{ value: null, done: true }
 		];
-		forEach(expectedResults, function (expected) {
-			var result = iterator.next();
-			st.equal(result.done, expected.done, 'result is ' + (expected.done ? '' : 'not ') + ' done');
-			if (result.done) {
-				st.equal(result.value, null, 'result value is null');
-			} else {
-				st.equal(Array.isArray(result.value), true, 'result value is an array');
-				st.deepEqual(result.value, expected.value, 'result value is expected value');
-			}
-		});
+		testResults(st, iterator, expectedResults);
 		st.end();
 	});
 };
