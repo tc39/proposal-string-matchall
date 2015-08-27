@@ -6,10 +6,12 @@
 	"scripts": {
 		"build": "ecmarkup --js=spec.js --css=spec.css spec.emu | js-beautify -f - --type=html -t > spec.html",
 		"prepublish": "npm run build",
-		"test": "es-shim-api --bound && npm run tests-only",
+		"test": "es-shim-api --bound && npm run tests-only && npm run lint",
 		"tests-only": "npm run test:module && npm run test:shim",
 		"test:module": "node test/index.js",
-		"test:shim": "node test/shimmed.js"
+		"test:shim": "node test/shimmed.js",
+		"lint": "npm run eslint",
+		"eslint": "eslint test/*.js {index,implementation,polyfill,shim,hidden}.js "
 	},
 	"repository": {
 		"type": "git",
@@ -45,6 +47,8 @@
 		"js-beautify": "^1.5.10",
 		"object.assign": "^4.0.1",
 		"tape": "^4.2.0",
-		"@es-shims/api": "^1.0.0"
+		"@es-shims/api": "^1.0.0",
+		"eslint": "^1.2.1",
+		"@ljharb/eslint-config": "^1.0.5"
 	}
 }

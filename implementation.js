@@ -12,8 +12,6 @@ var RegExpStringIterator = function RegExpStringIterator(regexp, string) {
 	hidden.set(this, 'string', string);
 };
 
-var has = bind.call(Function.call, Object.prototype.hasOwnProperty);
-
 define(RegExpStringIterator.prototype, {
 	next: function next() {
 		var O = ES.RequireObjectCoercible(this);
@@ -36,7 +34,7 @@ module.exports = function matchAll(regexp) {
 	var O = ES.RequireObjectCoercible(this);
 	exec(regexp); // will throw if not actually a RegExp
 	var S = String(O);
-	var flags = (regexp.flags || flagsGetter(regexp));
+	var flags = regexp.flags || flagsGetter(regexp);
 	if (flags.indexOf('g') === -1) {
 		flags = 'g' + flags;
 	}

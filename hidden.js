@@ -1,5 +1,6 @@
-var define = require('define-properties');
+'use strict';
 
+var define = require('define-properties');
 
 module.exports = function getHiddenKeyManager() {
 	var symbolCache = {};
