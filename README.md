@@ -14,13 +14,18 @@ Currently, my options are the following:
 	regex.match(string); // gives ['test1', 'test2'] - how do i get the capturing groups?
 
 	var matches = [];
+	var lastIndexes = {};
 	var match;
+	lastIndexes[regex.lastIndex] = true;
 	while (match = regex.exec(string)) {
+		lastIndexes[regex.lastIndex] = true;
 		matches.push(match);
 		// example: ['test1', 'e', 'st1', '1'] with properties `index` and `input`
 	}
 	matches; /* gives exactly what i want, but uses a loop,
-		  * and mutates the regex's `lastIndex` property */
+			* and mutates the regex's `lastIndex` property */
+	lastIndexes; /* ideally should give { 0: true } but instead
+			* will have a value for each mutation of lastIndex */
 
 	var matches = [];
 	string.replace(regex, function () {
