@@ -41,9 +41,9 @@
 	},
 	"devDependencies": {
 		"foreach": "^2.0.5",
-		"ecmarkup": "^2.0.2",
+		"ecmarkup": "^2.0.3",
 		"es5-shim": "^4.1.10",
-		"es6-shim": "^0.33.1",
+		"es6-shim": "^0.33.2",
 		"js-beautify": "^1.5.10",
 		"object.assign": "^4.0.1",
 		"tape": "^4.2.0",
