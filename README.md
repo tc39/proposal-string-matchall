@@ -53,7 +53,8 @@ Many use cases may want an array of matches - however, clearly not all will. Par
   - http://stackoverflow.com/questions/844001/javascript-regular-expressions-and-sub-matches
   - http://stackoverflow.com/questions/432493/how-do-you-access-the-matched-groups-in-a-javascript-regular-expression
   - http://stackoverflow.com/questions/19913667/javascript-regex-global-match-groups
-  - http://blog.getify.com/to-capture-or-not/
+  - http://stackoverflow.com/questions/844001/javascript-regular-expressions-and-sub-matches
+  - http://blog.getify.com/to-capture-or-not/#manually-splitting-string
 
 ## Naming
 The name `matchAll` was selected to correspond with `match`, and to connote that *all* matches would be returned, not just a single match. This includes the connotation that the provided regex will be used with a global flag, to locate all matches in the string. An alternate name has been suggested, `matches` - this follows the precedent set by `keys`/`values`/`entries`, which is that a plural noun indicates that it returns an iterator. However, `includes` returns a boolean. When the word is not unambiguously a noun or a verb, "plural noun" doesn't seem as obvious a convention to follow.
