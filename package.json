@@ -11,7 +11,7 @@
 		"test:module": "node test/index.js",
 		"test:shim": "node test/shimmed.js",
 		"lint": "npm run eslint",
-		"eslint": "eslint test/*.js {index,implementation,polyfill,shim,hidden}.js "
+		"eslint": "eslint test/*.js index.js implementation.js polyfill.js shim.js hidden.js"
 	},
 	"repository": {
 		"type": "git",
