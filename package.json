@@ -41,8 +41,8 @@
 	},
 	"devDependencies": {
 		"foreach": "^2.0.5",
-		"ecmarkup": "^2.0.3",
-		"es5-shim": "^4.1.10",
+		"ecmarkup": "^2.1.0",
+		"es5-shim": "^4.1.11",
 		"es6-shim": "^0.33.2",
 		"js-beautify": "^1.5.10",
 		"object.assign": "^4.0.1",
@@ -50,6 +50,6 @@
 		"@es-shims/api": "^1.0.0",
 		"eslint": "^1.2.1",
 		"@ljharb/eslint-config": "^1.0.5",
-		"evalmd": "^0.0.15"
+		"evalmd": "^0.0.16"
 	}
 }
