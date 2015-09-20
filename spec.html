@@ -1,7 +1,7 @@
 <!doctype html>
 
 <head>
-	<meta charset="utf8">
+	<meta charset="utf-8">
 	<title>String.prototype.matchAll</title>
 	<link rel="stylesheet" href="./spec.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
@@ -53,7 +53,8 @@
 					<emu-val>"lastIndex"</emu-val>, <var>lastIndex</var>,
 					<emu-val>true</emu-val>).</li>
 				<li><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-returnifabrupt">ReturnIfAbrupt</a>(<var>setStatus</var>).</li>
-				<li>Return CreateRegExpStringIterator(<var>rx</var>, <var>S</var>)</li>
+				<li>Return CreateRegExpStringIterator(<var>rx</var>, <var>S</var>)
+				</li>
 			</ol>
 		</emu-alg>
 		<p>The <var>length</var> property of the <var>matchAll</var> method is
@@ -77,7 +78,8 @@
 					<emu-xref href="#%RegExpStringIteratorPrototype%"><a href="#%RegExpStringIteratorPrototype%">%RegExpStringIteratorPrototype%</a></emu-xref>, «[[IteratedString]], [[IteratingRegExp]]»).</li>
 				<li>Set <var>iterator's</var> [[IteratingRegExp]] <a href="http://www.ecma-international.org/ecma-262/6.0/#sec-object-internal-methods-and-internal-slots">internal slot</a> to <var>R</var>.</li>
 				<li>Set <var>iterator's</var> [[IteratedString]] <a href="http://www.ecma-international.org/ecma-262/6.0/#sec-object-internal-methods-and-internal-slots">internal slot</a> to <var>S</var>.</li>
-				<li>Return <var>iterator</var>.</li>
+				<li>Return <var>iterator</var>.
+				</li>
 			</ol>
 		</emu-alg>
 	</emu-clause>
@@ -113,7 +115,8 @@
 					<li>Else,
 						<ol>
 							<li>return <a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-createiterresultobject">CreateIterResultObject</a>(<var>match</var>,
-								<emu-val>false</emu-val>).</li>
+								<emu-val>false</emu-val>).
+							</li>
 						</ol>
 					</li>
 				</ol>
