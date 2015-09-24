@@ -58,3 +58,5 @@ Many use cases may want an array of matches - however, clearly not all will. Par
 
 ## Naming
 The name `matchAll` was selected to correspond with `match`, and to connote that *all* matches would be returned, not just a single match. This includes the connotation that the provided regex will be used with a global flag, to locate all matches in the string. An alternate name has been suggested, `matches` - this follows the precedent set by `keys`/`values`/`entries`, which is that a plural noun indicates that it returns an iterator. However, `includes` returns a boolean. When the word is not unambiguously a noun or a verb, "plural noun" doesn't seem as obvious a convention to follow.
+
+Update from committee feedback: ruby uses the word `scan` for this, but the committee is not comfortable introducing a new word to JavaScript. `matchEach` was suggested, but some were not comfortable with the naming similarity to `forEach` while the API was quite different. `matchAll` seems to be the name everyone is most comfortable with.
