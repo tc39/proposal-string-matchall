@@ -33,9 +33,9 @@
 		</emu-clause>
 
 		<emu-clause id="CreateRegExpStringIterator">
-			<h1>CreateRegExpStringIterator Abstract Operation</h1>
+			<h1>CreateRegExpStringIterator( _regexp_, _string_ )</h1>
 
-			<p>The abstract operation CreateRegExpStringIterator with arguments _regexp_ and _string_ is used to create such iterator objects. It performs the following steps:</p>
+			<p>The abstract operation CreateRegExpStringIterator is used to create such iterator objects. It performs the following steps:</p>
 			<emu-alg>
 				1. Assert: Type(_R_) is Object.
 				1. Assert: _R_ has a [[RegExpMatcher]] <a href="http://www.ecma-international.org/ecma-262/6.0/#sec-object-internal-methods-and-internal-slots">internal slot</a>.
