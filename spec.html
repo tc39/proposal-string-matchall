@@ -34,7 +34,10 @@
 			<ol>
 				<li>Let <var>O</var> be <a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-requireobjectcoercible">RequireObjectCoercible</a>(
 					<emu-val>this</emu-val> value).</li>
-				<li>If <var>regexp</var> does not have a [[RegExpMatcher]] <a href="http://www.ecma-international.org/ecma-262/6.0/#sec-object-internal-methods-and-internal-slots">internal slot</a>, throw a
+				<li>Let <var>isRegExp</var> be <a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-isregexp">IsRegExp</a>(<var>regexp</var>).</li>
+				<li><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-returnifabrupt">ReturnIfAbrupt</a>(<var>isRegExp</var>).</li>
+				<li>If <var>isRegExp</var> is
+					<emu-val>false</emu-val>, throw a
 					<emu-val>TypeError</emu-val> exception.</li>
 				<li>Let <var>S</var> be <a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-tostring">ToString</a>(
 					<emu-val>O</emu-val>).</li>
@@ -68,8 +71,8 @@
 		<p>The abstract operation CreateRegExpStringIterator is used to create such iterator objects. It performs the following steps:</p>
 		<emu-alg>
 			<ol>
-				<li>Assert: <a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-ecmascript-data-types-and-values">Type</a>(<var>R</var>) is Object.</li>
-				<li>Assert: <var>R</var> has a [[RegExpMatcher]] <a href="http://www.ecma-international.org/ecma-262/6.0/#sec-object-internal-methods-and-internal-slots">internal slot</a>.</li>
+				<li>Assert: <a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-isregexp">IsRegExp</a>(<var>R</var>) is
+					<emu-val>true</emu-val>.</li>
 				<li>Assert: <a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-toboolean">ToBoolean</a>(<a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-get-o-p">Get</a>(<var>R</var>,
 					<emu-val>"global"</emu-val>)) is
 					<emu-val>true</emu-val>.</li>
@@ -94,11 +97,11 @@
 			<h1><span class="secnum">3.1</span>%RegExpStringIteratorPrototype%.next()<span class="utils"><span class="anchor"><a href="#%RegExpStringIteratorPrototype%.next">#</a></span></span></h1>
 			<emu-alg>
 				<ol>
-					<li>Let O be the
+					<li>Let <var>O</var> be the
 						<emu-val>this</emu-val> value.</li>
-					<li>If <a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-ecmascript-data-types-and-values">Type</a>(O) is not Object, throw a
+					<li>If <a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-ecmascript-data-types-and-values">Type</a>(<var>O</var>) is not Object, throw a
 						<emu-val>TypeError</emu-val> exception.</li>
-					<li>If O does not have all of the internal slots of a RegExp String Iterator Object Instance (see
+					<li>If <var>O</var> does not have all of the internal slots of a RegExp String Iterator Object Instance (see
 						<emu-xref href="#PropertiesOfRegExpStringIteratorInstances"><a href="#PropertiesOfRegExpStringIteratorInstances">3.3</a></emu-xref>), throw a
 						<emu-val>TypeError</emu-val> exception.</li>
 					<li>Let <var>regexp</var> be the value of the [[IteratingRegExp]] <a href="http://www.ecma-international.org/ecma-262/6.0/#sec-object-internal-methods-and-internal-slots">internal slot</a> of <var>O</var>.</li>
@@ -121,7 +124,7 @@
 					</li>
 				</ol>
 			</emu-alg>
-			<p>The <var>length</var> property of the <var>next</var> method is
+			<p>The <var>length</var> property of the <code>next</code> method is
 				<emu-val>0</emu-val>.</p>
 		</emu-clause>
 

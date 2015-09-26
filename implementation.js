@@ -1,7 +1,6 @@
 'use strict';
 
 var ES = require('es-abstract/es7');
-var bind = require('function-bind');
 var define = require('define-properties');
 var flagsGetter = require('regexp.prototype.flags');
 
@@ -28,11 +27,11 @@ if (typeof Symbol === 'function' && Symbol.toStringTag) {
 	RegExpStringIterator.prototype[Symbol.toStringTag] = 'RegExp String Iterator';
 }
 
-var exec = bind.call(Function.call, RegExp.prototype.exec);
-
 module.exports = function matchAll(regexp) {
 	var O = ES.RequireObjectCoercible(this);
-	exec(regexp); // will throw if not actually a RegExp
+	if (!ES.IsRegExp(regexp)) {
+		throw new TypeError('Invalid regular expression.');
+	}
 	var S = String(O);
 	var flags = regexp.flags || flagsGetter(regexp);
 	if (flags.indexOf('g') === -1) {

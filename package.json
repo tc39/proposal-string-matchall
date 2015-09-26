@@ -6,7 +6,7 @@
 	"scripts": {
 		"build": "ecmarkup --js=spec.js --css=spec.css spec.emu | js-beautify -f - --type=html -t > spec.html",
 		"prepublish": "npm run build",
-		"test": "evalmd *.md && es-shim-api --bound && npm run tests-only && npm run lint",
+		"test": "evalmd *.md && es-shim-api --bound && npm run lint && npm run tests-only",
 		"tests-only": "npm run test:module && npm run test:shim",
 		"test:module": "node test/index.js",
 		"test:shim": "node test/shimmed.js",
