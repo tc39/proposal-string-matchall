@@ -92,3 +92,32 @@ contributors: Jordan Harband
 		</figure>
 	</emu-clause>
 </emu-clause>
+
+<emu-clause id="Symbol.matchAll">
+	<h1>Symbol.matchAll</h1>
+	<p>The initial value of *Symbol.matchAll* is the well-known symbol @@matchAll (<emu-xref href="#table-2"></emu-xref>).</p>
+	<p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
+</emu-clause>
+
+<emu-clause id="sec-well-known-symbols">
+	<h1>Well-Known Symbols</h1>
+	<p>no change</p>
+	<emu-table id="table-2" caption="Well-known Symbols">
+		<table>
+			<tbody>
+				<tr>
+					<th>Specification Name</th>
+					<th>[[Description]]</th>
+					<th>Value and Purpose</th>
+				</tr>
+				<tr><td colspan="3">insert after @@match</td></tr>
+				<tr>
+					<td>@@matchAll</td>
+					<td>`"Symbol.matchAll"`</td>
+					<td>A regular expression method that returns an iterator, that yields matches of the regular expression against a string. Called by the `String.prototype.matchAll` method.</td>
+				</tr>
+				<tr><td colspan="3">insert before @@replace</td></tr>
+			</tbody>
+		</table>
+	</emu-table>
+</emu-clause>

@@ -75,6 +75,40 @@ RegExp String Iterator instances are ordinary objects that inherit properties fr
   </table>
 </figure>
 
+# Symbol.matchAll
+
+The initial value of *Symbol.matchAll* is the well-known symbol @@matchAll
+
+This property has the attributes { [[Writable]]: **false**, [[Enumerable]]: **false**, [[Configurable]]: **false** }.
+
+# Well-Known Symbols
+
+<figure>
+  <figcaption>Table 1: Well-known Symbols</figcaption>
+  <table>
+    <thead>
+      <tr>
+        <th>Specification Name</th>
+        <th>[[Description]]</th>
+        <th>Value and Purpose</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td colspan="3">insert after @@match</td>
+      </tr>
+      <tr>
+        <td>@@matchAll</td>
+        <td><code>"Symbol.matchAll"</code></td>
+        <td>A regular expression method that returns an iterator, that yields matches of the regular expression against a string. Called by the <code>String.prototype.matchAll</code> method.</td>
+      </tr>
+      <tr>
+        <td colspan="3">insert before @@replace</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+
 [to-boolean]: https://tc39.github.io/ecma262/#sec-toboolean
 [to-length]: https://tc39.github.io/ecma262/#sec-tolength
 [to-string]: https://tc39.github.io/ecma262/#sec-tostring
