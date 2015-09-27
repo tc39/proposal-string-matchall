@@ -14,7 +14,7 @@
 		<div id="menu-toc">
 			<ol class="toc">
 				<li><span class="item-toggle-none"></span><a href="#String.prototype.matchAll" title="String.prototype.matchAll ( regexp )"><span class="secnum">1</span> String.prototype.matchAll ( regexp )</a></li>
-				<li><span class="item-toggle-none"></span><a href="#CreateRegExpStringIterator" title="CreateRegExpStringIterator Abstract Operation"><span class="secnum">2</span> CreateRegExpStringIterator Abstract Operation</a></li>
+				<li><span class="item-toggle-none"></span><a href="#CreateRegExpStringIterator" title="CreateRegExpStringIterator( _regexp_, _string_ )"><span class="secnum">2</span> CreateRegExpStringIterator( <var>regexp</var>, <var>string</var> )</a></li>
 				<li><span class="item-toggle">◢</span><a href="#%RegExpStringIteratorPrototype%" title="The %RegExpStringIteratorPrototype% Object"><span class="secnum">3</span> The %RegExpStringIteratorPrototype% Object</a>
 					<ol class="toc">
 						<li><span class="item-toggle-none"></span><a href="#%RegExpStringIteratorPrototype%.next" title="%RegExpStringIteratorPrototype%.next()"><span class="secnum">3.1</span> %RegExpStringIteratorPrototype%.next()</a></li>
@@ -63,9 +63,9 @@
 	</emu-clause>
 
 	<emu-clause id="CreateRegExpStringIterator">
-		<h1><span class="secnum">2</span>CreateRegExpStringIterator Abstract Operation<span class="utils"><span class="anchor"><a href="#CreateRegExpStringIterator">#</a></span></span></h1>
+		<h1><span class="secnum">2</span>CreateRegExpStringIterator( <var>regexp</var>, <var>string</var> )<span class="utils"><span class="anchor"><a href="#CreateRegExpStringIterator">#</a></span></span></h1>
 
-		<p>The abstract operation CreateRegExpStringIterator with arguments <var>regexp</var> and <var>string</var> is used to create such iterator objects. It performs the following steps:</p>
+		<p>The abstract operation CreateRegExpStringIterator is used to create such iterator objects. It performs the following steps:</p>
 		<emu-alg>
 			<ol>
 				<li>Assert: <a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-ecmascript-data-types-and-values">Type</a>(<var>R</var>) is Object.</li>
@@ -148,12 +148,14 @@
 							<th>Description</th>
 						</tr>
 						<tr>
-							<td>[[IteratedObject]]</td>
-							<td>The object whose array elements are being iterated.</td>
+							<td>[[IteratingRegExp]]</td>
+							<td>The regular expression used for iteration.
+								<emu-xref aoid="IsRegExp"><a href="http://www.ecma-international.org/ecma-262/6.0/index.html#sec-isregexp">IsRegExp</a></emu-xref>([[IteratingRegExp]]) is always
+								<emu-val>true</emu-val>.</td>
 						</tr>
 						<tr>
-							<td>[[ArrayIteratorNextIndex]]</td>
-							<td>The integer index of the next integer index to be examined by this iteration.</td>
+							<td>[[IteratedString]]</td>
+							<td>The String value being iterated upon.</td>
 						</tr>
 					</tbody>
 				</table>
