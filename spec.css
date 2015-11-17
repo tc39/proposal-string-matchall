@@ -1,6 +1,3 @@
-html {
-}
-
 body {
     font-size: 18px;
     line-height: 1.5;
@@ -8,7 +5,6 @@ body {
     padding: 0;
     color: #333;
     margin: 0 2% 0 31%;
-    overflow-x: hidden;
 }
 
 body.oldtoc {
@@ -54,6 +50,16 @@ ol.toc {
 ol.toc ol.toc {
     padding-left: 2ex;
     list-style: none;
+}
+
+var {
+  color: #2aa198;
+  transition: background-color 0.25s ease;
+  cursor: pointer;
+}
+
+var.referenced {
+  background-color: #ffff33;
 }
 
 emu-const {
@@ -115,15 +121,20 @@ emu-production {
 }
 
 
-emu-grammar.inline emu-production, emu-production.inline {
-    display: inline;
+emu-grammar.inline, emu-production.inline,
+emu-grammar.inline emu-production emu-rhs, emu-production.inline emu-rhs {
+  display: inline;
+}
+
+emu-grammar[collapsed] emu-production, emu-production[collapsed] {
     margin: 0;
 }
 
-emu-grammar.inline emu-production emu-rhs, emu-production.inline emu-rhs {
+emu-grammar[collapsed] emu-production emu-rhs, emu-production[collapsed] emu-rhs {
     display: inline;
     padding-left: 1ex;
 }
+
 emu-constraints {
     font-size: .75em;
     margin-right: 1ex;
@@ -186,6 +197,10 @@ emu-mods {
     vertical-align: sub;
     font-style: normal;
     font-weight: normal;
+}
+
+emu-production[collapsed] emu-mods {
+  display: none;
 }
 
 emu-params, emu-opt {
@@ -457,6 +472,36 @@ del.block {
   color: #B6C8E4;
 }
 
+#menu-search {
+  color: #B6C8E4;
+}
+
+#menu-search-box {
+  display: block;
+  width: 90%;
+  margin: 5px auto;
+  font-size: 1em;
+  padding: 2px;
+}
+
+#menu-search-results.inactive {
+  display: none;
+}
+
+#menu-search-results ul {
+  list-style-type: square;
+  padding: 0 0 0 35px;
+  margin: 0;
+}
+
+#menu-search-results li {
+  white-space: nowrap;
+}
+
+#menu-search-results a {
+  color: #b6c8e4;
+}
+
 @media (max-width: 1366px) {
   body {
     margin: 0 0 0 150px;
@@ -464,7 +509,7 @@ del.block {
 
   #menu {
     display: none;
-    padding-top: 2em;
+    padding-top: 3em;
     width: 323px;
   }
 
