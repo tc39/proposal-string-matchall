@@ -4,7 +4,7 @@
 	"description": "Spec-compliant polyfill for String.prototype.matchAll ESnext proposal.",
 	"main": "index.js",
 	"scripts": {
-		"build": "ecmarkup --js=spec.js --css=spec.css spec.emu | js-beautify -f - --type=html -t > spec.html",
+		"build": "ecmarkup --js=spec.js --css=spec.css spec.emu | js-beautify -f - --type=html -t > index.html",
 		"prepublish": "npm run build",
 		"test": "evalmd *.md && es-shim-api --bound && npm run lint && npm run tests-only",
 		"tests-only": "npm run test:module && npm run test:shim",
