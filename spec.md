@@ -1,29 +1,38 @@
-# String.prototype.matchAll( *regexp* )</h1>
+# String.prototype.matchAll ( *regexp* )</h1>
 
-*matchAll* does not visibly mutate the provided *regexp* in any way.
-
-When the *matchAll* method is called, the following steps are taken:
+When the `matchAll` method is called, the following steps are taken:
   1. Let *O* be ? [RequireObjectCoercible][require-object-coercible](**this** value).
-  1. Let _isRegExp_ be ? [IsRegExp](isregexp)(_regexp_).
-  1. If _isRegExp_ is not **true**, throw a *TypeError* exception.
-  1. Let *S* be ? [ToString][to-string](**O**).
-  1. Let *flags* be ? [ToString][to-string](? [Get][get](regexp, **"flags"**)).
-  1. If *flags* does not contain the character **"g"**, let *flags* be the String concatenation of the String **"g"** and *flags*.
-  1. Let *rx* be ? [RegExpCreate][regexo-create](*regexp*, *flags*).
-  1. Let *lastIndex* be ? [ToLength][to-length](? [Get][get](regexp, **"lastIndex"**)).
-  1. Perform ? [Set][set](*rx*, **"lastIndex"**, *lastIndex*, **true**).
-  1. Return ? [CreateRegExpStringIterator](#createregexpstringiterator-abstract-operation)(*rx*, *S*)
+  1. If ? [IsRegExp](isregexp)(*regexp*) is not **true**, throw a *TypeError* exception.
+  1. Let *matcher* be ? [GetMethod](getmethod)(*regexp*, @@matchAll).
+  1. If *matcher* is not **undefined**, then
+    1. Return ? [Call](call)(*matcher*, *regexp*, &laquo; *O* &raquo;).
+  1. Return ? [MatchAllIterator](#matchalliterator)(*regexp*, *O*).
 
-Note: The *rx* regular expression value is created solely to ensure that no visible mutation happens on *regexp* - it should never be exposed to the environment.
+Note 1: The `matchAll` function is intentionally generic, it does not require that its *this* value be a String object. Therefore, it can be transferred to other kinds of objects for use as a method.
+Note 2: Similarly to `String.prototype.split`, `String.prototype.matchAll` is designed to typically act without mutating its inputs.
+
+# RegExp.prototype[ @@matchAll ] ( *string* )
+
+When the `@@matchAll` method is called with argument *string*, the following steps are taken:
+  1. Let *R* be the **this** value.
+  1. If ? [IsRegExp](isregexp)(*R*) is not **true**, throw a *TypeError* exception.
+  1. Return ? [MatchAllIterator](#matchalliterator)(*R*, *string*).
+
+The value of the name property of this function is "[Symbol.matchAll]".
+
+# MatchAllIterator ( *R*, *O* )
+
+The abstract operation *MatchAllIterator* performs the following steps:
+  1. Assert: IsRegExp(*R*) is **true**.
+  1. Let *S* be ? [ToString][to-string](*O*).
+  1. Return ! [CreateRegExpStringIterator](#createregexpstringiterator-abstract-operation)(*R*, *S*)
 
 ## CreateRegExpStringIterator( *R*, *S* )
 
 The abstract operation *CreateRegExpStringIterator* is used to create such iterator objects. It performs the following steps:
-  1. Assert: [Type][type](*string*) is String.
-  1. If ? [IsRegExp][isregexp] is not **true**, throw a *TypeError* exception.
-  1. Let *global* be ? [ToBoolean][to-boolean](? [Get][get](*R*, **"global"**));
-  1. If *global* is not **true**, throw a *TypeError* exception.
-  1. Let *iterator* be [ObjectCreate](object-create](<emu-xref href="#%RegExpStringIteratorPrototype%">%RegExpStringIteratorPrototype%</emu-xref>, « [[IteratedString]], [[IteratingRegExp]] »).
+  1. Assert: [Type][type](*S*) is String.
+  1. Assert: [IsRegExp][isregexp](*R*) is **true**.
+  1. Let *iterator* be ObjectCreate(<emu-xref href="#%RegExpStringIteratorPrototype%">%RegExpStringIteratorPrototype%</emu-xref>, « [[IteratedString]], [[IteratingRegExp]] »).
   1. Set *iterator*.[[IteratingRegExp]] to *R*.
   1. Set *iterator*.[[IteratedString]] to *S*.
   1. Return *iterator*.
@@ -32,7 +41,7 @@ The abstract operation *CreateRegExpStringIterator* is used to create such itera
 
 All RegExp String Iterator Objects inherit properties from the [%RegExpStringIteratorPrototype%](#the-regexpstringiteratorprototype-object) intrinsic object. The %RegExpStringIteratorPrototype% object is an ordinary object and its [[Prototype]] [internal slot][internal-slot] is the [%IteratorPrototype%][iterator-prototype] intrinsic object</a>. In addition, %RegExpStringIteratorPrototype% has the following properties:
 
-#### %RegExpStringIteratorPrototype%.next( )
+#### %RegExpStringIteratorPrototype%.next ( )
   1. Let O be the **this** value.
   1. If [Type][type](O) is not Object, throw a **TypeError** exception.
   1. If O does not have all of the internal slots of a RegExp String Iterator Object Instance (see [here](#PropertiesOfRegExpStringIteratorInstances)), throw a **TypeError** exception.
@@ -43,8 +52,6 @@ All RegExp String Iterator Objects inherit properties from the [%RegExpStringIte
       1. return ! [CreateIterResultObject][create-iter-result-object](**null**, **true**).
   1. Else,
       1. return ! [CreateIterResultObject][create-iter-result-object](_match_, **false**).
-
-The _length_ property of the _next_ method is **0**.
 
 #### %RegExpStringIteratorPrototype%[ @@toStringTag ]
 
@@ -109,11 +116,7 @@ This property has the attributes { [[Writable]]: **false**, [[Enumerable]]: **fa
   </table>
 </figure>
 
-[to-boolean]: https://tc39.github.io/ecma262/#sec-toboolean
-[to-length]: https://tc39.github.io/ecma262/#sec-tolength
 [to-string]: https://tc39.github.io/ecma262/#sec-tostring
-[get]: https://tc39.github.io/ecma262/#sec-get-o-p
-[set]: https://tc39.github.io/ecma262/#sec-set-o-p-v-throw
 [regexp-create]: https://tc39.github.io/ecma262/#sec-regexpcreate
 [regexp-exec]: https://tc39.github.io/ecma262/#sec-regexpexec
 [require-object-coercible]: https://tc39.github.io/ecma262/#sec-requireobjectcoercible
@@ -123,3 +126,4 @@ This property has the attributes { [[Writable]]: **false**, [[Enumerable]]: **fa
 [create-iter-result-object]: https://tc39.github.io/ecma262/#sec-createiterresultobject
 [isregexp]: https://tc39.github.io/ecma262/#sec-isregexp
 [object-create]: https://tc39.github.io/ecma262/#sec-objectcreate
+[call]: https://tc39.github.io/ecma262/#sec-call
