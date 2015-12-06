@@ -48,7 +48,7 @@
 		"object.assign": "^4.0.3",
 		"tape": "^4.2.2",
 		"@es-shims/api": "^1.0.0",
-		"eslint": "^1.9.0",
+		"eslint": "^1.10.3",
 		"@ljharb/eslint-config": "^1.6.0",
 		"evalmd": "^0.0.16"
 	}
