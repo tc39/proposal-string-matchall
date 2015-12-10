@@ -28,7 +28,7 @@ The abstract operation CreateRegExpStringIterator with arguments *regexp* and *s
   1. Assert: *R* has a [[RegExpMatcher]] [internal slot][internal-slot].
   1. Assert: [ToBoolean][to-boolean]([Get][get](*R*, **"global"**)) is **true**.
   1. Assert: [Type][type](*S*) is String.
-  1. Let *iterator* be ObjectCreate(<emu-xref href="#%RegExpStringIteratorPrototype%">%RegExpStringIteratorPrototype%</emu-xref>, «[[IteratedString]], [[IteratingRegExp]]»).
+  1. Let *iterator* be ObjectCreate(<emu-xref href="#%RegExpStringIteratorPrototype%">%RegExpStringIteratorPrototype%</emu-xref>, « [[IteratedString]], [[IteratingRegExp]] »).
   1. Set *iterator's* [[IteratingRegExp]] [internal slot][internal-slot] to *R*.
   1. Set *iterator's* [[IteratedString]] [internal slot][internal-slot] to *S*.
   1. Return *iterator*.
