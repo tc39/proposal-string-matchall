@@ -2164,8 +2164,13 @@
 							</li>
 						</ol>
 					</li>
-					<li>Throw a
-						<emu-val>TypeError</emu-val> exception.
+					<li>Let <var>S</var> be ?
+						<emu-xref aoid="ToString" id="_ref_7"><a href="https://tc39.github.io/ecma262/#sec-tostring">ToString</a></emu-xref>(<var>O</var>).</li>
+					<li>Let <var>rx</var> be ?
+						<emu-xref aoid="RegExpCreate" id="_ref_8"><a href="https://tc39.github.io/ecma262/#sec-regexpcreate">RegExpCreate</a></emu-xref>(<var>regexp</var>,
+						<emu-val>undefined</emu-val>).</li>
+					<li>Return ?
+						<emu-xref aoid="Invoke" id="_ref_9"><a href="https://tc39.github.io/ecma262/#sec-invoke">Invoke</a></emu-xref>(<var>rx</var>, @@matchAll, « <var>S</var> »).
 					</li>
 				</ol>
 			</emu-alg>
@@ -2182,24 +2187,24 @@
 					<li>Let <var>rx</var> be the
 						<emu-val>this</emu-val> value.</li>
 					<li>If
-						<emu-xref aoid="Type" id="_ref_7"><a href="https://tc39.github.io/ecma262/#sec-ecmascript-data-types-and-values">Type</a></emu-xref>(<var>rx</var>) is not Object, throw a
+						<emu-xref aoid="Type" id="_ref_10"><a href="https://tc39.github.io/ecma262/#sec-ecmascript-data-types-and-values">Type</a></emu-xref>(<var>rx</var>) is not Object, throw a
 						<emu-val>TypeError</emu-val> exception.</li>
 					<li>Let <var>S</var> be ?
-						<emu-xref aoid="ToString" id="_ref_8"><a href="https://tc39.github.io/ecma262/#sec-tostring">ToString</a></emu-xref>(<var>string</var>).</li>
+						<emu-xref aoid="ToString" id="_ref_11"><a href="https://tc39.github.io/ecma262/#sec-tostring">ToString</a></emu-xref>(<var>string</var>).</li>
 					<li>Let <var>C</var> be ?
-						<emu-xref aoid="SpeciesConstructor" id="_ref_9"><a href="https://tc39.github.io/ecma262/#sec-speciesconstructor">SpeciesConstructor</a></emu-xref>(<var>rx</var>,
+						<emu-xref aoid="SpeciesConstructor" id="_ref_12"><a href="https://tc39.github.io/ecma262/#sec-speciesconstructor">SpeciesConstructor</a></emu-xref>(<var>rx</var>,
 						<emu-xref href="#sec-regexp-constructor"><a href="https://tc39.github.io/ecma262/#sec-regexp-constructor">%RegExp%</a></emu-xref>).</li>
 					<li>Let <var>flags</var> be ?
-						<emu-xref aoid="ToString" id="_ref_10"><a href="https://tc39.github.io/ecma262/#sec-tostring">ToString</a></emu-xref>(?
-						<emu-xref aoid="Get" id="_ref_11"><a href="https://tc39.github.io/ecma262/#sec-get-o-p">Get</a></emu-xref>(<var>rx</var>, <code>"flags"</code>)).</li>
+						<emu-xref aoid="ToString" id="_ref_13"><a href="https://tc39.github.io/ecma262/#sec-tostring">ToString</a></emu-xref>(?
+						<emu-xref aoid="Get" id="_ref_14"><a href="https://tc39.github.io/ecma262/#sec-get-o-p">Get</a></emu-xref>(<var>rx</var>, <code>"flags"</code>)).</li>
 					<li>Let <var>matcher</var> be ?
-						<emu-xref aoid="Construct" id="_ref_12"><a href="https://tc39.github.io/ecma262/#sec-construct">Construct</a></emu-xref>(<var>C</var>, « <var>rx</var>, <var>flags</var> »).</li>
+						<emu-xref aoid="Construct" id="_ref_15"><a href="https://tc39.github.io/ecma262/#sec-construct">Construct</a></emu-xref>(<var>C</var>, « <var>rx</var>, <var>flags</var> »).</li>
 					<li>Let <var>lastIndex</var> be ?
-						<emu-xref aoid="ToLength" id="_ref_13"><a href="https://tc39.github.io/ecma262/#sec-tolength">ToLength</a></emu-xref>(?
-						<emu-xref aoid="Get" id="_ref_14"><a href="https://tc39.github.io/ecma262/#sec-get-o-p">Get</a></emu-xref>(<var>rx</var>,
+						<emu-xref aoid="ToLength" id="_ref_16"><a href="https://tc39.github.io/ecma262/#sec-tolength">ToLength</a></emu-xref>(?
+						<emu-xref aoid="Get" id="_ref_17"><a href="https://tc39.github.io/ecma262/#sec-get-o-p">Get</a></emu-xref>(<var>rx</var>,
 						<emu-val>"lastIndex"</emu-val>)).</li>
 					<li>Perform ?
-						<emu-xref aoid="Set" id="_ref_15"><a href="https://tc39.github.io/ecma262/#sec-set-o-p-v-throw">Set</a></emu-xref>(<var>matcher</var>,
+						<emu-xref aoid="Set" id="_ref_18"><a href="https://tc39.github.io/ecma262/#sec-set-o-p-v-throw">Set</a></emu-xref>(<var>matcher</var>,
 						<emu-val>"lastIndex"</emu-val>, <var>lastIndex</var>,
 						<emu-val>true</emu-val>).</li>
 					<li>Return CreateRegExpStringIterator(<var>matcher</var>, <var>S</var>)
@@ -2215,9 +2220,9 @@
 			<emu-alg>
 				<ol>
 					<li>Assert:
-						<emu-xref aoid="Type" id="_ref_16"><a href="https://tc39.github.io/ecma262/#sec-ecmascript-data-types-and-values">Type</a></emu-xref>(<var>S</var>) is String.</li>
+						<emu-xref aoid="Type" id="_ref_19"><a href="https://tc39.github.io/ecma262/#sec-ecmascript-data-types-and-values">Type</a></emu-xref>(<var>S</var>) is String.</li>
 					<li>Let <var>iterator</var> be
-						<emu-xref aoid="ObjectCreate" id="_ref_17"><a href="https://tc39.github.io/ecma262/#sec-objectcreate">ObjectCreate</a></emu-xref>(
+						<emu-xref aoid="ObjectCreate" id="_ref_20"><a href="https://tc39.github.io/ecma262/#sec-objectcreate">ObjectCreate</a></emu-xref>(
 						<emu-xref href="#%RegExpStringIteratorPrototype%" id="_ref_0"><a href="#%RegExpStringIteratorPrototype%">%RegExpStringIteratorPrototype%</a></emu-xref>, «[[IteratingRegExp]], [[IteratedString]]»).</li>
 					<li>Set <var>iterator</var>.[[IteratingRegExp]] to <var>R</var>.</li>
 					<li>Set <var>iterator</var>.[[IteratedString]] to <var>S</var>.</li>
@@ -2240,7 +2245,7 @@
 						<li>Let <var>O</var> be the
 							<emu-val>this</emu-val> value.</li>
 						<li>If
-							<emu-xref aoid="Type" id="_ref_18"><a href="https://tc39.github.io/ecma262/#sec-ecmascript-data-types-and-values">Type</a></emu-xref>(<var>O</var>) is not Object, throw a
+							<emu-xref aoid="Type" id="_ref_21"><a href="https://tc39.github.io/ecma262/#sec-ecmascript-data-types-and-values">Type</a></emu-xref>(<var>O</var>) is not Object, throw a
 							<emu-val>TypeError</emu-val> exception.</li>
 						<li>If <var>O</var> does not have all of the internal slots of a RegExp String Iterator Object Instance (see
 							<emu-xref href="#PropertiesOfRegExpStringIteratorInstances" id="_ref_2"><a href="#PropertiesOfRegExpStringIteratorInstances">4.3</a></emu-xref>), throw a
@@ -2248,12 +2253,12 @@
 						<li>Let <var>R</var> be <var>O</var>.[[IteratingRegExp]].</li>
 						<li>Let <var>S</var> be <var>O</var>.[[IteratedString]].</li>
 						<li>Let <var>match</var> be ?
-							<emu-xref aoid="RegExpExec" id="_ref_19"><a href="https://tc39.github.io/ecma262/#sec-regexpexec">RegExpExec</a></emu-xref>(<var>R</var>, <var>S</var>).</li>
+							<emu-xref aoid="RegExpExec" id="_ref_22"><a href="https://tc39.github.io/ecma262/#sec-regexpexec">RegExpExec</a></emu-xref>(<var>R</var>, <var>S</var>).</li>
 						<li>If <var>match</var> is
 							<emu-val>null</emu-val>, then
 							<ol>
 								<li>Return
-									<emu-xref aoid="CreateIterResultObject" id="_ref_20"><a href="https://tc39.github.io/ecma262/#sec-createiterresultobject">CreateIterResultObject</a></emu-xref>(
+									<emu-xref aoid="CreateIterResultObject" id="_ref_23"><a href="https://tc39.github.io/ecma262/#sec-createiterresultobject">CreateIterResultObject</a></emu-xref>(
 									<emu-val>null</emu-val>,
 									<emu-val>true</emu-val>).</li>
 							</ol>
@@ -2261,7 +2266,7 @@
 						<li>Otherwise,
 							<ol>
 								<li>Return
-									<emu-xref aoid="CreateIterResultObject" id="_ref_21"><a href="https://tc39.github.io/ecma262/#sec-createiterresultobject">CreateIterResultObject</a></emu-xref>(<var>match</var>,
+									<emu-xref aoid="CreateIterResultObject" id="_ref_24"><a href="https://tc39.github.io/ecma262/#sec-createiterresultobject">CreateIterResultObject</a></emu-xref>(<var>match</var>,
 									<emu-val>false</emu-val>).
 								</li>
 							</ol>
@@ -2295,7 +2300,7 @@
 							<tr>
 								<td>[[IteratingRegExp]]</td>
 								<td>The regular expression used for iteration.
-									<emu-xref aoid="IsRegExp" id="_ref_22"><a href="https://tc39.github.io/ecma262/#sec-isregexp">IsRegExp</a></emu-xref>([[IteratingRegExp]]) is always
+									<emu-xref aoid="IsRegExp" id="_ref_25"><a href="https://tc39.github.io/ecma262/#sec-isregexp">IsRegExp</a></emu-xref>([[IteratingRegExp]]) is always
 									<emu-val>true</emu-val>.</td>
 							</tr>
 							<tr>
