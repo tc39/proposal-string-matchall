@@ -39,7 +39,7 @@ contributors: Jordan Harband
 		1. Assert: IsRegExp(_R_) is *true*.
 		1. Assert: ToBoolean(Get(_R_, *"global"*)) is *true*.
 		1. Assert: Type(_S_) is String.
-		1. Let _iterator_ be ObjectCreate(<emu-xref href="#%RegExpStringIteratorPrototype%">%RegExpStringIteratorPrototype%</emu-xref>, « [[IteratingRegExp]], [[IteratedString]] »).
+		1. Let _iterator_ be ObjectCreate(<emu-xref href="#%RegExpStringIteratorPrototype%">%RegExpStringIteratorPrototype%</emu-xref>, &laquo; [[IteratingRegExp]], [[IteratedString]] &raquo;).
 		1. Set _iterator's_ [[IteratingRegExp]] <a href="http://www.ecma-international.org/ecma-262/6.0/#sec-object-internal-methods-and-internal-slots">internal slot</a> to _R_.
 		1. Set _iterator's_ [[IteratedString]] <a href="http://www.ecma-international.org/ecma-262/6.0/#sec-object-internal-methods-and-internal-slots">internal slot</a> to _S_.
 		1. Return _iterator_.
