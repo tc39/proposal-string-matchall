@@ -1,55 +1,19 @@
 {
 	"name": "string-matchall",
+	"private": true,
 	"version": "0.0.0",
 	"description": "Spec-compliant polyfill for String.prototype.matchAll ESnext proposal.",
-	"main": "index.js",
 	"scripts": {
-		"build": "ecmarkup --js=spec.js --css=spec.css spec.emu | js-beautify -f - --type=html -t > index.html",
-		"prepublish": "npm run build",
-		"test": "evalmd *.md && es-shim-api --bound && npm run lint && npm run tests-only",
-		"tests-only": "npm run test:module && npm run test:shim",
-		"test:module": "node test/index.js",
-		"test:shim": "node test/shimmed.js",
-		"lint": "npm run eslint",
-		"eslint": "eslint test/*.js index.js implementation.js polyfill.js shim.js hidden.js"
+		"build": "ecmarkup --js=spec.js --css=spec.css spec.emu | js-beautify -f - --type=html -t > index.html"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/ljharb/String.prototype.matchAll.git"
+		"url": "git+https://github.com/tc39/proposal-string-matchall.git"
 	},
-	"keywords": [
-		"String.prototype.matchAll",
-		"matchAll",
-		"match",
-		"regex",
-		"regexp",
-		"regular",
-		"expression",
-		"matches"
-	],
 	"author": "Jordan Harband <ljharb@gmail.com>",
 	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/ljharb/String.prototype.matchAll/issues"
-	},
-	"homepage": "https://github.com/ljharb/String.prototype.matchAll#readme",
-	"dependencies": {
-		"es-abstract": "^1.4.3",
-		"define-properties": "^1.1.2",
-		"function-bind": "^1.0.2",
-		"regexp.prototype.flags": "^1.1.1"
-	},
 	"devDependencies": {
-		"foreach": "^2.0.5",
 		"ecmarkup": "^2.8.1",
-		"es5-shim": "^4.3.1",
-		"es6-shim": "^0.33.13",
-		"js-beautify": "^1.5.10",
-		"object.assign": "^4.0.3",
-		"tape": "^4.2.2",
-		"@es-shims/api": "^1.0.0",
-		"eslint": "^1.10.3",
-		"@ljharb/eslint-config": "^1.6.0",
-		"evalmd": "^0.0.16"
+		"js-beautify": "^1.5.10"
 	}
 }
