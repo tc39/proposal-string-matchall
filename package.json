@@ -4,7 +4,7 @@
 	"version": "0.0.0",
 	"description": "Spec-compliant polyfill for String.prototype.matchAll ESnext proposal.",
 	"scripts": {
-		"build": "ecmarkup --js=spec.js --css=spec.css spec.emu | js-beautify -f - --type=html -t > index.html"
+		"build": "ecmarkup --js=spec.js --css=spec.css spec.emu | js-beautify -f - --type=html -t | sed -e 's/&nbsp;/ /g' -e 's/[[:space:]]*$//' > index.html"
 	},
 	"repository": {
 		"type": "git",
