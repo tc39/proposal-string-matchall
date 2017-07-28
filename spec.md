@@ -1,4 +1,4 @@
-# String.prototype.matchAll( regexp )</h1>
+# String.prototype.matchAll( *regexp* )</h1>
 
 *matchAll* does not visibly mutate the provided *regexp* in any way.
 

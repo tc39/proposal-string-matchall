@@ -7,7 +7,7 @@ stage: 1
 contributors: Jordan Harband
 </pre>
 <emu-clause id="String.prototype.matchAll">
-	<h1>String.prototype.matchAll ( regexp )</h1>
+	<h1>String.prototype.matchAll ( _regexp_ )</h1>
 	<emu-note>_matchAll_ does not visibly mutate the provided _regexp_ in any way.</emu-note>
 	<p>When the _matchAll_ method is called, the following steps are taken:</p>
 	<emu-alg>
