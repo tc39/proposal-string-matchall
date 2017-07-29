@@ -25,7 +25,12 @@ The value of the name property of this function is "[Symbol.matchAll]".
 The abstract operation *MatchAllIterator* performs the following steps:
   1. Assert: IsRegExp(*R*) is **true**.
   1. Let *S* be ? [ToString][to-string](*O*).
-  1. Return ! [CreateRegExpStringIterator](#createregexpstringiterator-abstract-operation)(*R*, *S*)
+  1. Let *C* be ? [SpeciesConstructor](species-constructor)(*R*, %RegExp%).
+  1. Let *flags* be ? [ToString](tostring)(? [Get](get)(*R*, **"flags"**)).
+  1. Let *matcher* be ? [Construct](construct)(*C*, « *R*, *flags* »).
+  1. Let *lastIndex* be ? [ToLength](tolength)(? [Get](get)(*R*, **"lastIndex"**)).
+  1. Perform ? [Set](set)(*matcher*, **"lastIndex"**, *lastIndex*, **true**).
+  1. Return ! [CreateRegExpStringIterator](#createregexpstringiterator-abstract-operation)(*matcher*, *S*)
 
 ## CreateRegExpStringIterator( *R*, *S* )
 
@@ -127,3 +132,7 @@ This property has the attributes { [[Writable]]: **false**, [[Enumerable]]: **fa
 [isregexp]: https://tc39.github.io/ecma262/#sec-isregexp
 [object-create]: https://tc39.github.io/ecma262/#sec-objectcreate
 [call]: https://tc39.github.io/ecma262/#sec-call
+[species-constructor]: https://tc39.github.io/ecma262/#sec-speciesconstructor
+[construct]: https://tc39.github.io/ecma262/#sec-construct
+[tolength]: https://tc39.github.io/ecma262/#sec-tolength
+[set]: https://tc39.github.io/ecma262/#sec-set-o-p-v-throw

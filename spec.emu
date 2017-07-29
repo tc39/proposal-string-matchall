@@ -47,7 +47,12 @@ contributors: Jordan Harband
 	<emu-alg>
 		1. Assert: IsRegExp(_R_) is *true*.
 		1. Let _S_ be ? ToString(_O_).
-		1. Return ! <emu-xref href="#sec-createregexpstringiterator">CreateRegExpStringIterator</emu-xref>(_R_, _S_).
+		1. Let _C_ be ? SpeciesConstructor(_R_, %RegExp%).
+		1. Let _flags_ be ? ToString(? Get(_R_, *"flags"*)).
+		1. Let _matcher_ be ? Construct(_C_, &laquo; _R_, _flags_ &raquo;).
+		1. Let _lastIndex_ be ? ToLength(? Get(_R_, *"lastIndex"*)).
+		1. Perform ? Set(_matcher_, *"lastIndex"*, _lastIndex_, *true*).
+		1. Return ! <emu-xref href="#sec-createregexpstringiterator">CreateRegExpStringIterator</emu-xref>(_matcher_, _S_).
 	</emu-alg>
 </emu-clause>
 </ins>
