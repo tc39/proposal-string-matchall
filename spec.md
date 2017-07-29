@@ -18,13 +18,14 @@ Note: The *rx* regular expression value is created solely to ensure that no visi
 
 ## CreateRegExpStringIterator( *regexp*, *string* )
 
-The abstract operation CreateRegExpStringIterator with arguments *regexp* and *string* is used to create such iterator objects. It performs the following steps:
-  1. Assert: [Type][type](*S*) is String.
+The abstract operation *CreateRegExpStringIterator* with arguments *regexp* and *string* is used to create such iterator objects. It performs the following steps:
+  1. Assert: [Type][type](*string*) is String.
   1. If ? [IsRegExp][isregexp] is not **true**, throw a *TypeError* exception.
-  1. If ? [ToBoolean][to-boolean](? [Get][get](*R*, **"global"**)) is not **true**, throw a *TypeError* exception.
+  1. Let *global* be ? [ToBoolean][to-boolean](? [Get][get](*regexp*, **"global"**));
+  1. If *global* is not **true**, throw a *TypeError* exception.
   1. Let *iterator* be ObjectCreate(<emu-xref href="#%RegExpStringIteratorPrototype%">%RegExpStringIteratorPrototype%</emu-xref>, « [[IteratedString]], [[IteratingRegExp]] »).
-  1. Set *iterator*.[[IteratingRegExp]] to *R*.
-  1. Set *iterator*.[[IteratedString]] to *S*.
+  1. Set *iterator*.[[IteratingRegExp]] to *regexp*.
+  1. Set *iterator*.[[IteratedString]] to *string*.
   1. Return *iterator*.
 
 ### The %RegExpStringIteratorPrototype% Object

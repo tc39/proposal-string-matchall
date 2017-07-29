@@ -2130,7 +2130,7 @@
 		</div>
 	</div>
 	<div id="spec-container">
-		<h1 class="version first">Stage 1 Draft / July 28, 2017</h1>
+		<h1 class="version first">Stage 1 Draft / July 29, 2017</h1>
 		<h1 class="title">String.prototype.matchAll</h1>
 		<emu-clause id="String.prototype.matchAll">
 			<h1><span class="secnum">1</span>String.prototype.matchAll ( <var>regexp</var> )</h1>
@@ -2180,26 +2180,27 @@
 		<emu-clause id="CreateRegExpStringIterator">
 			<h1><span class="secnum">2</span>CreateRegExpStringIterator ( <var>regexp</var>, <var>string</var> )</h1>
 
-			<p>The abstract operation CreateRegExpStringIterator is used to create such iterator objects. It performs the following steps:</p>
+			<p>The abstract operation <var>CreateRegExpStringIterator</var> is used to create such iterator objects. It performs the following steps:</p>
 			<emu-alg>
 				<ol>
 					<li>Assert:
-						<emu-xref aoid="Type" id="_ref_13"><a href="https://tc39.github.io/ecma262/#sec-ecmascript-data-types-and-values">Type</a></emu-xref>(<var>S</var>) is String.</li>
+						<emu-xref aoid="Type" id="_ref_13"><a href="https://tc39.github.io/ecma262/#sec-ecmascript-data-types-and-values">Type</a></emu-xref>(<var>string</var>) is String.</li>
 					<li>If ?
-						<emu-xref aoid="IsRegExp" id="_ref_14"><a href="https://tc39.github.io/ecma262/#sec-isregexp">IsRegExp</a></emu-xref>(<var>R</var>) is not
+						<emu-xref aoid="IsRegExp" id="_ref_14"><a href="https://tc39.github.io/ecma262/#sec-isregexp">IsRegExp</a></emu-xref>(<var>regexp</var>) is not
 						<emu-val>true</emu-val>, throw a
 						<emu-val>TypeError</emu-val> exception.</li>
-					<li>If ?
+					<li>Let <var>global</var> be ?
 						<emu-xref aoid="ToBoolean" id="_ref_15"><a href="https://tc39.github.io/ecma262/#sec-toboolean">ToBoolean</a></emu-xref>(?
-						<emu-xref aoid="Get" id="_ref_16"><a href="https://tc39.github.io/ecma262/#sec-get-o-p">Get</a></emu-xref>(<var>R</var>,
-						<emu-val>"global"</emu-val>)) is not
+						<emu-xref aoid="Get" id="_ref_16"><a href="https://tc39.github.io/ecma262/#sec-get-o-p">Get</a></emu-xref>(<var>regexp</var>,
+						<emu-val>"global"</emu-val>));</li>
+					<li>If <var>global</var> is not
 						<emu-val>true</emu-val>, throw a
 						<emu-val>TypeError</emu-val> exception.</li>
 					<li>Let <var>iterator</var> be
 						<emu-xref aoid="ObjectCreate" id="_ref_17"><a href="https://tc39.github.io/ecma262/#sec-objectcreate">ObjectCreate</a></emu-xref>(
 						<emu-xref href="#%RegExpStringIteratorPrototype%" id="_ref_0"><a href="#%RegExpStringIteratorPrototype%">%RegExpStringIteratorPrototype%</a></emu-xref>, « [[IteratingRegExp]], [[IteratedString]] »).</li>
-					<li>Set <var>iterator</var>.[[IteratingRegExp]] to <var>R</var>.</li>
-					<li>Set <var>iterator</var>.[[IteratedString]] to <var>S</var>.</li>
+					<li>Set <var>iterator</var>.[[IteratingRegExp]] to <var>regexp</var>.</li>
+					<li>Set <var>iterator</var>.[[IteratedString]] to <var>string</var>.</li>
 					<li>Return <var>iterator</var>.
 					</li>
 				</ol>

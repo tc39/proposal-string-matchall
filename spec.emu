@@ -28,14 +28,15 @@ contributors: Jordan Harband
 <emu-clause id="CreateRegExpStringIterator">
 	<h1>CreateRegExpStringIterator ( _regexp_, _string_ )</h1>
 
-	<p>The abstract operation CreateRegExpStringIterator is used to create such iterator objects. It performs the following steps:</p>
+	<p>The abstract operation _CreateRegExpStringIterator_ is used to create such iterator objects. It performs the following steps:</p>
 	<emu-alg>
-		1. Assert: Type(_S_) is String.
-		1. If ? IsRegExp(_R_) is not *true*, throw a *TypeError* exception.
-		1. If ? ToBoolean(? Get(_R_, *"global"*)) is not *true*, throw a *TypeError* exception.
+		1. Assert: Type(_string_) is String.
+		1. If ? IsRegExp(_regexp_) is not *true*, throw a *TypeError* exception.
+		1. Let _global_ be ? ToBoolean(? Get(_regexp_, *"global"*));
+		1. If _global_ is not *true*, throw a *TypeError* exception.
 		1. Let _iterator_ be ObjectCreate(<emu-xref href="#%RegExpStringIteratorPrototype%">%RegExpStringIteratorPrototype%</emu-xref>, &laquo; [[IteratingRegExp]], [[IteratedString]] &raquo;).
-		1. Set _iterator_.[[IteratingRegExp]] to _R_.
-		1. Set _iterator_.[[IteratedString]] to _S_.
+		1. Set _iterator_.[[IteratingRegExp]] to _regexp_.
+		1. Set _iterator_.[[IteratedString]] to _string_.
 		1. Return _iterator_.
 	</emu-alg>
 </emu-clause>
