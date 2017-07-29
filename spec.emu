@@ -26,17 +26,17 @@ contributors: Jordan Harband
 </emu-clause>
 
 <emu-clause id="CreateRegExpStringIterator">
-	<h1>CreateRegExpStringIterator ( _regexp_, _string_ )</h1>
+	<h1>CreateRegExpStringIterator ( _R_, _S_ )</h1>
 
 	<p>The abstract operation _CreateRegExpStringIterator_ is used to create such iterator objects. It performs the following steps:</p>
 	<emu-alg>
 		1. Assert: Type(_string_) is String.
-		1. If ? IsRegExp(_regexp_) is not *true*, throw a *TypeError* exception.
-		1. Let _global_ be ? ToBoolean(? Get(_regexp_, *"global"*));
+		1. If ? IsRegExp(_R_) is not *true*, throw a *TypeError* exception.
+		1. Let _global_ be ? ToBoolean(? Get(_R_, *"global"*));
 		1. If _global_ is not *true*, throw a *TypeError* exception.
 		1. Let _iterator_ be ObjectCreate(<emu-xref href="#%RegExpStringIteratorPrototype%">%RegExpStringIteratorPrototype%</emu-xref>, &laquo; [[IteratingRegExp]], [[IteratedString]] &raquo;).
-		1. Set _iterator_.[[IteratingRegExp]] to _regexp_.
-		1. Set _iterator_.[[IteratedString]] to _string_.
+		1. Set _iterator_.[[IteratingRegExp]] to _R_.
+		1. Set _iterator_.[[IteratedString]] to _S_.
 		1. Return _iterator_.
 	</emu-alg>
 </emu-clause>
@@ -52,9 +52,9 @@ contributors: Jordan Harband
 			1. Let _O_ be the *this* value.
 			1. If Type(_O_) is not Object, throw a *TypeError* exception.
 			1. If _O_ does not have all of the internal slots of a RegExp String Iterator Object Instance (see <emu-xref href="#PropertiesOfRegExpStringIteratorInstances"></emu-xref>), throw a *TypeError* exception.
-			1. Let _regexp_ be _O_.[[IteratingRegExp]].
-			1. Let _string_ be _O_.[[IteratedString]].
-			1. Let _match_ be ? RegExpExec(_regexp_, _string_)
+			1. Let _R_ be _O_.[[IteratingRegExp]].
+			1. Let _S_ be _O_.[[IteratedString]].
+			1. Let _match_ be ? RegExpExec(_R_, _S_).
 			1. If _match_ is *null*, then
 				1. Return ! CreateIterResultObject(*null*, *true*).
 			1. Else,
