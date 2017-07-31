@@ -65,9 +65,10 @@ contributors: Jordan Harband
 	<emu-alg>
 		1. Assert: Type(_S_) is String.
 		1. Assert: IsRegExp(_R_) is *true*.
-		1. Let _iterator_ be ObjectCreate(<emu-xref href="#%RegExpStringIteratorPrototype%">%RegExpStringIteratorPrototype%</emu-xref>, &laquo; [[IteratingRegExp]], [[IteratedString]] &raquo;).
+		1. Let _iterator_ be ObjectCreate(<emu-xref href="#%RegExpStringIteratorPrototype%">%RegExpStringIteratorPrototype%</emu-xref>, &laquo; [[IteratingRegExp]], [[IteratedString]], [[Done]] &raquo;).
 		1. Set _iterator_.[[IteratingRegExp]] to _R_.
 		1. Set _iterator_.[[IteratedString]] to _S_.
+		1. Set _iterator_.[[Done]] to *false*.
 		1. Return _iterator_.
 	</emu-alg>
 </emu-clause>
@@ -85,10 +86,13 @@ contributors: Jordan Harband
 			1. Let _O_ be the *this* value.
 			1. If Type(_O_) is not Object, throw a *TypeError* exception.
 			1. If _O_ does not have all of the internal slots of a RegExp String Iterator Object Instance (see <emu-xref href="#PropertiesOfRegExpStringIteratorInstances"></emu-xref>), throw a *TypeError* exception.
+			1. If _O_.[[Done]] is *true*, then
+				1. Return ! CreateIterResultObject(*null*, *true*).
 			1. Let _R_ be _O_.[[IteratingRegExp]].
 			1. Let _S_ be _O_.[[IteratedString]].
 			1. Let _match_ be ? RegExpExec(_R_, _S_).
 			1. If _match_ is *null*, then
+				1. Set _O_.[[Done]] to *true*.
 				1. Return ! CreateIterResultObject(*null*, *true*).
 			1. Else,
 				1. Return ! CreateIterResultObject(_match_, *false*).
@@ -119,6 +123,10 @@ contributors: Jordan Harband
 					<tr>
 						<td>[[IteratedString]]</td>
 						<td>The String value being iterated upon.</td>
+					</tr>
+					<tr>
+						<td>[[Done]]</td>
+						<td>Boolean value representing whether the iteration is complete or not.</td>
 					</tr>
 				</tbody>
 			</table>

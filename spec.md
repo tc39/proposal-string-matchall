@@ -37,9 +37,10 @@ The abstract operation *MatchAllIterator* performs the following steps:
 The abstract operation *CreateRegExpStringIterator* is used to create such iterator objects. It performs the following steps:
   1. Assert: [Type][type](*S*) is String.
   1. Assert: [IsRegExp][isregexp](*R*) is **true**.
-  1. Let *iterator* be ObjectCreate(<emu-xref href="#%RegExpStringIteratorPrototype%">%RegExpStringIteratorPrototype%</emu-xref>, « [[IteratedString]], [[IteratingRegExp]] »).
+  1. Let *iterator* be ObjectCreate(<emu-xref href="#%RegExpStringIteratorPrototype%">%RegExpStringIteratorPrototype%</emu-xref>, « [[IteratedString]], [[IteratingRegExp]], [[Done]] »).
   1. Set *iterator*.[[IteratingRegExp]] to *R*.
   1. Set *iterator*.[[IteratedString]] to *S*.
+  1. Set *iterator*.[[Done]] to **true**.
   1. Return *iterator*.
 
 ### The %RegExpStringIteratorPrototype% Object
@@ -50,13 +51,16 @@ All RegExp String Iterator Objects inherit properties from the [%RegExpStringIte
   1. Let O be the **this** value.
   1. If [Type][type](O) is not Object, throw a **TypeError** exception.
   1. If O does not have all of the internal slots of a RegExp String Iterator Object Instance (see [here](#PropertiesOfRegExpStringIteratorInstances)), throw a **TypeError** exception.
+  1. If _O_.[[Done]] is **true**, then
+    1. return ! [CreateIterResultObject][create-iter-result-object](**null**, **true**).
   1. Let _R_ be _O_.[[IteratingRegExp]].
   1. Let _S_ be _O_.[[IteratedString]].
   1. Let _match_ be ? [RegExpExec][regexp-exec](_R_, _S_).
   1. If _match_ is **null**, then
-      1. return ! [CreateIterResultObject][create-iter-result-object](**null**, **true**).
+    1. Set _O_.[[Done]] to **true**.
+    1. return ! [CreateIterResultObject][create-iter-result-object](**null**, **true**).
   1. Else,
-      1. return ! [CreateIterResultObject][create-iter-result-object](_match_, **false**).
+    1. return ! [CreateIterResultObject][create-iter-result-object](_match_, **false**).
 
 #### %RegExpStringIteratorPrototype%[ @@toStringTag ]
 
