@@ -2,11 +2,14 @@
 
 When the `matchAll` method is called, the following steps are taken:
   1. Let *O* be ? [RequireObjectCoercible][require-object-coercible](**this** value).
-  1. If ? [IsRegExp](isregexp)(*regexp*) is not **true**, throw a *TypeError* exception.
-  1. Let *matcher* be ? [GetMethod](getmethod)(*regexp*, @@matchAll).
+  1. If ? [IsRegExp](isregexp)(*regexp*) is **true**, then
+    1. Let *R* be *regexp*.
+  1. Else,
+    1. Let *R* be [RegExpCreate](regexp-create)(*regexp*, **undefined**).
+  1. Let *matcher* be ? [GetMethod](getmethod)(*R*, @@matchAll).
   1. If *matcher* is not **undefined**, then
-    1. Return ? [Call](call)(*matcher*, *regexp*, &laquo; *O* &raquo;).
-  1. Return ? [MatchAllIterator](#matchalliterator)(*regexp*, *O*).
+    1. Return ? [Call](call)(*matcher*, *R*, &laquo; *O* &raquo;).
+  1. Return ? [MatchAllIterator](#matchalliterator)(*R*, *O*).
 
 Note 1: The `matchAll` function is intentionally generic, it does not require that its *this* value be a String object. Therefore, it can be transferred to other kinds of objects for use as a method.
 Note 2: Similarly to `String.prototype.split`, `String.prototype.matchAll` is designed to typically act without mutating its inputs.

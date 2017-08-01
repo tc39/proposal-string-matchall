@@ -14,11 +14,14 @@ contributors: Jordan Harband
 	<p>When the `matchAll` method is called, the following steps are taken:</p>
 	<emu-alg>
 		1. Let _O_ be ? RequireObjectCoercible(*this* value).
-		1. If ? IsRegExp(_regexp_) is not *true*, throw a *TypeError* exception.
-		1. Let _matcher_ be ? GetMethod(_regexp_, @@matchAll).
+		1. If ? IsRegExp(_regexp_) is *true*, then
+			1. Let _R_ be _regexp_.
+		1. Else,
+			1. Let _R_ be ? RegExpCreate(_regexp_, *undefined*).
+		1. Let _matcher_ be ? GetMethod(_R_, @@matchAll).
 		1. If _matcher_ is not *undefined*, then
-			1. Return ? Call(_matcher_, _regexp_, &laquo; _O_ &raquo;).
-		1. Return ? <emu-xref href="#sec-matchalliterator">MatchAllIterator</emu-xref>(_regexp_, _O_).
+			1. Return ? Call(_matcher_, _R_, &laquo; _O_ &raquo;).
+		1. Return ? <emu-xref href="#sec-matchalliterator">MatchAllIterator</emu-xref>(_R_, _O_).
 	</emu-alg>
 	<emu-note>The `matchAll` function is intentionally generic, it does not require that its *this* value be a String object. Therefore, it can be transferred to other kinds of objects for use as a method.</emu-note>
 	<emu-note>Similarly to `String.prototype.split`, `String.prototype.matchAll` is designed to typically act without mutating its inputs.</emu-note>
