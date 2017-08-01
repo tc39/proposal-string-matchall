@@ -65,9 +65,10 @@ contributors: Jordan Harband
 	<emu-alg>
 		1. Assert: Type(_S_) is String.
 		1. Assert: IsRegExp(_R_) is *true*.
-		1. Let _iterator_ be ObjectCreate(<emu-xref href="#%RegExpStringIteratorPrototype%">%RegExpStringIteratorPrototype%</emu-xref>, &laquo; [[IteratingRegExp]], [[IteratedString]], [[Done]] &raquo;).
+		1. Let _iterator_ be ObjectCreate(<emu-xref href="#%RegExpStringIteratorPrototype%">%RegExpStringIteratorPrototype%</emu-xref>, &laquo; [[IteratingRegExp]], [[IteratedString]], [[PreviousIndex]], [[Done]] &raquo;).
 		1. Set _iterator_.[[IteratingRegExp]] to _R_.
 		1. Set _iterator_.[[IteratedString]] to _S_.
+		1. Set _iterator_.[[PreviousIndex]] to *-1*.
 		1. Set _iterator_.[[Done]] to *false*.
 		1. Return _iterator_.
 	</emu-alg>
@@ -95,7 +96,15 @@ contributors: Jordan Harband
 				1. Set _O_.[[Done]] to *true*.
 				1. Return ! CreateIterResultObject(*null*, *true*).
 			1. Else,
-				1. Return ! CreateIterResultObject(_match_, *false*).
+				1. Let _previousIndex_ be _O_.[[PreviousIndex]].
+				1. Assert: Type(_previousIndex_) is Number.
+				1. Let _index_ be ? ToLength(? Get(_match_, *index*)).
+				1. If _previousIndex_ is equal to _index_, then
+					1. Set _O_.[[Done]] to *true*.
+					1. Return ! CreateIterResultObject(*null*, *true*).
+				1. Else,
+					1. Set _O_.[[PreviousIndex]] to _index_.
+					1. Return ! CreateIterResultObject(_match_, *false*).
 		</emu-alg>
 	</emu-clause>
 
