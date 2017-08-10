@@ -50,14 +50,14 @@ contributors: Jordan Harband
 
 	<p>The abstract operation _MatchAllIterator_ performs the following steps:</p>
 	<emu-alg>
-		1. Assert: IsRegExp(_R_) is *true*.
+		1. If ? IsRegExp(_R_) is not *true*, throw a *TypeError* exception.
 		1. Let _S_ be ? ToString(_O_).
 		1. Let _C_ be ? SpeciesConstructor(_R_, %RegExp%).
 		1. Let _flags_ be ? ToString(? Get(_R_, *"flags"*)).
 		1. Let _matcher_ be ? Construct(_C_, &laquo; _R_, _flags_ &raquo;).
 		1. Let _lastIndex_ be ? ToLength(? Get(_R_, *"lastIndex"*)).
 		1. Perform ? Set(_matcher_, *"lastIndex"*, _lastIndex_, *true*).
-		1. Return ! <emu-xref href="#sec-createregexpstringiterator">CreateRegExpStringIterator</emu-xref>(_matcher_, _S_).
+		1. Return ? <emu-xref href="#sec-createregexpstringiterator">CreateRegExpStringIterator</emu-xref>(_matcher_, _S_).
 	</emu-alg>
 </emu-clause>
 </ins>
@@ -69,7 +69,7 @@ contributors: Jordan Harband
 	<p>The abstract operation _CreateRegExpStringIterator_ is used to create such iterator objects. It performs the following steps:</p>
 	<emu-alg>
 		1. Assert: Type(_S_) is String.
-		1. Assert: IsRegExp(_R_) is *true*.
+		1. If ? IsRegExp(_R_) is not *true*, throw a *TypeError* exception.
 		1. Let _iterator_ be ObjectCreate(<emu-xref href="#%RegExpStringIteratorPrototype%">%RegExpStringIteratorPrototype%</emu-xref>, &laquo; [[IteratingRegExp]], [[IteratedString]], [[PreviousIndex]], [[Done]] &raquo;).
 		1. Set _iterator_.[[IteratingRegExp]] to _R_.
 		1. Set _iterator_.[[IteratedString]] to _S_.

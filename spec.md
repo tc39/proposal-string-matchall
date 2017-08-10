@@ -4,7 +4,7 @@ Performs a regular expression match of the String representing the **this** valu
 
 When the `matchAll` method is called, the following steps are taken:
   1. Let *O* be ? [RequireObjectCoercible][require-object-coercible](**this** value).
-  1. If ? [IsRegExp](isregexp)(*regexp*) is **true**, then
+  1. If ? [IsRegExp][isregexp](*regexp*) is **true**, then
     1. Let *R* be *regexp*.
   1. Else,
     1. Let *R* be [RegExpCreate](regexp-create)(*regexp*, **undefined**).
@@ -20,7 +20,7 @@ Note 2: Similarly to `String.prototype.split`, `String.prototype.matchAll` is de
 
 When the `@@matchAll` method is called with argument *string*, the following steps are taken:
   1. Let *R* be the **this** value.
-  1. If ? [IsRegExp](isregexp)(*R*) is not **true**, throw a *TypeError* exception.
+  1. If ? [IsRegExp][isregexp](*R*) is not **true**, throw a **TypeError** exception.
   1. Return ? [MatchAllIterator](#matchalliterator)(*R*, *string*).
 
 The value of the name property of this function is "[Symbol.matchAll]".
@@ -28,7 +28,7 @@ The value of the name property of this function is "[Symbol.matchAll]".
 # MatchAllIterator ( *R*, *O* )
 
 The abstract operation *MatchAllIterator* performs the following steps:
-  1. Assert: IsRegExp(*R*) is **true**.
+  1. If ? [IsRegExp][isregexp](*R*) is not **true**, throw a **TypeError** exception.
   1. Let *S* be ? [ToString][to-string](*O*).
   1. Let *C* be ? [SpeciesConstructor](species-constructor)(*R*, %RegExp%).
   1. Let *flags* be ? [ToString](tostring)(? [Get](get)(*R*, **"flags"**)).
@@ -41,7 +41,7 @@ The abstract operation *MatchAllIterator* performs the following steps:
 
 The abstract operation *CreateRegExpStringIterator* is used to create such iterator objects. It performs the following steps:
   1. Assert: [Type][type](*S*) is String.
-  1. Assert: [IsRegExp][isregexp](*R*) is **true**.
+  1. If ? [IsRegExp][isregexp](*R*) is not **true**, throw a **TypeError** exception.
   1. Let *iterator* be ObjectCreate(<emu-xref href="#%RegExpStringIteratorPrototype%">%RegExpStringIteratorPrototype%</emu-xref>, « [[IteratedString]], [[IteratingRegExp]], [[PreviousIndex]], [[Done]] »).
   1. Set *iterator*.[[IteratingRegExp]] to *R*.
   1. Set *iterator*.[[IteratedString]] to *S*.
