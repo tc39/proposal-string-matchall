@@ -1,5 +1,7 @@
 # String.prototype.matchAll ( *regexp* )</h1>
 
+Performs a regular expression match of the String representing the **this** value against *regexp* and returns an iterator. Each iteration result’s value is an Array object containing the results of the match, or **null** if the String did not match.
+
 When the `matchAll` method is called, the following steps are taken:
   1. Let *O* be ? [RequireObjectCoercible][require-object-coercible](**this** value).
   1. If ? [IsRegExp](isregexp)(*regexp*) is **true**, then

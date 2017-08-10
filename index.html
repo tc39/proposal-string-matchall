@@ -2194,6 +2194,8 @@
 <emu-clause id="sec-string-prototype-matchall">
 	<h1><span class="secnum">1</span>String.prototype.matchAll ( <var>regexp</var> )</h1>
 
+    <p>Performs a regular expression match of the String representing the <emu-val>this</emu-val> value against <var>regexp</var> and returns an iterator. Each iteration result’s value is an Array object containing the results of the match, or <emu-val>null</emu-val> if the String did not match.</p>
+
 	<p>When the <code>matchAll</code> method is called, the following steps are taken:</p>
 	<emu-alg><ol><li>Let <var>O</var> be ? <emu-xref aoid="RequireObjectCoercible" id="_ref_7"><a href="https://tc39.github.io/ecma262/#sec-requireobjectcoercible">RequireObjectCoercible</a></emu-xref>(<emu-val>this</emu-val> value).</li><li>If ? <emu-xref aoid="IsRegExp" id="_ref_8"><a href="https://tc39.github.io/ecma262/#sec-isregexp">IsRegExp</a></emu-xref>(<var>regexp</var>) is <emu-val>true</emu-val>, then<ol><li>Let <var>R</var> be <var>regexp</var>.</li></ol></li><li>Else,<ol><li>Let <var>R</var> be ? <emu-xref aoid="RegExpCreate" id="_ref_9"><a href="https://tc39.github.io/ecma262/#sec-regexpcreate">RegExpCreate</a></emu-xref>(<var>regexp</var>, <emu-val>undefined</emu-val>).</li></ol></li><li>Let <var>matcher</var> be ? <emu-xref aoid="GetMethod" id="_ref_10"><a href="https://tc39.github.io/ecma262/#sec-getmethod">GetMethod</a></emu-xref>(<var>R</var>, @@matchAll).</li><li>If <var>matcher</var> is not <emu-val>undefined</emu-val>, then<ol><li>Return ? <emu-xref aoid="Call" id="_ref_11"><a href="https://tc39.github.io/ecma262/#sec-call">Call</a></emu-xref>(<var>matcher</var>, <var>R</var>, « <var>O</var> »).</li></ol></li><li>Return ? MatchAllIterator(<var>R</var>, <var>O</var>).
 	</li></ol></emu-alg>

@@ -11,6 +11,8 @@ contributors: Jordan Harband
 <emu-clause id="sec-string-prototype-matchall">
 	<h1>String.prototype.matchAll ( _regexp_ )</h1>
 
+    <p>Performs a regular expression match of the String representing the *this* value against _regexp_ and returns an iterator. Each iteration result’s value is an Array object containing the results of the match, or *null* if the String did not match.</p>
+
 	<p>When the `matchAll` method is called, the following steps are taken:</p>
 	<emu-alg>
 		1. Let _O_ be ? RequireObjectCoercible(*this* value).
