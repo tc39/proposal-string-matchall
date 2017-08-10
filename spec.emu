@@ -38,7 +38,7 @@ contributors: Jordan Harband
 	<emu-alg>
 		1. Let _R_ be the *this* value.
 		1. If ? IsRegExp(_R_) is not *true*, throw a *TypeError* exception.
-		1. Return ? <emu-xref href="#sec-matchalliterator">MatchAllIterator</emu-xref>(_R_, _string_).
+		1. Return ? MatchAllIterator(_R_, _string_).
 	</emu-alg>
 	<p>The value of the *name* property of this function is *"[Symbol.matchAll]"*.</p>
 </emu-clause>
