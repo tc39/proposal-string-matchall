@@ -45,7 +45,7 @@ contributors: Jordan Harband
 </ins>
 
 <ins class="block">
-<emu-clause id="sec-matchalliterator" aoid-"MatchAllIterator">
+<emu-clause id="sec-matchalliterator" aoid="MatchAllIterator">
 	<h1>MatchAllIterator ( _R_, _O_ )</h1>
 
 	<p>The abstract operation _MatchAllIterator_ performs the following steps:</p>
