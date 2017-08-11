@@ -20,7 +20,6 @@ Note 2: Similarly to `String.prototype.split`, `String.prototype.matchAll` is de
 
 When the `@@matchAll` method is called with argument *string*, the following steps are taken:
   1. Let *R* be the **this** value.
-  1. If ? [IsRegExp][isregexp](*R*) is not **true**, throw a **TypeError** exception.
   1. Return ? [MatchAllIterator](#matchalliterator)(*R*, *string*).
 
 The value of the name property of this function is "[Symbol.matchAll]".
@@ -35,13 +34,12 @@ The abstract operation *MatchAllIterator* performs the following steps:
   1. Let *matcher* be ? [Construct][construct](*C*, « *R*, *flags* »).
   1. Let *lastIndex* be ? [ToLength][tolength](? [Get][get](*R*, **"lastIndex"**)).
   1. Perform ? [Set][set](*matcher*, **"lastIndex"**, *lastIndex*, **true**).
-  1. Return ? [CreateRegExpStringIterator](#createregexpstringiterator-abstract-operation)(*matcher*, *S*)
+  1. Return ! [CreateRegExpStringIterator](#createregexpstringiterator-abstract-operation)(*matcher*, *S*)
 
 ## CreateRegExpStringIterator( *R*, *S* )
 
 The abstract operation *CreateRegExpStringIterator* is used to create such iterator objects. It performs the following steps:
   1. Assert: [Type][type](*S*) is String.
-  1. If ? [IsRegExp][isregexp](*R*) is not **true**, throw a **TypeError** exception.
   1. Let *iterator* be ObjectCreate(<emu-xref href="#%RegExpStringIteratorPrototype%">%RegExpStringIteratorPrototype%</emu-xref>, « [[IteratedString]], [[IteratingRegExp]], [[PreviousIndex]], [[Done]] »).
   1. Set *iterator*.[[IteratingRegExp]] to *R*.
   1. Set *iterator*.[[IteratedString]] to *S*.
