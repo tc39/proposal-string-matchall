@@ -140,6 +140,10 @@ contributors: Jordan Harband
 						<td>[[Done]]</td>
 						<td>Boolean value representing whether the iteration is complete or not.</td>
 					</tr>
+					<tr>
+						<td>[[PreviousIndex]]</td>
+						<td>The index of the previous yielded match object.</td>
+					</tr>
 				</tbody>
 			</table>
 		</figure>

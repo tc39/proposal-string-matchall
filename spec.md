@@ -92,13 +92,20 @@ RegExp String Iterator instances are ordinary objects that inherit properties fr
         <th>Description</th>
       </tr>
       <tr>
-        <td>[[IteratedObject]]</td>
-        <td>The object whose array elements are being iterated.</td>
+        <td>[[IteratingRegExp]]</td>
+        <td>The regular expression used for iteration. [IsRegExp][isregexp]([[IteratingRegExp]]) is always initially true.</td>
       </tr>
       <tr>
-        <td>[[ArrayIteratorNextIndex]]</td>
-        <td>The integer index of the next integer index to be examined by this iteration.</td>
+        <td>[[IteratedString]]</td>
+        <td>The String value being iterated upon.</td>
       </tr>
+      <tr>
+        <td>[[Done]]</td>
+        <td>Boolean value representing whether the iteration is complete or not.</td>
+      </tr>
+      <tr>
+        <td>[[PreviousIndex]]</td>
+        <td>The index of the previous yielded match object.</td>
     </tbody>
   </table>
 </figure>
