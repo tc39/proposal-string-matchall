@@ -6,41 +6,79 @@ title: String.prototype.matchAll
 stage: 1
 contributors: Jordan Harband
 </pre>
-<emu-clause id="String.prototype.matchAll">
+
+<ins class="block">
+<emu-clause id="sec-string-prototype-matchall">
 	<h1>String.prototype.matchAll ( _regexp_ )</h1>
-	<emu-note>_matchAll_ does not visibly mutate the provided _regexp_ in any way.</emu-note>
-	<p>When the _matchAll_ method is called, the following steps are taken:</p>
+
+    <p>Performs a regular expression match of the String representing the *this* value against _regexp_ and returns an iterator. Each iteration result’s value is an Array object containing the results of the match, or *null* if the String did not match.</p>
+
+	<p>When the `matchAll` method is called, the following steps are taken:</p>
 	<emu-alg>
 		1. Let _O_ be ? RequireObjectCoercible(*this* value).
-		1. Let _isRegExp_ be ? IsRegExp(_regexp_).
-		1. If _isRegExp_ is not *true*, throw a *TypeError* exception.
-		1. Let _S_ be ? ToString(*O*).
-		1. Let _flags_ be ? ToString(? Get(regexp, *"flags"*)).
-		1. If _flags_ does not contain the character *"g"*, let _flags_ be the String concatenation of the String *"g"* and _flags_.
-		1. Let _rx_ be ? RegExpCreate(_regexp_, _flags_).
-		1. Let _lastIndex_ be ? ToLength(? Get(regexp, *"lastIndex"*)).
-		1. Perform ? Set(_rx_, *"lastIndex"*, _lastIndex_, *true*).
-		1. Return ? CreateRegExpStringIterator(_rx_, _S_)
+		1. If ? IsRegExp(_regexp_) is *true*, then
+			1. Let _R_ be _regexp_.
+		1. Else,
+			1. Let _R_ be ? RegExpCreate(_regexp_, *undefined*).
+		1. Let _matcher_ be ? GetMethod(_R_, @@matchAll).
+		1. If _matcher_ is not *undefined*, then
+			1. Return ? Call(_matcher_, _R_, &laquo; _O_ &raquo;).
+		1. Return ? MatchAllIterator(_R_, _O_).
 	</emu-alg>
-	<emu-note>The _rx_ regular expression value is created solely to ensure that no visible mutation happens on _regexp_ - it should never be exposed to the environment.</emu-note>
+	<emu-note>The `matchAll` function is intentionally generic, it does not require that its *this* value be a String object. Therefore, it can be transferred to other kinds of objects for use as a method.</emu-note>
+	<emu-note>Similarly to `String.prototype.split`, `String.prototype.matchAll` is designed to typically act without mutating its inputs.</emu-note>
 </emu-clause>
+</ins>
 
-<emu-clause id="CreateRegExpStringIterator">
+<ins class="block">
+<emu-clause id="sec-regexp-prototype-matchall">
+	<h1>RegExp.prototype [ @@matchAll ] ( _string_ )</h1>
+
+	<p>When the `@@matchAll` method is called with argument _string_, the following steps are taken:</p>
+	<emu-alg>
+		1. Let _R_ be the *this* value.
+		1. Return ? MatchAllIterator(_R_, _string_).
+	</emu-alg>
+	<p>The value of the *name* property of this function is *"[Symbol.matchAll]"*.</p>
+</emu-clause>
+</ins>
+
+<ins class="block">
+<emu-clause id="sec-matchalliterator" aoid="MatchAllIterator">
+	<h1>MatchAllIterator ( _R_, _O_ )</h1>
+
+	<p>The abstract operation _MatchAllIterator_ performs the following steps:</p>
+	<emu-alg>
+		1. If ? IsRegExp(_R_) is not *true*, throw a *TypeError* exception.
+		1. Let _S_ be ? ToString(_O_).
+		1. Let _C_ be ? SpeciesConstructor(_R_, %RegExp%).
+		1. Let _flags_ be ? ToString(? Get(_R_, *"flags"*)).
+		1. Let _matcher_ be ? Construct(_C_, &laquo; _R_, _flags_ &raquo;).
+		1. Let _lastIndex_ be ? ToLength(? Get(_R_, *"lastIndex"*)).
+		1. Perform ? Set(_matcher_, *"lastIndex"*, _lastIndex_, *true*).
+		1. Return ! CreateRegExpStringIterator(_matcher_, _S_).
+	</emu-alg>
+</emu-clause>
+</ins>
+
+<ins class="block">
+<emu-clause id="sec-createregexpstringiterator" aoid="CreateRegExpStringIterator">
 	<h1>CreateRegExpStringIterator ( _R_, _S_ )</h1>
 
 	<p>The abstract operation _CreateRegExpStringIterator_ is used to create such iterator objects. It performs the following steps:</p>
 	<emu-alg>
-		1. Assert: Type(_string_) is String.
-		1. If ? IsRegExp(_R_) is not *true*, throw a *TypeError* exception.
-		1. Let _global_ be ? ToBoolean(? Get(_R_, *"global"*));
-		1. If _global_ is not *true*, throw a *TypeError* exception.
-		1. Let _iterator_ be ObjectCreate(<emu-xref href="#%RegExpStringIteratorPrototype%">%RegExpStringIteratorPrototype%</emu-xref>, &laquo; [[IteratingRegExp]], [[IteratedString]] &raquo;).
+		1. Assert: Type(_S_) is String.
+		1. Let _iterator_ be ObjectCreate(<emu-xref href="#%RegExpStringIteratorPrototype%">%RegExpStringIteratorPrototype%</emu-xref>, &laquo; [[IteratingRegExp]], [[IteratedString]], [[PreviousIndex]], [[Done]] &raquo;).
 		1. Set _iterator_.[[IteratingRegExp]] to _R_.
 		1. Set _iterator_.[[IteratedString]] to _S_.
+		1. Set _iterator_.[[PreviousIndex]] to *-1*.
+		1. Set _iterator_.[[Done]] to *false*.
 		1. Return _iterator_.
 	</emu-alg>
 </emu-clause>
+</ins>
 
+<ins class="block">
 <emu-clause id="%RegExpStringIteratorPrototype%">
 	<h1>The %RegExpStringIteratorPrototype% Object</h1>
 
@@ -52,13 +90,24 @@ contributors: Jordan Harband
 			1. Let _O_ be the *this* value.
 			1. If Type(_O_) is not Object, throw a *TypeError* exception.
 			1. If _O_ does not have all of the internal slots of a RegExp String Iterator Object Instance (see <emu-xref href="#PropertiesOfRegExpStringIteratorInstances"></emu-xref>), throw a *TypeError* exception.
+			1. If _O_.[[Done]] is *true*, then
+				1. Return ! CreateIterResultObject(*null*, *true*).
 			1. Let _R_ be _O_.[[IteratingRegExp]].
 			1. Let _S_ be _O_.[[IteratedString]].
 			1. Let _match_ be ? RegExpExec(_R_, _S_).
 			1. If _match_ is *null*, then
+				1. Set _O_.[[Done]] to *true*.
 				1. Return ! CreateIterResultObject(*null*, *true*).
 			1. Else,
-				1. Return ! CreateIterResultObject(_match_, *false*).
+				1. Let _previousIndex_ be _O_.[[PreviousIndex]].
+				1. Assert: Type(_previousIndex_) is Number.
+				1. Let _index_ be ? ToLength(? Get(_match_, *index*)).
+				1. If _previousIndex_ is equal to _index_, then
+					1. Set _O_.[[Done]] to *true*.
+					1. Return ! CreateIterResultObject(*null*, *true*).
+				1. Else,
+					1. Set _O_.[[PreviousIndex]] to _index_.
+					1. Return ! CreateIterResultObject(_match_, *false*).
 		</emu-alg>
 	</emu-clause>
 
@@ -81,14 +130,52 @@ contributors: Jordan Harband
 					</tr>
 					<tr>
 						<td>[[IteratingRegExp]]</td>
-						<td>The regular expression used for iteration. IsRegExp([[IteratingRegExp]]) is always *true*.</td>
+						<td>The regular expression used for iteration. IsRegExp([[IteratingRegExp]]) is always initially *true*.</td>
 					</tr>
 					<tr>
 						<td>[[IteratedString]]</td>
 						<td>The String value being iterated upon.</td>
 					</tr>
+					<tr>
+						<td>[[Done]]</td>
+						<td>Boolean value representing whether the iteration is complete or not.</td>
+					</tr>
+					<tr>
+						<td>[[PreviousIndex]]</td>
+						<td>The index of the previous yielded match object.</td>
+					</tr>
 				</tbody>
 			</table>
 		</figure>
 	</emu-clause>
+</emu-clause>
+</ins>
+
+<ins class="block">
+<emu-clause id="Symbol.matchAll">
+	<h1>Symbol.matchAll</h1>
+	<p>The initial value of *Symbol.matchAll* is the well-known symbol @@matchAll (<emu-xref href="#table-2"></emu-xref>).</p>
+	<p>This property has the attributes { [[Writable]]: *false*, [[Enumerable]]: *false*, [[Configurable]]: *false* }.</p>
+</emu-clause>
+</ins>
+
+<emu-clause id="sec-well-known-symbols">
+	<h1>Well-Known Symbols</h1>
+	<emu-note type="editor">insert after @@match; before @@replace</emu-note>
+	<emu-table id="table-2" caption="Well-known Symbols">
+		<table>
+			<tbody>
+				<tr>
+					<th>Specification Name</th>
+					<th>[[Description]]</th>
+					<th>Value and Purpose</th>
+				</tr>
+				<tr>
+					<td><ins>@@matchAll</ins></td>
+					<td><ins>`"Symbol.matchAll"`</ins></td>
+					<td><ins>A regular expression method that returns an iterator, that yields matches of the regular expression against a string. Called by the `String.prototype.matchAll` method.</ins></td>
+				</tr>
+			</tbody>
+		</table>
+	</emu-table>
 </emu-clause>
