@@ -3,7 +3,7 @@
 <script src="./spec.js"></script>
 <pre class="metadata">
 title: String.prototype.matchAll
-stage: 1
+stage: 2
 contributors: Jordan Harband
 </pre>
 
