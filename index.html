@@ -1226,11 +1226,11 @@
 			flex-shrink: 1;
 		}
 
-		emu-note>div.note-contents>p:first-child {
+		emu-note>div.note-contents>p:first-of-type {
 			margin-top: 0;
 		}
 
-		emu-note>div.note-contents>p:last-child {
+		emu-note>div.note-contents>p:last-of-type {
 			margin-bottom: 0;
 		}
 
@@ -1611,6 +1611,7 @@
 		emu-annex {
 			display: block;
 		}
+
 		/* Figures and tables */
 
 		figure {
@@ -1657,6 +1658,7 @@
 		table.real-table th {
 			background-color: #eeeeee;
 		}
+
 		/* Note: the left content edges of table.lightweight-table >tbody >tr >td
    and div.display line up. */
 
@@ -1671,6 +1673,7 @@
 			padding: 0 0.5em;
 			vertical-align: baseline;
 		}
+
 		/* diff styles */
 
 		ins {
@@ -1703,6 +1706,7 @@
 		tr.del>td {
 			background-color: #fee;
 		}
+
 		/* Menu Styles */
 
 		#menu-toggle {
@@ -2073,6 +2077,8 @@
 				padding: 0;
 			}
 		}
+
+
 		/* Toolbox */
 
 		.toolbox {
