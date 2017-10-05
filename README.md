@@ -1,5 +1,8 @@
 # String.prototype.matchAll
-Proposal, specs, tests, reference implementation, and polyfill/shim for String.prototype.matchAll
+Proposal and specs for String.prototype.matchAll.
+
+## Polyfill/Shim
+See [string.prototype.matchall on npm](https://www.npmjs.com/package/string.prototype.matchall) or on [github](https://github.com/ljharb/String.prototype.matchAll).
 
 ## Spec
 You can view the spec in [markdown format](spec.md) or rendered as [HTML](https://tc39.github.io/proposal-string-matchall/).
