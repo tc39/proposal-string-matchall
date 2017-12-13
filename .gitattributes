@@ -1,5 +1,8 @@
 index.html    -diff merge=ours
+index.html    linguist-generated=true
 spec.js       -diff merge=ours
+spec.js       linguist-generated=true
 spec.css      -diff merge=ours
+spec.css      linguist-generated=true
 package.json   trigger=true
 spec.emu       trigger=true
