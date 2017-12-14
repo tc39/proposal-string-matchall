@@ -44,12 +44,11 @@ The abstract operation *CreateRegExpStringIterator* is used to create such itera
   1. Assert: [Type][type](*S*) is String.
   1. Assert: [Type][type](*global*) is Boolean.
   1. Assert: [Type][type](*unicode*) is Boolean.
-  1. Let *iterator* be ObjectCreate(<emu-xref href="#%RegExpStringIteratorPrototype%">%RegExpStringIteratorPrototype%</emu-xref>, « [[IteratedString]], [[IteratingRegExp]], [[PreviousIndex]], [[Done]] »).
+  1. Let *iterator* be ObjectCreate(<emu-xref href="#%RegExpStringIteratorPrototype%">%RegExpStringIteratorPrototype%</emu-xref>, « [[IteratedString]], [[IteratingRegExp]], [[Done]] »).
   1. Set *iterator*.[[IteratingRegExp]] to *R*.
   1. Set *iterator*.[[IteratedString]] to *S*.
   1. Set *iterator*.[[Global]] to *global*.
   1. Set *iterator*.[[Unicode]] to *fullUnicode*.
-  1. Set *iterator*.[[PreviousIndex]] to **-1**.
   1. Set *iterator*.[[Done]] to **true**.
   1. Return *iterator*.
 
@@ -80,15 +79,8 @@ All RegExp String Iterator Objects inherit properties from the [%RegExpStringIte
         1. Perform ? [Set][set](*R*, **"lastIndex"**, *nextIndex*, **true**).
       1. Return ! [CreateIterResultObject][create-iter-result-object](*match*, **false**).
     1. Else,
-      1. Let *previousIndex* be *O*.[[PreviousIndex]].
-      1. Assert: Type(*previousIndex*) is Number.
-      1. Let *index* be ? [ToLength][tolength](? [Get][get](*match*, **"index"**).
-      1. If *previousIndex* is equal to *index*, then
-        1. Set *O*.[[Done]] to **true**.
-        1. Return ! [CreateIterResultObject][create-iter-result-object](**null**, **true**).
-      1. Else,
-        1. Set *O*.[[PreviousIndex]] to *index*.
-        1. Return ! [CreateIterResultObject][create-iter-result-object](_match_, **false**).
+      1. Set *O*.[[Done]] to **true**.
+      1. Return ! [CreateIterResultObject][create-iter-result-object](_match_, **false**).
 
 #### %RegExpStringIteratorPrototype%[ @@toStringTag ]
 
@@ -121,11 +113,7 @@ RegExp String Iterator instances are ordinary objects that inherit properties fr
       </tr>
       <tr>
         <td>[[Unicode]]</td>
-        <td>A Boolean value to indicate whether the [[IteratingRegExp]] is in full Unicode more or not.</td>
-      </tr>
-      <tr>
-        <td>[[PreviousIndex]]</td>
-        <td>The index of the previous yielded match object.</td>
+        <td>A Boolean value to indicate whether the [[IteratingRegExp]] is in Unicode mode or not.</td>
       </tr>
       <tr>
         <td>[[Done]]</td>
