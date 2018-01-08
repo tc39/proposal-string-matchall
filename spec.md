@@ -32,18 +32,23 @@ The abstract operation *MatchAllIterator* performs the following steps:
   1. Let *C* be ? [SpeciesConstructor][species-constructor](*R*, %RegExp%).
   1. Let *flags* be ? [ToString][tostring](? [Get][get](*R*, **"flags"**)).
   1. Let *matcher* be ? [Construct][construct](*C*, « *R*, *flags* »).
+  1. Let *global* be ? [ToBoolean][to-boolean](? [Get][get](*matcher*, **"global"**)).
+  1. Let *fullUnicode* be ? [ToBoolean][to-boolean](? [Get][get](*matcher*, **"unicode"**)).
   1. Let *lastIndex* be ? [ToLength][tolength](? [Get][get](*R*, **"lastIndex"**)).
   1. Perform ? [Set][set](*matcher*, **"lastIndex"**, *lastIndex*, **true**).
-  1. Return ! [CreateRegExpStringIterator](#createregexpstringiterator-abstract-operation)(*matcher*, *S*)
+  1. Return ! [CreateRegExpStringIterator](#createregexpstringiterator-abstract-operation)(*matcher*, *S*, *global*, *fullUnicode*).
 
-## CreateRegExpStringIterator( *R*, *S* )
+## CreateRegExpStringIterator( *R*, *S*, *global*, *fullUnicode* )
 
 The abstract operation *CreateRegExpStringIterator* is used to create such iterator objects. It performs the following steps:
   1. Assert: [Type][type](*S*) is String.
-  1. Let *iterator* be ObjectCreate(<emu-xref href="#%RegExpStringIteratorPrototype%">%RegExpStringIteratorPrototype%</emu-xref>, « [[IteratedString]], [[IteratingRegExp]], [[PreviousIndex]], [[Done]] »).
+  1. Assert: [Type][type](*global*) is Boolean.
+  1. Assert: [Type][type](*unicode*) is Boolean.
+  1. Let *iterator* be ObjectCreate(<emu-xref href="#%RegExpStringIteratorPrototype%">%RegExpStringIteratorPrototype%</emu-xref>, « [[IteratedString]], [[IteratingRegExp]], [[Done]] »).
   1. Set *iterator*.[[IteratingRegExp]] to *R*.
   1. Set *iterator*.[[IteratedString]] to *S*.
-  1. Set *iterator*.[[PreviousIndex]] to **-1**.
+  1. Set *iterator*.[[Global]] to *global*.
+  1. Set *iterator*.[[Unicode]] to *fullUnicode*.
   1. Set *iterator*.[[Done]] to **true**.
   1. Return *iterator*.
 
@@ -59,19 +64,22 @@ All RegExp String Iterator Objects inherit properties from the [%RegExpStringIte
     1. Return ! [CreateIterResultObject][create-iter-result-object](**null**, **true**).
   1. Let *R* be *O*.[[IteratingRegExp]].
   1. Let *S* be *O*.[[IteratedString]].
+  1. Let *global* be *O*.[[Global]].
+  1. Let *fullUnicode* be *O*.[[Unicode]].
   1. Let *match* be ? [RegExpExec][regexp-exec](*R*, *S*).
   1. If *match* is **null**, then
     1. Set *O*.[[Done]] to **true**.
     1. Return ! [CreateIterResultObject][create-iter-result-object](**null**, **true**).
   1. Else,
-    1. Let *previousIndex* be *O*.[[PreviousIndex]].
-    1. Assert: Type(*previousIndex*) is Number.
-    1. Let *index* be ? [ToLength][tolength](? [Get][get](*match*, **"index"**).
-    1. If *previousIndex* is equal to *index*, then
-      1. Set *O*.[[Done]] to **true**.
-      1. Return ! [CreateIterResultObject][create-iter-result-object](**null**, **true**).
+    1. If *global* is **true**,
+      1. Let *matchStr* be ? [ToString][to-string](? [Get][get](*match*, **"0"**)).
+      1. If *matchStr* is the empty string,
+        1. Let *thisIndex* be ? [ToLength][tolength](? [Get][get](*R*, **"lastIndex"**).
+        1. Let *nextIndex* be ! AdvanceStringIndex(*S*, *thisIndex*, *fullUnicode*).
+        1. Perform ? [Set][set](*R*, **"lastIndex"**, *nextIndex*, **true**).
+      1. Return ! [CreateIterResultObject][create-iter-result-object](*match*, **false**).
     1. Else,
-      1. Set *O*.[[PreviousIndex]] to *index*.
+      1. Set *O*.[[Done]] to **true**.
       1. Return ! [CreateIterResultObject][create-iter-result-object](_match_, **false**).
 
 #### %RegExpStringIteratorPrototype%[ @@toStringTag ]
@@ -100,12 +108,17 @@ RegExp String Iterator instances are ordinary objects that inherit properties fr
         <td>The String value being iterated upon.</td>
       </tr>
       <tr>
-        <td>[[Done]]</td>
-        <td>Boolean value representing whether the iteration is complete or not.</td>
+        <td>[[Global]]</td>
+        <td>A Boolean value to indicate whether the [[IteratingRegExp]] is global or not.</td>
       </tr>
       <tr>
-        <td>[[PreviousIndex]]</td>
-        <td>The index of the previous yielded match object.</td>
+        <td>[[Unicode]]</td>
+        <td>A Boolean value to indicate whether the [[IteratingRegExp]] is in Unicode mode or not.</td>
+      </tr>
+      <tr>
+        <td>[[Done]]</td>
+        <td>A Boolean value to indicate whether the iteration is complete or not.</td>
+      </tr>
     </tbody>
   </table>
 </figure>
@@ -159,3 +172,4 @@ This property has the attributes { [[Writable]]: **false**, [[Enumerable]]: **fa
 [construct]: https://tc39.github.io/ecma262/#sec-construct
 [tolength]: https://tc39.github.io/ecma262/#sec-tolength
 [set]: https://tc39.github.io/ecma262/#sec-set-o-p-v-throw
+[to-boolean]: https://tc39.github.io/ecma262/#sec-toboolean
