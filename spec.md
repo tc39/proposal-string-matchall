@@ -7,7 +7,7 @@ When the `matchAll` method is called, the following steps are taken:
   1. If ? [IsRegExp][isregexp](*regexp*) is **true**, then
     1. Let *R* be *regexp*.
   1. Else,
-    1. Let *R* be [RegExpCreate][regexp-create](*regexp*, **undefined**).
+    1. Let *R* be [RegExpCreate][regexp-create](*regexp*, `"g"`).
   1. Let *matcher* be ? [GetMethod][getmethod](*R*, @@matchAll).
   1. If *matcher* is not **undefined**, then
     1. Return ? [Call](call)(*matcher*, *R*, &laquo; *O* &raquo;).

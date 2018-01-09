@@ -19,7 +19,7 @@ contributors: Jordan Harband
 		1. If ? IsRegExp(_regexp_) is *true*, then
 			1. Let _R_ be _regexp_.
 		1. Else,
-			1. Let _R_ be ? RegExpCreate(_regexp_, *undefined*).
+			1. Let _R_ be ? RegExpCreate(_regexp_, `"g"`).
 		1. Let _matcher_ be ? GetMethod(_R_, @@matchAll).
 		1. If _matcher_ is not *undefined*, then
 			1. Return ? Call(_matcher_, _R_, &laquo; _O_ &raquo;).
