@@ -87,7 +87,7 @@ contributors: Jordan Harband
 <emu-clause id="%RegExpStringIteratorPrototype%">
 	<h1>The %RegExpStringIteratorPrototype% Object</h1>
 
-	<p>All RegExp String Iterator Objects inherit properties from the <emu-xref href="#%RegExpStringIteratorPrototype%">%RegExpStringIteratorPrototype%</emu-xref> intrinsic object. The %RegExpStringIteratorPrototype% object is an ordinary object and its [[Prototype]] <a href="http://www.ecma-international.org/ecma-262/6.0/#sec-object-internal-methods-and-internal-slots">internal slot</a> is the <a href="http://www.ecma-international.org/ecma-262/6.0/#sec-%iteratorprototype%-object">%IteratorPrototype% intrinsic object</a>. In addition, %RegExpStringIteratorPrototype% has the following properties:</p>
+	<p>All RegExp String Iterator Objects inherit properties from the <emu-xref href="#%RegExpStringIteratorPrototype%">%RegExpStringIteratorPrototype%</emu-xref> intrinsic object. The %RegExpStringIteratorPrototype% object is an ordinary object and its [[Prototype]] <a href="https://tc39.github.io/ecma262/#sec-object-internal-methods-and-internal-slots">internal slot</a> is the <a href="https://tc39.github.io/ecma262/#sec-%iteratorprototype%-object">%IteratorPrototype% intrinsic object</a>. In addition, %RegExpStringIteratorPrototype% has the following properties:</p>
 
 	<emu-clause id="%RegExpStringIteratorPrototype%.next">
 		<h1>%RegExpStringIteratorPrototype%.next ( )</h1>
