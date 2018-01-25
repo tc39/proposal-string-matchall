@@ -44,7 +44,7 @@ The abstract operation *CreateRegExpStringIterator* is used to create such itera
   1. Assert: [Type][type](*S*) is String.
   1. Assert: [Type][type](*global*) is Boolean.
   1. Assert: [Type][type](*unicode*) is Boolean.
-  1. Let *iterator* be ObjectCreate(<emu-xref href="#%RegExpStringIteratorPrototype%">%RegExpStringIteratorPrototype%</emu-xref>, « [[IteratedString]], [[IteratingRegExp]], [[Done]] »).
+  1. Let *iterator* be ObjectCreate(<emu-xref href="#%RegExpStringIteratorPrototype%">%RegExpStringIteratorPrototype%</emu-xref>, « [[IteratedString]], [[IteratingRegExp]], [[Global]], [[Unicode]], [[Done]] »).
   1. Set *iterator*.[[IteratingRegExp]] to *R*.
   1. Set *iterator*.[[IteratedString]] to *S*.
   1. Set *iterator*.[[Global]] to *global*.

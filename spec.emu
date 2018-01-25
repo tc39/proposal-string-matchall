@@ -72,7 +72,7 @@ contributors: Jordan Harband
 		1. Assert: Type(_S_) is String.
 		1. Assert: Type(_global_) is Boolean.
 		1. Assert: Type(_fullUnicode_) is Boolean.
-		1. Let _iterator_ be ObjectCreate(<emu-xref href="#%RegExpStringIteratorPrototype%">%RegExpStringIteratorPrototype%</emu-xref>, &laquo; [[IteratingRegExp]], [[IteratedString]], [[Done]] &raquo;).
+		1. Let _iterator_ be ObjectCreate(<emu-xref href="#%RegExpStringIteratorPrototype%">%RegExpStringIteratorPrototype%</emu-xref>, &laquo; [[IteratingRegExp]], [[IteratedString]], [[Global]], [[Unicode]], [[Done]] &raquo;).
 		1. Set _iterator_.[[IteratingRegExp]] to _R_.
 		1. Set _iterator_.[[IteratedString]] to _S_.
 		1. Set _iterator_.[[Global]] to _global_.

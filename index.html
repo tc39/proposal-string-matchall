@@ -2207,7 +2207,7 @@
 		</div>
 	</div>
 	<div id="spec-container">
-		<h1 class="version first">Stage 3 Draft / January 24, 2018</h1>
+		<h1 class="version first">Stage 3 Draft / January 25, 2018</h1>
 		<h1 class="title">String.prototype.matchAll</h1>
 
 		<ins class="block">
@@ -2250,7 +2250,7 @@
 	<h1><span class="secnum">4</span>CreateRegExpStringIterator ( <var>R</var>, <var>S</var>, <var>global</var>, <var>fullUnicode</var> )</h1>
 
 	<p>The abstract operation <var>CreateRegExpStringIterator</var> is used to create such iterator objects. It performs the following steps:</p>
-	<emu-alg><ol><li>Assert: <emu-xref aoid="Type" id="_ref_26"><a href="https://tc39.github.io/ecma262/#sec-ecmascript-data-types-and-values">Type</a></emu-xref>(<var>S</var>) is String.</li><li>Assert: <emu-xref aoid="Type" id="_ref_27"><a href="https://tc39.github.io/ecma262/#sec-ecmascript-data-types-and-values">Type</a></emu-xref>(<var>global</var>) is Boolean.</li><li>Assert: <emu-xref aoid="Type" id="_ref_28"><a href="https://tc39.github.io/ecma262/#sec-ecmascript-data-types-and-values">Type</a></emu-xref>(<var>fullUnicode</var>) is Boolean.</li><li>Let <var>iterator</var> be <emu-xref aoid="ObjectCreate" id="_ref_29"><a href="https://tc39.github.io/ecma262/#sec-objectcreate">ObjectCreate</a></emu-xref>(<emu-xref href="#%RegExpStringIteratorPrototype%" id="_ref_0"><a href="#%RegExpStringIteratorPrototype%">%RegExpStringIteratorPrototype%</a></emu-xref>, « [[IteratingRegExp]], [[IteratedString]], [[Done]] »).</li><li>Set <var>iterator</var>.[[IteratingRegExp]] to <var>R</var>.</li><li>Set <var>iterator</var>.[[IteratedString]] to <var>S</var>.</li><li>Set <var>iterator</var>.[[Global]] to <var>global</var>.</li><li>Set <var>iterator</var>.[[Unicode]] to <var>fullUnicode</var>.</li><li>Set <var>iterator</var>.[[Done]] to <emu-val>false</emu-val>.</li><li>Return <var>iterator</var>.
+	<emu-alg><ol><li>Assert: <emu-xref aoid="Type" id="_ref_26"><a href="https://tc39.github.io/ecma262/#sec-ecmascript-data-types-and-values">Type</a></emu-xref>(<var>S</var>) is String.</li><li>Assert: <emu-xref aoid="Type" id="_ref_27"><a href="https://tc39.github.io/ecma262/#sec-ecmascript-data-types-and-values">Type</a></emu-xref>(<var>global</var>) is Boolean.</li><li>Assert: <emu-xref aoid="Type" id="_ref_28"><a href="https://tc39.github.io/ecma262/#sec-ecmascript-data-types-and-values">Type</a></emu-xref>(<var>fullUnicode</var>) is Boolean.</li><li>Let <var>iterator</var> be <emu-xref aoid="ObjectCreate" id="_ref_29"><a href="https://tc39.github.io/ecma262/#sec-objectcreate">ObjectCreate</a></emu-xref>(<emu-xref href="#%RegExpStringIteratorPrototype%" id="_ref_0"><a href="#%RegExpStringIteratorPrototype%">%RegExpStringIteratorPrototype%</a></emu-xref>, « [[IteratingRegExp]], [[IteratedString]], [[Global]], [[Unicode]], [[Done]] »).</li><li>Set <var>iterator</var>.[[IteratingRegExp]] to <var>R</var>.</li><li>Set <var>iterator</var>.[[IteratedString]] to <var>S</var>.</li><li>Set <var>iterator</var>.[[Global]] to <var>global</var>.</li><li>Set <var>iterator</var>.[[Unicode]] to <var>fullUnicode</var>.</li><li>Set <var>iterator</var>.[[Done]] to <emu-val>false</emu-val>.</li><li>Return <var>iterator</var>.
 	</li></ol></emu-alg>
 </emu-clause>
 </ins>
