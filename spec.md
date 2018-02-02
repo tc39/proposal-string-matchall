@@ -4,14 +4,10 @@ Performs a regular expression match of the String representing the **this** valu
 
 When the `matchAll` method is called, the following steps are taken:
   1. Let *O* be ? [RequireObjectCoercible][require-object-coercible](**this** value).
-  1. If ? [IsRegExp][isregexp](*regexp*) is **true**, then
-    1. Let *R* be *regexp*.
-  1. Else,
-    1. Let *R* be [RegExpCreate][regexp-create](*regexp*, `"g"`).
-  1. Let *matcher* be ? [GetMethod][getmethod](*R*, @@matchAll).
+  1. Let *matcher* be ? [GetMethod][getmethod](*regexp*, @@matchAll).
   1. If *matcher* is not **undefined**, then
-    1. Return ? [Call](call)(*matcher*, *R*, &laquo; *O* &raquo;).
-  1. Return ? [MatchAllIterator](#matchalliterator)(*R*, *O*).
+    1. Return ? [Call](call)(*matcher*, *regexp*, &laquo; *O* &raquo;).
+  1. Return ? [MatchAllIterator](#matchalliterator)(*regexp*, *O*).
 
 Note 1: The `matchAll` function is intentionally generic, it does not require that its *this* value be a String object. Therefore, it can be transferred to other kinds of objects for use as a method.
 Note 2: Similarly to `String.prototype.split`, `String.prototype.matchAll` is designed to typically act without mutating its inputs.
@@ -24,18 +20,27 @@ When the `@@matchAll` method is called with argument *string*, the following ste
 
 The value of the name property of this function is "[Symbol.matchAll]".
 
-# MatchAllIterator ( *R*, *O* )
+# MatchAllIterator ( *regexp*, *O* )
 
 The abstract operation *MatchAllIterator* performs the following steps:
-  1. If ? [IsRegExp][isregexp](*R*) is not **true**, throw a **TypeError** exception.
+  1. Perform ! [RequireObjectCoercible][require-object-coercible](*regexp*).
+  1. If ? [IsRegExp][isregexp](*regexp*) is **true**, then
+    1. Let *R* be *regexp*.
+    1. Let *C* be ? [SpeciesConstructor][species-constructor](*R*, %RegExp%).
+    1. Let *flags* be ? [ToString][tostring](? [Get][get](*R*, `"flags"`)).
+    1. Let *matcher* be ? [Construct][construct](*C*, « *R*, *flags* »).
+    1. Let *global* be ? [ToBoolean][to-boolean](? [Get][get](*matcher*, `"global"`)).
+    1. Let *fullUnicode* be ? [ToBoolean][to-boolean](? [Get][get](*matcher*, `"unicode"`)).
+    1. Let *lastIndex* be ? [ToLength][tolength](? [Get][get](*R*, `"lastIndex"`)).
+    1. Perform ? [Set][set](*matcher*, **"lastIndex"**, *lastIndex*, **true**).
+  1. Else,
+    1. Let *R* be [RegExpCreate][regexp-create](*regexp*, `"g"`).
+    1. If ? [IsRegExp][isregexp](*R*) is not **true**, throw a **TypeError** exception.
+    1. Let *global* be **true**.
+    1. Let *fullUnicode* be **false**.
+    1. Let *lastIndex* be **0**.
+    1. Assert: ! [Get][get](*matcher*, `"lastIndex"`) is *0*.
   1. Let *S* be ? [ToString][to-string](*O*).
-  1. Let *C* be ? [SpeciesConstructor][species-constructor](*R*, %RegExp%).
-  1. Let *flags* be ? [ToString][tostring](? [Get][get](*R*, **"flags"**)).
-  1. Let *matcher* be ? [Construct][construct](*C*, « *R*, *flags* »).
-  1. Let *global* be ? [ToBoolean][to-boolean](? [Get][get](*matcher*, **"global"**)).
-  1. Let *fullUnicode* be ? [ToBoolean][to-boolean](? [Get][get](*matcher*, **"unicode"**)).
-  1. Let *lastIndex* be ? [ToLength][tolength](? [Get][get](*R*, **"lastIndex"**)).
-  1. Perform ? [Set][set](*matcher*, **"lastIndex"**, *lastIndex*, **true**).
   1. Return ! [CreateRegExpStringIterator](#createregexpstringiterator-abstract-operation)(*matcher*, *S*, *global*, *fullUnicode*).
 
 ## CreateRegExpStringIterator( *R*, *S*, *global*, *fullUnicode* )

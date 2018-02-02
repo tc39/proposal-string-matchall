@@ -16,14 +16,10 @@ contributors: Jordan Harband
 	<p>When the `matchAll` method is called, the following steps are taken:</p>
 	<emu-alg>
 		1. Let _O_ be ? RequireObjectCoercible(*this* value).
-		1. If ? IsRegExp(_regexp_) is *true*, then
-			1. Let _R_ be _regexp_.
-		1. Else,
-			1. Let _R_ be ? RegExpCreate(_regexp_, `"g"`).
-		1. Let _matcher_ be ? GetMethod(_R_, @@matchAll).
+		1. Let _matcher_ be ? GetMethod(_regexp_, @@matchAll).
 		1. If _matcher_ is not *undefined*, then
-			1. Return ? Call(_matcher_, _R_, &laquo; _O_ &raquo;).
-		1. Return ? MatchAllIterator(_R_, _O_).
+			1. Return ? Call(_matcher_, _regexp_, &laquo; _O_ &raquo;).
+		1. Return ? MatchAllIterator(_regexp_, _O_).
 	</emu-alg>
 	<emu-note>The `matchAll` function is intentionally generic, it does not require that its *this* value be a String object. Therefore, it can be transferred to other kinds of objects for use as a method.</emu-note>
 	<emu-note>Similarly to `String.prototype.split`, `String.prototype.matchAll` is designed to typically act without mutating its inputs.</emu-note>
@@ -45,19 +41,29 @@ contributors: Jordan Harband
 
 <ins class="block">
 <emu-clause id="sec-matchalliterator" aoid="MatchAllIterator">
-	<h1>MatchAllIterator ( _R_, _O_ )</h1>
+	<h1>MatchAllIterator ( _regexp_, _O_ )</h1>
 
 	<p>The abstract operation _MatchAllIterator_ performs the following steps:</p>
 	<emu-alg>
-		1. If ? IsRegExp(_R_) is not *true*, throw a *TypeError* exception.
+		1. Perform ! RequireObjectCoercible(_regexp_).
+		1. If ? IsRegExp(_regexp_) is `true`, then
+			1. Let _R_ be _regexp_.
+			1. Let _C_ be ? SpeciesConstructor(_R_, %RegExp%).
+			1. Let _flags_ be ? ToString(? Get(_R_, `"flags"`)).
+			1. Let _matcher_ be ? Construct(_C_, &laquo; _R_, _flags_ &raquo;).
+			1. Let _global_ be ? ToBoolean(? Get(_matcher_, `"global"`)).
+			1. Let _fullUnicode_ be ? ToBoolean(? Get(_matcher_, `"unicode"`).
+			1. Let _lastIndex_ be ? ToLength(? Get(_R_, `"lastIndex"`)).
+			1. Perform ? Set(_matcher_, `"lastIndex"`, _lastIndex_, *true*).
+		1. Else,
+			1. Let _flags_ be `"g"`.
+			1. Let _matcher_ be ? RegExpCreate(_regexp_, _flags_).
+			1. If ? IsRegExp(_matcher_) is not *true*, throw a *TypeError* exception.
+			1. Let _global_ be *true*.
+			1. Let _fullUnicode_ be *false*.
+			1. Let _lastIndex_ be *0*.
+			1. Assert: ! Get(_matcher_, `"lastIndex"`) is *0*.
 		1. Let _S_ be ? ToString(_O_).
-		1. Let _C_ be ? SpeciesConstructor(_R_, %RegExp%).
-		1. Let _flags_ be ? ToString(? Get(_R_, *"flags"*)).
-		1. Let _matcher_ be ? Construct(_C_, &laquo; _R_, _flags_ &raquo;).
-		1. Let _global_ be ? ToBoolean(? Get(_matcher_, *"global"*)).
-		1. Let _fullUnicode_ be ? ToBoolean(? Get(_matcher_, *"unicode"*).
-		1. Let _lastIndex_ be ? ToLength(? Get(_R_, *"lastIndex"*)).
-		1. Perform ? Set(_matcher_, *"lastIndex"*, _lastIndex_, *true*).
 		1. Return ! CreateRegExpStringIterator(_matcher_, _S_, _global_, _fullUnicode_).
 	</emu-alg>
 </emu-clause>
