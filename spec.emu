@@ -16,9 +16,10 @@ contributors: Jordan Harband
 	<p>When the `matchAll` method is called, the following steps are taken:</p>
 	<emu-alg>
 		1. Let _O_ be ? RequireObjectCoercible(*this* value).
-		1. Let _matcher_ be ? GetMethod(_regexp_, @@matchAll).
-		1. If _matcher_ is not *undefined*, then
-			1. Return ? Call(_matcher_, _regexp_, &laquo; _O_ &raquo;).
+		1. If _regexp_ is neither *undefined* nor *null*, then
+			1. Let _matcher_ be ? GetMethod(_regexp_, @@matchAll).
+			1. If _matcher_ is not *undefined*, then
+				1. Return ? Call(_matcher_, _regexp_, &laquo; _O_ &raquo;).
 		1. Return ? MatchAllIterator(_regexp_, _O_).
 	</emu-alg>
 	<emu-note>The `matchAll` function is intentionally generic, it does not require that its *this* value be a String object. Therefore, it can be transferred to other kinds of objects for use as a method.</emu-note>

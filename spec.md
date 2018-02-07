@@ -4,9 +4,10 @@ Performs a regular expression match of the String representing the **this** valu
 
 When the `matchAll` method is called, the following steps are taken:
   1. Let *O* be ? [RequireObjectCoercible][require-object-coercible](**this** value).
-  1. Let *matcher* be ? [GetMethod][getmethod](*regexp*, @@matchAll).
-  1. If *matcher* is not **undefined**, then
-    1. Return ? [Call](call)(*matcher*, *regexp*, &laquo; *O* &raquo;).
+  1. If *regexp* is neither **undefined** nor **null**, then
+    1. Let *matcher* be ? [GetMethod][getmethod](*regexp*, @@matchAll).
+    1. If *matcher* is not **undefined**, then
+      1. Return ? [Call](call)(*matcher*, *regexp*, &laquo; *O* &raquo;).
   1. Return ? [MatchAllIterator](#matchalliterator)(*regexp*, *O*).
 
 Note 1: The `matchAll` function is intentionally generic, it does not require that its *this* value be a String object. Therefore, it can be transferred to other kinds of objects for use as a method.
