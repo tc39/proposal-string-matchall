@@ -47,6 +47,7 @@ contributors: Jordan Harband
 	<p>The abstract operation _MatchAllIterator_ performs the following steps:</p>
 	<emu-alg>
 		1. Perform ! RequireObjectCoercible(_regexp_).
+		1. Let _S_ be ? ToString(_O_).
 		1. If ? IsRegExp(_regexp_) is `true`, then
 			1. Let _R_ be _regexp_.
 			1. Let _C_ be ? SpeciesConstructor(_R_, %RegExp%).
@@ -64,7 +65,6 @@ contributors: Jordan Harband
 			1. Let _fullUnicode_ be *false*.
 			1. Let _lastIndex_ be *0*.
 			1. Assert: ! Get(_matcher_, `"lastIndex"`) is *0*.
-		1. Let _S_ be ? ToString(_O_).
 		1. Return ! CreateRegExpStringIterator(_matcher_, _S_, _global_, _fullUnicode_).
 	</emu-alg>
 </emu-clause>

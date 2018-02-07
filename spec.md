@@ -25,6 +25,7 @@ The value of the name property of this function is "[Symbol.matchAll]".
 
 The abstract operation *MatchAllIterator* performs the following steps:
   1. Perform ! [RequireObjectCoercible][require-object-coercible](*regexp*).
+  1. Let *S* be ? [ToString][to-string](*O*).
   1. If ? [IsRegExp][isregexp](*regexp*) is **true**, then
     1. Let *R* be *regexp*.
     1. Let *C* be ? [SpeciesConstructor][species-constructor](*R*, %RegExp%).
@@ -41,7 +42,6 @@ The abstract operation *MatchAllIterator* performs the following steps:
     1. Let *fullUnicode* be **false**.
     1. Let *lastIndex* be **0**.
     1. Assert: ! [Get][get](*matcher*, `"lastIndex"`) is *0*.
-  1. Let *S* be ? [ToString][to-string](*O*).
   1. Return ! [CreateRegExpStringIterator](#createregexpstringiterator-abstract-operation)(*matcher*, *S*, *global*, *fullUnicode*).
 
 ## CreateRegExpStringIterator( *R*, *S*, *global*, *fullUnicode* )
