@@ -13,7 +13,7 @@
 	"author": "Jordan Harband <ljharb@gmail.com>",
 	"license": "MIT",
 	"devDependencies": {
-		"ecmarkup": "^3.12.0",
+		"ecmarkup": "^3.13.0",
 		"js-beautify": "^1.7.5"
 	}
 }
