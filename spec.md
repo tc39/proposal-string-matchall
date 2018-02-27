@@ -24,7 +24,6 @@ The value of the name property of this function is "[Symbol.matchAll]".
 # MatchAllIterator ( *regexp*, *O* )
 
 The abstract operation *MatchAllIterator* performs the following steps:
-  1. Perform ! [RequireObjectCoercible][require-object-coercible](*regexp*).
   1. Let *S* be ? [ToString][to-string](*O*).
   1. If ? [IsRegExp][isregexp](*regexp*) is **true**, then
     1. Let *R* be *regexp*.
