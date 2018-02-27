@@ -17,6 +17,7 @@ Note 2: Similarly to `String.prototype.split`, `String.prototype.matchAll` is de
 
 When the `@@matchAll` method is called with argument *string*, the following steps are taken:
   1. Let *R* be the **this** value.
+  1. If [Type][type](_R_) is not Object, throw a **TypeError** exception.
   1. Return ? [MatchAllIterator](#matchalliterator)(*R*, *string*).
 
 The value of the name property of this function is "[Symbol.matchAll]".
