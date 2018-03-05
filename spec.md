@@ -61,7 +61,7 @@ All RegExp String Iterator Objects inherit properties from the [%RegExpStringIte
   1. If [Type][type](O) is not Object, throw a **TypeError** exception.
   1. If O does not have all of the internal slots of a RegExp String Iterator Object Instance (see [here](#PropertiesOfRegExpStringIteratorInstances)), throw a **TypeError** exception.
   1. If *O*.[[Done]] is **true**, then
-    1. Return ! [CreateIterResultObject][create-iter-result-object](**null**, **true**).
+    1. Return ! [CreateIterResultObject][create-iter-result-object](**undefined**, **true**).
   1. Let *R* be *O*.[[IteratingRegExp]].
   1. Let *S* be *O*.[[IteratedString]].
   1. Let *global* be *O*.[[Global]].
@@ -69,7 +69,7 @@ All RegExp String Iterator Objects inherit properties from the [%RegExpStringIte
   1. Let *match* be ? [RegExpExec][regexp-exec](*R*, *S*).
   1. If *match* is **null**, then
     1. Set *O*.[[Done]] to **true**.
-    1. Return ! [CreateIterResultObject][create-iter-result-object](**null**, **true**).
+    1. Return ! [CreateIterResultObject][create-iter-result-object](**undefined**, **true**).
   1. Else,
     1. If *global* is **true**,
       1. Let *matchStr* be ? [ToString][to-string](? [Get][get](*match*, **"0"**)).

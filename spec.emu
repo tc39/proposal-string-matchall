@@ -96,7 +96,7 @@ contributors: Jordan Harband
 			1. If Type(_O_) is not Object, throw a *TypeError* exception.
 			1. If _O_ does not have all of the internal slots of a RegExp String Iterator Object Instance (see <emu-xref href="#PropertiesOfRegExpStringIteratorInstances"></emu-xref>), throw a *TypeError* exception.
 			1. If _O_.[[Done]] is *true*, then
-				1. Return ! CreateIterResultObject(*null*, *true*).
+				1. Return ! CreateIterResultObject(*undefined*, *true*).
 			1. Let _R_ be _O_.[[IteratingRegExp]].
 			1. Let _S_ be _O_.[[IteratedString]].
 			1. Let _global_ be _O_.[[Global]].
@@ -104,7 +104,7 @@ contributors: Jordan Harband
 			1. Let _match_ be ? RegExpExec(_R_, _S_).
 			1. If _match_ is *null*, then
 				1. Set _O_.[[Done]] to *true*.
-				1. Return ! CreateIterResultObject(*null*, *true*).
+				1. Return ! CreateIterResultObject(*undefined*, *true*).
 			1. Else,
 				1. If _global_ is *true*,
 					1. Let _matchStr_ be ? ToString(? Get(_match_, *"0"*)).
