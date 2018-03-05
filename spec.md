@@ -22,12 +22,11 @@ When the `@@matchAll` method is called with argument *string*, the following ste
 
 The value of the name property of this function is "[Symbol.matchAll]".
 
-# MatchAllIterator ( *regexp*, *O* )
+# MatchAllIterator ( *R*, *O* )
 
 The abstract operation *MatchAllIterator* performs the following steps:
   1. Let *S* be ? [ToString][to-string](*O*).
-  1. If ? [IsRegExp][isregexp](*regexp*) is **true**, then
-    1. Let *R* be *regexp*.
+  1. If ? [IsRegExp][isregexp](*R*) is **true**, then
     1. Let *C* be ? [SpeciesConstructor][species-constructor](*R*, %RegExp%).
     1. Let *flags* be ? [ToString][tostring](? [Get][get](*R*, `"flags"`)).
     1. Let *matcher* be ? [Construct][construct](*C*, « *R*, *flags* »).
@@ -36,11 +35,10 @@ The abstract operation *MatchAllIterator* performs the following steps:
     1. Let *lastIndex* be ? [ToLength][tolength](? [Get][get](*R*, `"lastIndex"`)).
     1. Perform ? [Set][set](*matcher*, **"lastIndex"**, *lastIndex*, **true**).
   1. Else,
-    1. Let *R* be [RegExpCreate][regexp-create](*regexp*, `"g"`).
-    1. If ? [IsRegExp][isregexp](*R*) is not **true**, throw a **TypeError** exception.
+    1. Let *matcher* be [RegExpCreate][regexp-create](*R*, `"g"`).
+    1. If ? [IsRegExp][isregexp](*matcher*) is not **true**, throw a **TypeError** exception.
     1. Let *global* be **true**.
     1. Let *fullUnicode* be **false**.
-    1. Let *lastIndex* be **0**.
     1. Assert: ! [Get][get](*matcher*, `"lastIndex"`) is *0*.
   1. Return ! [CreateRegExpStringIterator](#createregexpstringiterator-abstract-operation)(*matcher*, *S*, *global*, *fullUnicode*).
 
