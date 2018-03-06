@@ -62,7 +62,7 @@ contributors: Jordan Harband
 			1. If ? IsRegExp(_matcher_) is not *true*, throw a *TypeError* exception.
 			1. Let _global_ be *true*.
 			1. Let _fullUnicode_ be *false*.
-			1. Assert: ! Get(_matcher_, `"lastIndex"`) is *0*.
+			1. If ? Get(_matcher_, `"lastIndex"`) is not *0*, throw a *TypeError* exception.
 		1. Return ! CreateRegExpStringIterator(_matcher_, _S_, _global_, _fullUnicode_).
 	</emu-alg>
 </emu-clause>
