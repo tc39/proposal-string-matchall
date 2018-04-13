@@ -36,10 +36,9 @@ The abstract operation *MatchAllIterator* performs the following steps:
     1. Perform ? [Set][set](*matcher*, **"lastIndex"**, *lastIndex*, **true**).
   1. Else,
     1. Let *matcher* be [RegExpCreate][regexp-create](*R*, `"g"`).
-    1. If ? [IsRegExp][isregexp](*matcher*) is not **true**, throw a **TypeError** exception.
     1. Let *global* be **true**.
     1. Let *fullUnicode* be **false**.
-    1. If ? [Get][get](*matcher*, `"lastIndex"`) is not `0`, throw a **TypeError** exception.
+    1. Assert: ! [Get][get](*matcher*, `"lastIndex"`) is `0`.
   1. Return ! [CreateRegExpStringIterator](#createregexpstringiterator-abstract-operation)(*matcher*, *S*, *global*, *fullUnicode*).
 
 ## CreateRegExpStringIterator( *R*, *S*, *global*, *fullUnicode* )
