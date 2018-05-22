@@ -11,36 +11,36 @@ You can view the spec in [markdown format](spec.md) or rendered as [HTML](https:
 If I have a string, and either a sticky or a global regular expression which has multiple capturing groups, I often want to iterate through all of the matches.
 Currently, my options are the following:
 ```js
-	var regex = /t(e)(st(\d?))/g;
-	var string = 'test1test2';
+var regex = /t(e)(st(\d?))/g;
+var string = 'test1test2';
 
-	string.match(regex); // gives ['test1', 'test2'] - how do i get the capturing groups?
+string.match(regex); // gives ['test1', 'test2'] - how do i get the capturing groups?
 
-	var matches = [];
-	var lastIndexes = {};
-	var match;
+var matches = [];
+var lastIndexes = {};
+var match;
+lastIndexes[regex.lastIndex] = true;
+while (match = regex.exec(string)) {
 	lastIndexes[regex.lastIndex] = true;
-	while (match = regex.exec(string)) {
-		lastIndexes[regex.lastIndex] = true;
-		matches.push(match);
-		// example: ['test1', 'e', 'st1', '1'] with properties `index` and `input`
-	}
-	matches; /* gives exactly what i want, but uses a loop,
-			* and mutates the regex's `lastIndex` property */
-	lastIndexes; /* ideally should give { 0: true } but instead
-			* will have a value for each mutation of lastIndex */
+	matches.push(match);
+	// example: ['test1', 'e', 'st1', '1'] with properties `index` and `input`
+}
+matches; /* gives exactly what i want, but uses a loop,
+		* and mutates the regex's `lastIndex` property */
+lastIndexes; /* ideally should give { 0: true } but instead
+		* will have a value for each mutation of lastIndex */
 
-	var matches = [];
-	string.replace(regex, function () {
-		var match = Array.prototype.slice.call(arguments, 0, -2);
-		match.input = arguments[arguments.length - 1];
-		match.index = arguments[arguments.length - 2];
-		matches.push(match);
-		// example: ['test1', 'e', 'st1', '1'] with properties `index` and `input`
-	});
-	matches; /* gives exactly what i want, but abuses `replace`,
-		  * mutates the regex's `lastIndex` property,
-		  * and requires manual construction of `match` */
+var matches = [];
+string.replace(regex, function () {
+	var match = Array.prototype.slice.call(arguments, 0, -2);
+	match.input = arguments[arguments.length - 1];
+	match.index = arguments[arguments.length - 2];
+	matches.push(match);
+	// example: ['test1', 'e', 'st1', '1'] with properties `index` and `input`
+});
+matches; /* gives exactly what i want, but abuses `replace`,
+	  * mutates the regex's `lastIndex` property,
+	  * and requires manual construction of `match` */
 ```
 
 The first example does not provide the capturing groups, so isn’t an option. The latter two examples both visibly mutate `lastIndex` - this is not a huge issue (beyond ideological) with built-in `RegExp`s, however, with subclassable `RegExp`s in ES6/ES2015, this is a bit of a messy way to obtain the desired information on all matches.
