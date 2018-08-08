@@ -31,24 +31,6 @@
 			"key": "RegExp.prototype [ @@matchAll ] ( string )"
 		}, {
 			"type": "op",
-			"aoid": "MatchAllIterator",
-			"refId": "sec-matchalliterator",
-			"location": "",
-			"referencingIds": [],
-			"key": "MatchAllIterator"
-		}, {
-			"type": "clause",
-			"id": "sec-matchalliterator",
-			"aoid": "MatchAllIterator",
-			"title": "MatchAllIterator ( R, O )",
-			"titleHTML": "MatchAllIterator ( <var>R</var>, <var>O</var> )",
-			"number": "3",
-			"namespace": "<no location>",
-			"location": "",
-			"referencingIds": ["_ref_8", "_ref_10"],
-			"key": "MatchAllIterator ( R, O )"
-		}, {
-			"type": "op",
 			"aoid": "CreateRegExpStringIterator",
 			"refId": "sec-createregexpstringiterator",
 			"location": "",
@@ -60,10 +42,10 @@
 			"aoid": "CreateRegExpStringIterator",
 			"title": "CreateRegExpStringIterator ( R, S, global, fullUnicode )",
 			"titleHTML": "CreateRegExpStringIterator ( <var>R</var>, <var>S</var>, <var>global</var>, <var>fullUnicode</var> )",
-			"number": "4",
+			"number": "3",
 			"namespace": "<no location>",
 			"location": "",
-			"referencingIds": ["_ref_26"],
+			"referencingIds": ["_ref_24"],
 			"key": "CreateRegExpStringIterator ( R, S, global, fullUnicode )"
 		}, {
 			"type": "clause",
@@ -71,7 +53,7 @@
 			"aoid": null,
 			"title": "%RegExpStringIteratorPrototype%.next ( )",
 			"titleHTML": "%RegExpStringIteratorPrototype%.next ( )",
-			"number": "5.1",
+			"number": "4.1",
 			"namespace": "<no location>",
 			"location": "",
 			"referencingIds": [],
@@ -82,7 +64,7 @@
 			"aoid": null,
 			"title": "%RegExpStringIteratorPrototype%[ @@toStringTag ]",
 			"titleHTML": "%RegExpStringIteratorPrototype%[ @@toStringTag ]",
-			"number": "5.2",
+			"number": "4.2",
 			"namespace": "<no location>",
 			"location": "",
 			"referencingIds": [],
@@ -93,7 +75,7 @@
 			"aoid": null,
 			"title": "Properties of RegExp String Iterator Instances",
 			"titleHTML": "Properties of RegExp String Iterator Instances",
-			"number": "5.3",
+			"number": "4.3",
 			"namespace": "<no location>",
 			"location": "",
 			"referencingIds": ["_ref_2"],
@@ -104,7 +86,7 @@
 			"aoid": null,
 			"title": "The %RegExpStringIteratorPrototype% Object",
 			"titleHTML": "The %RegExpStringIteratorPrototype% Object",
-			"number": "5",
+			"number": "4",
 			"namespace": "<no location>",
 			"location": "",
 			"referencingIds": ["_ref_0", "_ref_1", "_ref_3"],
@@ -115,7 +97,7 @@
 			"aoid": null,
 			"title": "Symbol.matchAll",
 			"titleHTML": "Symbol.matchAll",
-			"number": "6",
+			"number": "5",
 			"namespace": "<no location>",
 			"location": "",
 			"referencingIds": [],
@@ -135,7 +117,7 @@
 			"aoid": null,
 			"title": "Well-Known Symbols",
 			"titleHTML": "Well-Known Symbols",
-			"number": "7",
+			"number": "6",
 			"namespace": "<no location>",
 			"location": "",
 			"referencingIds": [],
@@ -1699,6 +1681,11 @@
 			display: block;
 		}
 
+		emu-rhs>ins,
+		emu-rhs>del {
+			display: inline;
+		}
+
 		tr.ins>td>ins {
 			border-bottom: none;
 		}
@@ -2176,6 +2163,12 @@
 			text-align: right;
 			padding-right: 5px;
 		}
+
+		@media print {
+			#menu-toggle {
+				display: none;
+			}
+		}
 	</style>
 </head>
 
@@ -2195,23 +2188,22 @@
 			<ol class="toc">
 				<li><span class="item-toggle-none"></span><a href="#sec-string-prototype-matchall" title="String.prototype.matchAll ( regexp )"><span class="secnum">1</span> String.prototype.matchAll ( <var>regexp</var> )</a></li>
 				<li><span class="item-toggle-none"></span><a href="#sec-regexp-prototype-matchall" title="RegExp.prototype [ @@matchAll ] ( string )"><span class="secnum">2</span> RegExp.prototype [ @@matchAll ] ( <var>string</var> )</a></li>
-				<li><span class="item-toggle-none"></span><a href="#sec-matchalliterator" title="MatchAllIterator ( R, O )"><span class="secnum">3</span> MatchAllIterator ( <var>R</var>, <var>O</var> )</a></li>
-				<li><span class="item-toggle-none"></span><a href="#sec-createregexpstringiterator" title="CreateRegExpStringIterator ( R, S, global, fullUnicode )"><span class="secnum">4</span> CreateRegExpStringIterator ( <var>R</var>, <var>S</var>, <var>global</var>, <var>fullUnicode</var> )</a></li>
-				<li><span class="item-toggle">◢</span><a href="#%RegExpStringIteratorPrototype%" title="The %RegExpStringIteratorPrototype% Object"><span class="secnum">5</span> The %RegExpStringIteratorPrototype% Object</a>
+				<li><span class="item-toggle-none"></span><a href="#sec-createregexpstringiterator" title="CreateRegExpStringIterator ( R, S, global, fullUnicode )"><span class="secnum">3</span> CreateRegExpStringIterator ( <var>R</var>, <var>S</var>, <var>global</var>, <var>fullUnicode</var> )</a></li>
+				<li><span class="item-toggle">◢</span><a href="#%RegExpStringIteratorPrototype%" title="The %RegExpStringIteratorPrototype% Object"><span class="secnum">4</span> The %RegExpStringIteratorPrototype% Object</a>
 					<ol class="toc">
-						<li><span class="item-toggle-none"></span><a href="#%RegExpStringIteratorPrototype%.next" title="%RegExpStringIteratorPrototype%.next ( )"><span class="secnum">5.1</span> %RegExpStringIteratorPrototype%.next ( )</a></li>
-						<li><span class="item-toggle-none"></span><a href="#%RegExpStringIteratorPrototype%[@@toStringTag]" title="%RegExpStringIteratorPrototype%[ @@toStringTag ]"><span class="secnum">5.2</span> %RegExpStringIteratorPrototype%[ @@toStringTag ]</a></li>
-						<li><span class="item-toggle-none"></span><a href="#PropertiesOfRegExpStringIteratorInstances" title="Properties of RegExp String Iterator Instances"><span class="secnum">5.3</span> Properties of RegExp String Iterator Instances</a></li>
+						<li><span class="item-toggle-none"></span><a href="#%RegExpStringIteratorPrototype%.next" title="%RegExpStringIteratorPrototype%.next ( )"><span class="secnum">4.1</span> %RegExpStringIteratorPrototype%.next ( )</a></li>
+						<li><span class="item-toggle-none"></span><a href="#%RegExpStringIteratorPrototype%[@@toStringTag]" title="%RegExpStringIteratorPrototype%[ @@toStringTag ]"><span class="secnum">4.2</span> %RegExpStringIteratorPrototype%[ @@toStringTag ]</a></li>
+						<li><span class="item-toggle-none"></span><a href="#PropertiesOfRegExpStringIteratorInstances" title="Properties of RegExp String Iterator Instances"><span class="secnum">4.3</span> Properties of RegExp String Iterator Instances</a></li>
 					</ol>
 				</li>
-				<li><span class="item-toggle-none"></span><a href="#Symbol.matchAll" title="Symbol.matchAll"><span class="secnum">6</span> Symbol.matchAll</a></li>
-				<li><span class="item-toggle-none"></span><a href="#sec-well-known-symbols" title="Well-Known Symbols"><span class="secnum">7</span> Well-Known Symbols</a></li>
+				<li><span class="item-toggle-none"></span><a href="#Symbol.matchAll" title="Symbol.matchAll"><span class="secnum">5</span> Symbol.matchAll</a></li>
+				<li><span class="item-toggle-none"></span><a href="#sec-well-known-symbols" title="Well-Known Symbols"><span class="secnum">6</span> Well-Known Symbols</a></li>
 				<li><span class="item-toggle-none"></span><a href="#sec-copyright-and-software-license" title="Copyright &amp; Software License"><span class="secnum">A</span> Copyright &amp; Software License</a></li>
 			</ol>
 		</div>
 	</div>
 	<div id="spec-container">
-		<h1 class="version first">Stage 3 Draft / April 13, 2018</h1>
+		<h1 class="version first">Stage 3 Draft / August 8, 2018</h1>
 		<h1 class="title">String.prototype.matchAll</h1>
 
 		<ins class="block">
@@ -2221,7 +2213,7 @@
 	<p>Performs a regular expression match of the String representing the <emu-val>this</emu-val> value against <var>regexp</var> and returns an iterator. Each iteration result’s value is an Array object containing the results of the match, or <emu-val>null</emu-val> if the String did not match.</p>
 
 	<p>When the <code>matchAll</code> method is called, the following steps are taken:</p>
-	<emu-alg><ol><li>Let <var>O</var> be ? <emu-xref aoid="RequireObjectCoercible" id="_ref_5"><a href="https://tc39.github.io/ecma262/#sec-requireobjectcoercible">RequireObjectCoercible</a></emu-xref>(<emu-val>this</emu-val> value).</li><li>If <var>regexp</var> is neither <emu-val>undefined</emu-val> nor <emu-val>null</emu-val>, then<ol><li>Let <var>matcher</var> be ? <emu-xref aoid="GetMethod" id="_ref_6"><a href="https://tc39.github.io/ecma262/#sec-getmethod">GetMethod</a></emu-xref>(<var>regexp</var>, @@matchAll).</li><li>If <var>matcher</var> is not <emu-val>undefined</emu-val>, then<ol><li>Return ? <emu-xref aoid="Call" id="_ref_7"><a href="https://tc39.github.io/ecma262/#sec-call">Call</a></emu-xref>(<var>matcher</var>, <var>regexp</var>, « <var>O</var> »).</li></ol></li></ol></li><li>Return ? <emu-xref aoid="MatchAllIterator" id="_ref_8"><a href="#sec-matchalliterator">MatchAllIterator</a></emu-xref>(<var>regexp</var>, <var>O</var>).
+	<emu-alg><ol><li>Let <var>O</var> be ? <emu-xref aoid="RequireObjectCoercible" id="_ref_5"><a href="https://tc39.github.io/ecma262/#sec-requireobjectcoercible">RequireObjectCoercible</a></emu-xref>(<emu-val>this</emu-val> value).</li><li>If <var>regexp</var> is neither <emu-val>undefined</emu-val> nor <emu-val>null</emu-val>, then<ol><li>Let <var>matcher</var> be ? <emu-xref aoid="GetMethod" id="_ref_6"><a href="https://tc39.github.io/ecma262/#sec-getmethod">GetMethod</a></emu-xref>(<var>regexp</var>, @@matchAll).</li><li>If <var>matcher</var> is not <emu-val>undefined</emu-val>, then<ol><li>Return ? <emu-xref aoid="Call" id="_ref_7"><a href="https://tc39.github.io/ecma262/#sec-call">Call</a></emu-xref>(<var>matcher</var>, <var>regexp</var>, « <var>O</var> »).</li></ol></li></ol></li><li>Let <var>string</var> be ? <emu-xref aoid="ToString" id="_ref_8"><a href="https://tc39.github.io/ecma262/#sec-tostring">ToString</a></emu-xref>(<var>O</var>).</li><li>Let <var>rx</var> be ? <emu-xref aoid="RegExpCreate" id="_ref_9"><a href="https://tc39.github.io/ecma262/#sec-regexpcreate">RegExpCreate</a></emu-xref>(<var>regexp</var>, <code>"g"</code>).</li><li>Return ? <emu-xref aoid="Invoke" id="_ref_10"><a href="https://tc39.github.io/ecma262/#sec-invoke">Invoke</a></emu-xref>(<var>rx</var>, @@matchAll, « <var>string</var> »).
 	</li></ol></emu-alg>
 	<emu-note><span class="note">Note 1</span><div class="note-contents">The <code>matchAll</code> function is intentionally generic, it does not require that its <emu-val>this</emu-val> value be a String object. Therefore, it can be transferred to other kinds of objects for use as a method.</div></emu-note>
 	<emu-note><span class="note">Note 2</span><div class="note-contents">Similarly to <code>String.prototype.split</code>, <code>String.prototype.matchAll</code> is designed to typically act without mutating its inputs.</div></emu-note>
@@ -2233,52 +2225,42 @@
 	<h1><span class="secnum">2</span>RegExp.prototype [ @@matchAll ] ( <var>string</var> )</h1>
 
 	<p>When the <code>@@matchAll</code> method is called with argument <var>string</var>, the following steps are taken:</p>
-	<emu-alg><ol><li>Let <var>R</var> be the <emu-val>this</emu-val> value.</li><li>If <emu-xref aoid="Type" id="_ref_9"><a href="https://tc39.github.io/ecma262/#sec-ecmascript-data-types-and-values">Type</a></emu-xref>(<var>R</var>) is not Object, throw a <emu-val>TypeError</emu-val> exception.</li><li>Return ? <emu-xref aoid="MatchAllIterator" id="_ref_10"><a href="#sec-matchalliterator">MatchAllIterator</a></emu-xref>(<var>R</var>, <var>string</var>).
+	<emu-alg><ol><li>Let <var>R</var> be the <emu-val>this</emu-val> value.</li><li>If <emu-xref aoid="Type" id="_ref_11"><a href="https://tc39.github.io/ecma262/#sec-ecmascript-data-types-and-values">Type</a></emu-xref>(<var>R</var>) is not Object, throw a <emu-val>TypeError</emu-val> exception.</li><li>Let <var>S</var> be ? <emu-xref aoid="ToString" id="_ref_12"><a href="https://tc39.github.io/ecma262/#sec-tostring">ToString</a></emu-xref>(<var>string</var>).</li><li>Let <var>C</var> be ? <emu-xref aoid="SpeciesConstructor" id="_ref_13"><a href="https://tc39.github.io/ecma262/#sec-speciesconstructor">SpeciesConstructor</a></emu-xref>(<var>R</var>, <emu-xref href="#sec-regexp-constructor"><a href="https://tc39.github.io/ecma262/#sec-regexp-constructor">%RegExp%</a></emu-xref>).</li><li>Let <var>flags</var> be ? <emu-xref aoid="ToString" id="_ref_14"><a href="https://tc39.github.io/ecma262/#sec-tostring">ToString</a></emu-xref>(? <emu-xref aoid="Get" id="_ref_15"><a href="https://tc39.github.io/ecma262/#sec-get-o-p">Get</a></emu-xref>(<var>R</var>, <code>"flags"</code>)).</li><li>Let <var>matcher</var> be ? <emu-xref aoid="Construct" id="_ref_16"><a href="https://tc39.github.io/ecma262/#sec-construct">Construct</a></emu-xref>(<var>C</var>, « <var>R</var>, <var>flags</var> »).</li><li>Let <var>global</var> be ? <emu-xref aoid="ToBoolean" id="_ref_17"><a href="https://tc39.github.io/ecma262/#sec-toboolean">ToBoolean</a></emu-xref>(? <emu-xref aoid="Get" id="_ref_18"><a href="https://tc39.github.io/ecma262/#sec-get-o-p">Get</a></emu-xref>(<var>matcher</var>, <code>"global"</code>)).</li><li>Let <var>fullUnicode</var> be ? <emu-xref aoid="ToBoolean" id="_ref_19"><a href="https://tc39.github.io/ecma262/#sec-toboolean">ToBoolean</a></emu-xref>(? <emu-xref aoid="Get" id="_ref_20"><a href="https://tc39.github.io/ecma262/#sec-get-o-p">Get</a></emu-xref>(<var>matcher</var>, <code>"unicode"</code>).</li><li>Let <var>lastIndex</var> be ? <emu-xref aoid="ToLength" id="_ref_21"><a href="https://tc39.github.io/ecma262/#sec-tolength">ToLength</a></emu-xref>(? <emu-xref aoid="Get" id="_ref_22"><a href="https://tc39.github.io/ecma262/#sec-get-o-p">Get</a></emu-xref>(<var>R</var>, <code>"lastIndex"</code>)).</li><li>Perform ? <emu-xref aoid="Set" id="_ref_23"><a href="https://tc39.github.io/ecma262/#sec-set-o-p-v-throw">Set</a></emu-xref>(<var>matcher</var>, <code>"lastIndex"</code>, <var>lastIndex</var>, <emu-val>true</emu-val>).</li><li>Return ! <emu-xref aoid="CreateRegExpStringIterator" id="_ref_24"><a href="#sec-createregexpstringiterator">CreateRegExpStringIterator</a></emu-xref>(<var>matcher</var>, <var>S</var>, <var>global</var>, <var>fullUnicode</var>).
 	</li></ol></emu-alg>
 	<p>The value of the <emu-val>name</emu-val> property of this function is <emu-val>"[Symbol.matchAll]"</emu-val>.</p>
 </emu-clause>
 </ins>
 
 		<ins class="block">
-<emu-clause id="sec-matchalliterator" aoid="MatchAllIterator">
-	<h1><span class="secnum">3</span>MatchAllIterator ( <var>R</var>, <var>O</var> )</h1>
-
-	<p>The abstract operation <var>MatchAllIterator</var> performs the following steps:</p>
-	<emu-alg><ol><li>Let <var>S</var> be ? <emu-xref aoid="ToString" id="_ref_11"><a href="https://tc39.github.io/ecma262/#sec-tostring">ToString</a></emu-xref>(<var>O</var>).</li><li>If ? <emu-xref aoid="IsRegExp" id="_ref_12"><a href="https://tc39.github.io/ecma262/#sec-isregexp">IsRegExp</a></emu-xref>(<var>R</var>) is <code>true</code>, then<ol><li>Let <var>C</var> be ? <emu-xref aoid="SpeciesConstructor" id="_ref_13"><a href="https://tc39.github.io/ecma262/#sec-speciesconstructor">SpeciesConstructor</a></emu-xref>(<var>R</var>, <emu-xref href="#sec-regexp-constructor"><a href="https://tc39.github.io/ecma262/#sec-regexp-constructor">%RegExp%</a></emu-xref>).</li><li>Let <var>flags</var> be ? <emu-xref aoid="ToString" id="_ref_14"><a href="https://tc39.github.io/ecma262/#sec-tostring">ToString</a></emu-xref>(? <emu-xref aoid="Get" id="_ref_15"><a href="https://tc39.github.io/ecma262/#sec-get-o-p">Get</a></emu-xref>(<var>R</var>, <code>"flags"</code>)).</li><li>Let <var>matcher</var> be ? <emu-xref aoid="Construct" id="_ref_16"><a href="https://tc39.github.io/ecma262/#sec-construct">Construct</a></emu-xref>(<var>C</var>, « <var>R</var>, <var>flags</var> »).</li><li>Let <var>global</var> be ? <emu-xref aoid="ToBoolean" id="_ref_17"><a href="https://tc39.github.io/ecma262/#sec-toboolean">ToBoolean</a></emu-xref>(? <emu-xref aoid="Get" id="_ref_18"><a href="https://tc39.github.io/ecma262/#sec-get-o-p">Get</a></emu-xref>(<var>matcher</var>, <code>"global"</code>)).</li><li>Let <var>fullUnicode</var> be ? <emu-xref aoid="ToBoolean" id="_ref_19"><a href="https://tc39.github.io/ecma262/#sec-toboolean">ToBoolean</a></emu-xref>(? <emu-xref aoid="Get" id="_ref_20"><a href="https://tc39.github.io/ecma262/#sec-get-o-p">Get</a></emu-xref>(<var>matcher</var>, <code>"unicode"</code>).</li><li>Let <var>lastIndex</var> be ? <emu-xref aoid="ToLength" id="_ref_21"><a href="https://tc39.github.io/ecma262/#sec-tolength">ToLength</a></emu-xref>(? <emu-xref aoid="Get" id="_ref_22"><a href="https://tc39.github.io/ecma262/#sec-get-o-p">Get</a></emu-xref>(<var>R</var>, <code>"lastIndex"</code>)).</li><li>Perform ? <emu-xref aoid="Set" id="_ref_23"><a href="https://tc39.github.io/ecma262/#sec-set-o-p-v-throw">Set</a></emu-xref>(<var>matcher</var>, <code>"lastIndex"</code>, <var>lastIndex</var>, <emu-val>true</emu-val>).</li></ol></li><li>Else,<ol><li>Let <var>flags</var> be <code>"g"</code>.</li><li>Let <var>matcher</var> be ? <emu-xref aoid="RegExpCreate" id="_ref_24"><a href="https://tc39.github.io/ecma262/#sec-regexpcreate">RegExpCreate</a></emu-xref>(<var>R</var>, <var>flags</var>).</li><li>Let <var>global</var> be <emu-val>true</emu-val>.</li><li>Let <var>fullUnicode</var> be <emu-val>false</emu-val>.</li><li>Assert: ! <emu-xref aoid="Get" id="_ref_25"><a href="https://tc39.github.io/ecma262/#sec-get-o-p">Get</a></emu-xref>(<var>matcher</var>, <code>"lastIndex"</code>) is <emu-val>0</emu-val>.</li></ol></li><li>Return ! <emu-xref aoid="CreateRegExpStringIterator" id="_ref_26"><a href="#sec-createregexpstringiterator">CreateRegExpStringIterator</a></emu-xref>(<var>matcher</var>, <var>S</var>, <var>global</var>, <var>fullUnicode</var>).
-	</li></ol></emu-alg>
-</emu-clause>
-</ins>
-
-		<ins class="block">
 <emu-clause id="sec-createregexpstringiterator" aoid="CreateRegExpStringIterator">
-	<h1><span class="secnum">4</span>CreateRegExpStringIterator ( <var>R</var>, <var>S</var>, <var>global</var>, <var>fullUnicode</var> )</h1>
+	<h1><span class="secnum">3</span>CreateRegExpStringIterator ( <var>R</var>, <var>S</var>, <var>global</var>, <var>fullUnicode</var> )</h1>
 
 	<p>The abstract operation <var>CreateRegExpStringIterator</var> is used to create such iterator objects. It performs the following steps:</p>
-	<emu-alg><ol><li>Assert: <emu-xref aoid="Type" id="_ref_27"><a href="https://tc39.github.io/ecma262/#sec-ecmascript-data-types-and-values">Type</a></emu-xref>(<var>S</var>) is String.</li><li>Assert: <emu-xref aoid="Type" id="_ref_28"><a href="https://tc39.github.io/ecma262/#sec-ecmascript-data-types-and-values">Type</a></emu-xref>(<var>global</var>) is Boolean.</li><li>Assert: <emu-xref aoid="Type" id="_ref_29"><a href="https://tc39.github.io/ecma262/#sec-ecmascript-data-types-and-values">Type</a></emu-xref>(<var>fullUnicode</var>) is Boolean.</li><li>Let <var>iterator</var> be <emu-xref aoid="ObjectCreate" id="_ref_30"><a href="https://tc39.github.io/ecma262/#sec-objectcreate">ObjectCreate</a></emu-xref>(<emu-xref href="#%RegExpStringIteratorPrototype%" id="_ref_0"><a href="#%RegExpStringIteratorPrototype%">%RegExpStringIteratorPrototype%</a></emu-xref>, « [[IteratingRegExp]], [[IteratedString]], [[Global]], [[Unicode]], [[Done]] »).</li><li>Set <var>iterator</var>.[[IteratingRegExp]] to <var>R</var>.</li><li>Set <var>iterator</var>.[[IteratedString]] to <var>S</var>.</li><li>Set <var>iterator</var>.[[Global]] to <var>global</var>.</li><li>Set <var>iterator</var>.[[Unicode]] to <var>fullUnicode</var>.</li><li>Set <var>iterator</var>.[[Done]] to <emu-val>false</emu-val>.</li><li>Return <var>iterator</var>.
+	<emu-alg><ol><li>Assert: <emu-xref aoid="Type" id="_ref_25"><a href="https://tc39.github.io/ecma262/#sec-ecmascript-data-types-and-values">Type</a></emu-xref>(<var>S</var>) is String.</li><li>Assert: <emu-xref aoid="Type" id="_ref_26"><a href="https://tc39.github.io/ecma262/#sec-ecmascript-data-types-and-values">Type</a></emu-xref>(<var>global</var>) is Boolean.</li><li>Assert: <emu-xref aoid="Type" id="_ref_27"><a href="https://tc39.github.io/ecma262/#sec-ecmascript-data-types-and-values">Type</a></emu-xref>(<var>fullUnicode</var>) is Boolean.</li><li>Let <var>iterator</var> be <emu-xref aoid="ObjectCreate" id="_ref_28"><a href="https://tc39.github.io/ecma262/#sec-objectcreate">ObjectCreate</a></emu-xref>(<emu-xref href="#%RegExpStringIteratorPrototype%" id="_ref_0"><a href="#%RegExpStringIteratorPrototype%">%RegExpStringIteratorPrototype%</a></emu-xref>, « [[IteratingRegExp]], [[IteratedString]], [[Global]], [[Unicode]], [[Done]] »).</li><li>Set <var>iterator</var>.[[IteratingRegExp]] to <var>R</var>.</li><li>Set <var>iterator</var>.[[IteratedString]] to <var>S</var>.</li><li>Set <var>iterator</var>.[[Global]] to <var>global</var>.</li><li>Set <var>iterator</var>.[[Unicode]] to <var>fullUnicode</var>.</li><li>Set <var>iterator</var>.[[Done]] to <emu-val>false</emu-val>.</li><li>Return <var>iterator</var>.
 	</li></ol></emu-alg>
 </emu-clause>
 </ins>
 
 		<ins class="block">
 <emu-clause id="%RegExpStringIteratorPrototype%">
-	<h1><span class="secnum">5</span>The %RegExpStringIteratorPrototype% Object</h1>
+	<h1><span class="secnum">4</span>The %RegExpStringIteratorPrototype% Object</h1>
 
 	<p>All RegExp String Iterator Objects inherit properties from the  <emu-xref href="#%RegExpStringIteratorPrototype%" id="_ref_1"><a href="#%RegExpStringIteratorPrototype%">%RegExpStringIteratorPrototype%</a></emu-xref> intrinsic object. The %RegExpStringIteratorPrototype% object is an ordinary object and its [[Prototype]]  <a href="https://tc39.github.io/ecma262/#sec-object-internal-methods-and-internal-slots">internal slot</a> is the  <a href="https://tc39.github.io/ecma262/#sec-%iteratorprototype%-object">%IteratorPrototype% intrinsic object</a>. In addition, %RegExpStringIteratorPrototype% has the following properties:</p>
 
 	<emu-clause id="%RegExpStringIteratorPrototype%.next">
-		<h1><span class="secnum">5.1</span>%RegExpStringIteratorPrototype%.next ( )</h1>
-		<emu-alg><ol><li>Let <var>O</var> be the <emu-val>this</emu-val> value.</li><li>If <emu-xref aoid="Type" id="_ref_31"><a href="https://tc39.github.io/ecma262/#sec-ecmascript-data-types-and-values">Type</a></emu-xref>(<var>O</var>) is not Object, throw a <emu-val>TypeError</emu-val> exception.</li><li>If <var>O</var> does not have all of the internal slots of a RegExp String Iterator Object Instance (see <emu-xref href="#PropertiesOfRegExpStringIteratorInstances" id="_ref_2"><a href="#PropertiesOfRegExpStringIteratorInstances">5.3</a></emu-xref>), throw a <emu-val>TypeError</emu-val> exception.</li><li>If <var>O</var>.[[Done]] is <emu-val>true</emu-val>, then<ol><li>Return ! <emu-xref aoid="CreateIterResultObject" id="_ref_32"><a href="https://tc39.github.io/ecma262/#sec-createiterresultobject">CreateIterResultObject</a></emu-xref>(<emu-val>undefined</emu-val>, <emu-val>true</emu-val>).</li></ol></li><li>Let <var>R</var> be <var>O</var>.[[IteratingRegExp]].</li><li>Let <var>S</var> be <var>O</var>.[[IteratedString]].</li><li>Let <var>global</var> be <var>O</var>.[[Global]].</li><li>Let <var>fullUnicode</var> be <var>O</var>.[[Unicode]].</li><li>Let <var>match</var> be ? <emu-xref aoid="RegExpExec" id="_ref_33"><a href="https://tc39.github.io/ecma262/#sec-regexpexec">RegExpExec</a></emu-xref>(<var>R</var>, <var>S</var>).</li><li>If <var>match</var> is <emu-val>null</emu-val>, then<ol><li>Set <var>O</var>.[[Done]] to <emu-val>true</emu-val>.</li><li>Return ! <emu-xref aoid="CreateIterResultObject" id="_ref_34"><a href="https://tc39.github.io/ecma262/#sec-createiterresultobject">CreateIterResultObject</a></emu-xref>(<emu-val>undefined</emu-val>, <emu-val>true</emu-val>).</li></ol></li><li>Else,<ol><li>If <var>global</var> is <emu-val>true</emu-val>,<ol><li>Let <var>matchStr</var> be ? <emu-xref aoid="ToString" id="_ref_35"><a href="https://tc39.github.io/ecma262/#sec-tostring">ToString</a></emu-xref>(? <emu-xref aoid="Get" id="_ref_36"><a href="https://tc39.github.io/ecma262/#sec-get-o-p">Get</a></emu-xref>(<var>match</var>, <emu-val>"0"</emu-val>)).</li><li>If <var>matchStr</var> is the empty string,<ol><li>Let <var>thisIndex</var> be ? <emu-xref aoid="ToLength" id="_ref_37"><a href="https://tc39.github.io/ecma262/#sec-tolength">ToLength</a></emu-xref>(? <emu-xref aoid="Get" id="_ref_38"><a href="https://tc39.github.io/ecma262/#sec-get-o-p">Get</a></emu-xref>(<var>R</var>, <emu-val>"lastIndex"</emu-val>)).</li><li>Let <var>nextIndex</var> be ! <emu-xref aoid="AdvanceStringIndex" id="_ref_39"><a href="https://tc39.github.io/ecma262/#sec-advancestringindex">AdvanceStringIndex</a></emu-xref>(<var>S</var>, <var>thisIndex</var>, <var>fullUnicode</var>).</li><li>Perform ? <emu-xref aoid="Set" id="_ref_40"><a href="https://tc39.github.io/ecma262/#sec-set-o-p-v-throw">Set</a></emu-xref>(<var>R</var>, <emu-val>"lastIndex"</emu-val>, <var>nextIndex</var>, <emu-val>true</emu-val>).</li></ol></li><li>Return ! <emu-xref aoid="CreateIterResultObject" id="_ref_41"><a href="https://tc39.github.io/ecma262/#sec-createiterresultobject">CreateIterResultObject</a></emu-xref>(<var>match</var>, <emu-val>false</emu-val>).</li></ol></li><li>Else,<ol><li>Set <var>O</var>.[[Done]] to <emu-val>true</emu-val>.</li><li>Return ! <emu-xref aoid="CreateIterResultObject" id="_ref_42"><a href="https://tc39.github.io/ecma262/#sec-createiterresultobject">CreateIterResultObject</a></emu-xref>(<var>match</var>, <emu-val>false</emu-val>).
+		<h1><span class="secnum">4.1</span>%RegExpStringIteratorPrototype%.next ( )</h1>
+		<emu-alg><ol><li>Let <var>O</var> be the <emu-val>this</emu-val> value.</li><li>If <emu-xref aoid="Type" id="_ref_29"><a href="https://tc39.github.io/ecma262/#sec-ecmascript-data-types-and-values">Type</a></emu-xref>(<var>O</var>) is not Object, throw a <emu-val>TypeError</emu-val> exception.</li><li>If <var>O</var> does not have all of the internal slots of a RegExp String Iterator Object Instance (see <emu-xref href="#PropertiesOfRegExpStringIteratorInstances" id="_ref_2"><a href="#PropertiesOfRegExpStringIteratorInstances">4.3</a></emu-xref>), throw a <emu-val>TypeError</emu-val> exception.</li><li>If <var>O</var>.[[Done]] is <emu-val>true</emu-val>, then<ol><li>Return ! <emu-xref aoid="CreateIterResultObject" id="_ref_30"><a href="https://tc39.github.io/ecma262/#sec-createiterresultobject">CreateIterResultObject</a></emu-xref>(<emu-val>undefined</emu-val>, <emu-val>true</emu-val>).</li></ol></li><li>Let <var>R</var> be <var>O</var>.[[IteratingRegExp]].</li><li>Let <var>S</var> be <var>O</var>.[[IteratedString]].</li><li>Let <var>global</var> be <var>O</var>.[[Global]].</li><li>Let <var>fullUnicode</var> be <var>O</var>.[[Unicode]].</li><li>Let <var>match</var> be ? <emu-xref aoid="RegExpExec" id="_ref_31"><a href="https://tc39.github.io/ecma262/#sec-regexpexec">RegExpExec</a></emu-xref>(<var>R</var>, <var>S</var>).</li><li>If <var>match</var> is <emu-val>null</emu-val>, then<ol><li>Set <var>O</var>.[[Done]] to <emu-val>true</emu-val>.</li><li>Return ! <emu-xref aoid="CreateIterResultObject" id="_ref_32"><a href="https://tc39.github.io/ecma262/#sec-createiterresultobject">CreateIterResultObject</a></emu-xref>(<emu-val>undefined</emu-val>, <emu-val>true</emu-val>).</li></ol></li><li>Else,<ol><li>If <var>global</var> is <emu-val>true</emu-val>,<ol><li>Let <var>matchStr</var> be ? <emu-xref aoid="ToString" id="_ref_33"><a href="https://tc39.github.io/ecma262/#sec-tostring">ToString</a></emu-xref>(? <emu-xref aoid="Get" id="_ref_34"><a href="https://tc39.github.io/ecma262/#sec-get-o-p">Get</a></emu-xref>(<var>match</var>, <emu-val>"0"</emu-val>)).</li><li>If <var>matchStr</var> is the empty string,<ol><li>Let <var>thisIndex</var> be ? <emu-xref aoid="ToLength" id="_ref_35"><a href="https://tc39.github.io/ecma262/#sec-tolength">ToLength</a></emu-xref>(? <emu-xref aoid="Get" id="_ref_36"><a href="https://tc39.github.io/ecma262/#sec-get-o-p">Get</a></emu-xref>(<var>R</var>, <emu-val>"lastIndex"</emu-val>)).</li><li>Let <var>nextIndex</var> be ! <emu-xref aoid="AdvanceStringIndex" id="_ref_37"><a href="https://tc39.github.io/ecma262/#sec-advancestringindex">AdvanceStringIndex</a></emu-xref>(<var>S</var>, <var>thisIndex</var>, <var>fullUnicode</var>).</li><li>Perform ? <emu-xref aoid="Set" id="_ref_38"><a href="https://tc39.github.io/ecma262/#sec-set-o-p-v-throw">Set</a></emu-xref>(<var>R</var>, <emu-val>"lastIndex"</emu-val>, <var>nextIndex</var>, <emu-val>true</emu-val>).</li></ol></li><li>Return ! <emu-xref aoid="CreateIterResultObject" id="_ref_39"><a href="https://tc39.github.io/ecma262/#sec-createiterresultobject">CreateIterResultObject</a></emu-xref>(<var>match</var>, <emu-val>false</emu-val>).</li></ol></li><li>Else,<ol><li>Set <var>O</var>.[[Done]] to <emu-val>true</emu-val>.</li><li>Return ! <emu-xref aoid="CreateIterResultObject" id="_ref_40"><a href="https://tc39.github.io/ecma262/#sec-createiterresultobject">CreateIterResultObject</a></emu-xref>(<var>match</var>, <emu-val>false</emu-val>).
 		</li></ol></li></ol></li></ol></emu-alg>
 	</emu-clause>
 
 	<emu-clause id="%RegExpStringIteratorPrototype%[@@toStringTag]">
-		<h1><span class="secnum">5.2</span>%RegExpStringIteratorPrototype%[ @@toStringTag ]</h1>
+		<h1><span class="secnum">4.2</span>%RegExpStringIteratorPrototype%[ @@toStringTag ]</h1>
 		<p>The initial value of the <var>@@toStringTag</var> property is the String value <emu-val>"RegExp String Iterator"</emu-val>.</p>
 		<p>This property has the attributes { [[Writable]]: <emu-val>false</emu-val>, [[Enumerable]]: <emu-val>false</emu-val>, [[Configurable]]: <emu-val>true</emu-val> }.</p>
 	</emu-clause>
 
 	<emu-clause id="PropertiesOfRegExpStringIteratorInstances">
-		<h1><span class="secnum">5.3</span>Properties of RegExp String Iterator Instances</h1>
+		<h1><span class="secnum">4.3</span>Properties of RegExp String Iterator Instances</h1>
 		<p>RegExp String Iterator instances are ordinary objects that inherit properties from the  <emu-xref href="#%RegExpStringIteratorPrototype%" id="_ref_3"><a href="#%RegExpStringIteratorPrototype%">%RegExpStringIteratorPrototype%</a></emu-xref> intrinsic object. RegExp String Iterator instances are initially created with the internal slots listed in  <a href="#table-1">Table 1</a>.</p>
 		<figure>
 			<figcaption><span id="table-1">Table 1</span> – Internal Slots of RegExp String Iterator Instances</figcaption>
@@ -2290,7 +2272,7 @@
 					</tr>
 					<tr>
 						<td>[[IteratingRegExp]]</td>
-						<td>The regular expression used for iteration. <emu-xref aoid="IsRegExp" id="_ref_43"><a href="https://tc39.github.io/ecma262/#sec-isregexp">IsRegExp</a></emu-xref>([[IteratingRegExp]]) is always initially <emu-val>true</emu-val>.</td>
+						<td>The regular expression used for iteration. <emu-xref aoid="IsRegExp" id="_ref_41"><a href="https://tc39.github.io/ecma262/#sec-isregexp">IsRegExp</a></emu-xref>([[IteratingRegExp]]) is always initially <emu-val>true</emu-val>.</td>
 					</tr>
 					<tr>
 						<td>[[IteratedString]]</td>
@@ -2318,14 +2300,14 @@
 
 		<ins class="block">
 <emu-clause id="Symbol.matchAll">
-	<h1><span class="secnum">6</span>Symbol.matchAll</h1>
+	<h1><span class="secnum">5</span>Symbol.matchAll</h1>
 	<p>The initial value of <emu-val>Symbol.matchAll</emu-val> is the well-known symbol @@matchAll (<emu-xref href="#table-2" id="_ref_4"><a href="#table-2">Table 1</a></emu-xref>).</p>
 	<p>This property has the attributes { [[Writable]]: <emu-val>false</emu-val>, [[Enumerable]]: <emu-val>false</emu-val>, [[Configurable]]: <emu-val>false</emu-val> }.</p>
 </emu-clause>
 </ins>
 
 		<emu-clause id="sec-well-known-symbols">
-			<h1><span class="secnum">7</span>Well-Known Symbols</h1>
+			<h1><span class="secnum">6</span>Well-Known Symbols</h1>
 			<emu-note type="editor"><span class="note">Editor's Note</span>
 				<div class="note-contents">insert after @@match; before @@replace</div>
 			</emu-note>
