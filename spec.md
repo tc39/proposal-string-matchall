@@ -30,8 +30,10 @@ The abstract operation *MatchAllIterator* performs the following steps:
     1. Let *C* be ? [SpeciesConstructor][species-constructor](*R*, %RegExp%).
     1. Let *flags* be ? [ToString][tostring](? [Get][get](*R*, `"flags"`)).
     1. Let *matcher* be ? [Construct][construct](*C*, « *R*, *flags* »).
-    1. Let *global* be ? [ToBoolean][to-boolean](? [Get][get](*matcher*, `"global"`)).
-    1. Let *fullUnicode* be ? [ToBoolean][to-boolean](? [Get][get](*matcher*, `"unicode"`)).
+    1. If *flags* contains `"g"`, let *global* be **true**.
+    1. Else, let *global* be *false*.
+    1. If *flags* contains `"u"`, let *fullUnicode* be **true**.
+    1. Else, let *fullUnicode* be **false**.
     1. Let *lastIndex* be ? [ToLength][tolength](? [Get][get](*R*, `"lastIndex"`)).
     1. Perform ? [Set][set](*matcher*, **"lastIndex"**, *lastIndex*, **true**).
   1. Else,
