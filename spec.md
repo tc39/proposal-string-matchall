@@ -9,10 +9,8 @@ When the `matchAll` method is called, the following steps are taken:
     1. If *matcher* is not **undefined**, then
       1. Return ? [Call](call)(*matcher*, *regexp*, &laquo; *O* &raquo;).
   1. Let *S* be ? [ToString][tostring](*O*).
-  1. Let *matcher* be ? [RegExpCreate][regexp-create](*R*, `"g"`).
-  1. Let *global* be **true**.
-  1. Let *fullUnicode* be **false**.
-  1. Return ! [CreateRegExpStringIterator](#createregexpstringiterator-abstract-operation)(*matcher*, *S*, *global*, *fullUnicode*).
+  1. Let *rx* be ? [RegExpCreate][regexp-create](*regexp*, `"g"`).
+  1. Return ? [Invoke][invoke](*rx*, @@matchAll, &laquo; *S* &raquo;).
 
 Note 1: The `matchAll` function is intentionally generic, it does not require that its *this* value be a String object. Therefore, it can be transferred to other kinds of objects for use as a method.
 Note 2: Similarly to `String.prototype.split`, `String.prototype.matchAll` is designed to typically act without mutating its inputs.
@@ -171,3 +169,4 @@ This property has the attributes { [[Writable]]: **false**, [[Enumerable]]: **fa
 [tolength]: https://tc39.github.io/ecma262/#sec-tolength
 [set]: https://tc39.github.io/ecma262/#sec-set-o-p-v-throw
 [to-boolean]: https://tc39.github.io/ecma262/#sec-toboolean
+[invoke]: https://tc39.github.io/ecma262/#sec-invoke
