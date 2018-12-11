@@ -21,10 +21,8 @@ contributors: Jordan Harband
 			1. If _matcher_ is not *undefined*, then
 				1. Return ? Call(_matcher_, _regexp_, &laquo; _O_ &raquo;).
 		1. Let _S_ be ? ToString(_O_).
-		1. Let _matcher_ be ? RegExpCreate(_R_, `"g"`).
-		1. Let _global_ be *true*.
-		1. Let _fullUnicode_ be *false*.
-		1. Return ! CreateRegExpStringIterator(_matcher_, _S_, _global_, _fullUnicode_).
+		1. Let _rx_ be ? RegExpCreate(_regexp_, `"g"`).
+		1. Return ? Invoke(_rx_, @@matchAll, &laquo; _S_ &raquo;).
 	</emu-alg>
 	<emu-note>The `matchAll` function is intentionally generic, it does not require that its *this* value be a String object. Therefore, it can be transferred to other kinds of objects for use as a method.</emu-note>
 	<emu-note>Similarly to `String.prototype.split`, `String.prototype.matchAll` is designed to typically act without mutating its inputs.</emu-note>

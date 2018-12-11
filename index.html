@@ -45,7 +45,7 @@
 			"number": "3",
 			"namespace": "<no location>",
 			"location": "",
-			"referencingIds": ["_ref_10", "_ref_20"],
+			"referencingIds": ["_ref_20"],
 			"key": "CreateRegExpStringIterator ( R, S, global, fullUnicode )"
 		}, {
 			"type": "clause",
@@ -2203,7 +2203,7 @@
 		</div>
 	</div>
 	<div id="spec-container">
-		<h1 class="version first">Stage 3 Draft / August 9, 2018</h1>
+		<h1 class="version first">Stage 3 Draft / December 7, 2018</h1>
 		<h1 class="title">String.prototype.matchAll</h1>
 
 		<ins class="block">
@@ -2213,7 +2213,7 @@
 	<p>Performs a regular expression match of the String representing the <emu-val>this</emu-val> value against <var>regexp</var> and returns an iterator. Each iteration result’s value is an Array object containing the results of the match, or <emu-val>null</emu-val> if the String did not match.</p>
 
 	<p>When the <code>matchAll</code> method is called, the following steps are taken:</p>
-	<emu-alg><ol><li>Let <var>O</var> be ? <emu-xref aoid="RequireObjectCoercible" id="_ref_5"><a href="https://tc39.github.io/ecma262/#sec-requireobjectcoercible">RequireObjectCoercible</a></emu-xref>(<emu-val>this</emu-val> value).</li><li>If <var>regexp</var> is neither <emu-val>undefined</emu-val> nor <emu-val>null</emu-val>, then<ol><li>Let <var>matcher</var> be ? <emu-xref aoid="GetMethod" id="_ref_6"><a href="https://tc39.github.io/ecma262/#sec-getmethod">GetMethod</a></emu-xref>(<var>regexp</var>, @@matchAll).</li><li>If <var>matcher</var> is not <emu-val>undefined</emu-val>, then<ol><li>Return ? <emu-xref aoid="Call" id="_ref_7"><a href="https://tc39.github.io/ecma262/#sec-call">Call</a></emu-xref>(<var>matcher</var>, <var>regexp</var>, « <var>O</var> »).</li></ol></li></ol></li><li>Let <var>S</var> be ? <emu-xref aoid="ToString" id="_ref_8"><a href="https://tc39.github.io/ecma262/#sec-tostring">ToString</a></emu-xref>(<var>O</var>).</li><li>Let <var>matcher</var> be ? <emu-xref aoid="RegExpCreate" id="_ref_9"><a href="https://tc39.github.io/ecma262/#sec-regexpcreate">RegExpCreate</a></emu-xref>(<var>R</var>, <code>"g"</code>).</li><li>Let <var>global</var> be <emu-val>true</emu-val>.</li><li>Let <var>fullUnicode</var> be <emu-val>false</emu-val>.</li><li>Return ! <emu-xref aoid="CreateRegExpStringIterator" id="_ref_10"><a href="#sec-createregexpstringiterator">CreateRegExpStringIterator</a></emu-xref>(<var>matcher</var>, <var>S</var>, <var>global</var>, <var>fullUnicode</var>).
+	<emu-alg><ol><li>Let <var>O</var> be ? <emu-xref aoid="RequireObjectCoercible" id="_ref_5"><a href="https://tc39.github.io/ecma262/#sec-requireobjectcoercible">RequireObjectCoercible</a></emu-xref>(<emu-val>this</emu-val> value).</li><li>If <var>regexp</var> is neither <emu-val>undefined</emu-val> nor <emu-val>null</emu-val>, then<ol><li>Let <var>matcher</var> be ? <emu-xref aoid="GetMethod" id="_ref_6"><a href="https://tc39.github.io/ecma262/#sec-getmethod">GetMethod</a></emu-xref>(<var>regexp</var>, @@matchAll).</li><li>If <var>matcher</var> is not <emu-val>undefined</emu-val>, then<ol><li>Return ? <emu-xref aoid="Call" id="_ref_7"><a href="https://tc39.github.io/ecma262/#sec-call">Call</a></emu-xref>(<var>matcher</var>, <var>regexp</var>, « <var>O</var> »).</li></ol></li></ol></li><li>Let <var>S</var> be ? <emu-xref aoid="ToString" id="_ref_8"><a href="https://tc39.github.io/ecma262/#sec-tostring">ToString</a></emu-xref>(<var>O</var>).</li><li>Let <var>rx</var> be ? <emu-xref aoid="RegExpCreate" id="_ref_9"><a href="https://tc39.github.io/ecma262/#sec-regexpcreate">RegExpCreate</a></emu-xref>(<var>regexp</var>, <code>"g"</code>).</li><li>Return ? <emu-xref aoid="Invoke" id="_ref_10"><a href="https://tc39.github.io/ecma262/#sec-invoke">Invoke</a></emu-xref>(<var>rx</var>, @@matchAll, « <var>S</var> »).
 	</li></ol></emu-alg>
 	<emu-note><span class="note">Note 1</span><div class="note-contents">The <code>matchAll</code> function is intentionally generic, it does not require that its <emu-val>this</emu-val> value be a String object. Therefore, it can be transferred to other kinds of objects for use as a method.</div></emu-note>
 	<emu-note><span class="note">Note 2</span><div class="note-contents">Similarly to <code>String.prototype.split</code>, <code>String.prototype.matchAll</code> is designed to typically act without mutating its inputs.</div></emu-note>
